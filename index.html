@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>República Santo Grau | Tradição e Excelência</title>
+    <title>República Santo Grau | Moradia Estudantil e Vagas em Itajubá (UNIFEI)</title>
+
+    <meta name="description" content="República estudantil em Itajubá próxima à UNIFEI (2 min). Vagas masculinas, quartos individuais e duplos, tudo incluso (limpeza, comida, internet fibra). Tradição desde 2011 no bairro Pinheirinho.">
+
+    <meta property="og:title" content="República Santo Grau - Vagas em Itajubá">
+    <meta property="og:description" content="A 2 min da UNIFEI. Estrutura completa, tudo incluso. Venha conhecer a Santo Grau.">
+    <meta property="og:image" content="https://repsantograu.blob.core.windows.net/fotos/frente_reitoria.png">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
     <link rel="icon" type="image/png" href="https://repsantograu.blob.core.windows.net/fotos/logo_rep_transparente.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -94,7 +102,48 @@
             scroll-behavior: smooth;
         }
     </style>
+        <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "SingleFamilyResidence",
+    "name": "República Santo Grau",
+    "description": "República estudantil tradicional em Itajubá, localizada a 2 minutos da UNIFEI. Oferece quartos individuais e duplos com serviço completo.",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Itajubá",
+        "addressRegion": "MG",
+        "addressCountry": "BR",
+        "addressDistrict": "Pinheirinho" 
+    },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-22.4133", 
+        "longitude": "-45.4497"
+    },
+    "url": "https://repsantograu.blob.core.windows.net/site/index.html", 
+    "image": "https://repsantograu.blob.core.windows.net/fotos/frente_reitoria.png",
+    "priceRange": "R$ 1050 - R$ 1180",
+    "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Internet Fibra Óptica", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Almoço e Jantar incluso", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Limpeza inclusa", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "2 min da UNIFEI", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Garagem", "value": true }
+    ]
+    }
+    </script>
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QMVC2SSW94"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QMVC2SSW94');
+</script>
+
 <body class="bg-repWhite text-repGrey antialiased overflow-x-hidden">
     <section class="relative h-[100svh] md:h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
         <div class="absolute inset-0 z-0">
@@ -107,6 +156,9 @@
             </div>
             <h1 class="text-4xl md:text-7xl font-serif font-bold text-white tracking-wider mb-2 leading-tight">
                 REPÚBLICA <br class="md:hidden" /> <span class="text-repGold">SANTO GRAU</span>
+                <span class="block text-lg md:text-2xl mt-2 text-gray-300 font-sans tracking-normal">
+                    Alojamento Estudantil em Itajubá
+                </span>
             </h1>
             <p class="text-lg md:text-2xl text-gray-200 font-light tracking-[0.2em] mb-8 mt-4 md:mt-0">
                 DESDE 2011 • ITAJUBÁ - MG
@@ -129,12 +181,12 @@
             <div class="w-full md:w-1/3 flex justify-center reveal">
                 <div class="relative">
                     <div class="absolute inset-0 bg-repGold blur-3xl opacity-20 rounded-full"></div>
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/Logo_rep.png" alt="Brasão da República" class="relative w-48 h-48 md:w-80 md:h-80 object-contain object-center drop-shadow-2xl">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/Logo_rep.png" alt="Brasão da República" class="relative w-48 h-48 md:w-80 md:h-80 object-contain object-center drop-shadow-2xl" loading="lazy">
                 </div>
             </div>
             <div class="w-full md:w-2/3 reveal">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-repRed mb-6 border-l-4 border-repGold pl-4">
-                    Informações Gerais
+                    Estrutura da República em Itajubá
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 mb-8 text-gray-700 text-sm md:text-base">
                     <ul class="space-y-4">
@@ -215,21 +267,21 @@
             <h2 class="text-3xl text-center font-serif text-repRed mb-10 md:mb-16 reveal">Momentos Inesquecíveis</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="group relative overflow-hidden h-64 md:h-80 shadow-xl reveal rounded-lg md:rounded-none">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/encontrao.jpg" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" alt="Recepção">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/encontrao.jpg" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" alt="Encontro" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-repRed/90 to-transparent flex flex-col justify-end p-6 translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-repGold font-bold text-lg md:text-xl uppercase tracking-widest border-l-2 border-white pl-3">Encontrão</h3>
                         <p class="text-white text-xs md:text-sm mt-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition delay-100">Encontro entre moradores e ex-moradores</p>
                     </div>
                 </div>
                 <div class="group relative overflow-hidden h-64 md:h-80 shadow-xl reveal delay-100 rounded-lg md:rounded-none">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/churrasco_pais.jpg" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" alt="Churrasco">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/churrasco_pais.jpg" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" alt="Churrasco" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-repRed/90 to-transparent flex flex-col justify-end p-6 translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-repGold font-bold text-lg md:text-xl uppercase tracking-widest border-l-2 border-white pl-3">Churrasco dos Pais</h3>
                         <p class="text-white text-xs md:text-sm mt-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition delay-100">Uma tarde com as famílias</p>
                     </div>
                 </div>
                 <div class="group relative overflow-hidden h-64 md:h-80 shadow-xl reveal delay-200 rounded-lg md:rounded-none">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/masterbixo.jpg" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" alt="Formatura">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/masterbixo.jpg" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" alt="MasterBixo" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-repRed/90 to-transparent flex flex-col justify-end p-6 translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-repGold font-bold text-lg md:text-xl uppercase tracking-widest border-l-2 border-white pl-3">MasterBixo</h3>
                         <p class="text-white text-xs md:text-sm mt-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition delay-100">Competição culinária interna.</p>
@@ -246,19 +298,19 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[200px] mb-12 md:mb-20 reveal">
             <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-lg shadow-md">
-                <img src="https://repsantograu.blob.core.windows.net/fotos/fachada.jpg" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" alt="Fachada">
+                <img src="https://repsantograu.blob.core.windows.net/fotos/fachada.jpg" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" alt="Fachada" loading="lazy">
                 <span class="absolute bottom-2 left-2 md:top-4 md:left-4 md:bottom-auto bg-repGold text-white text-[10px] md:text-xs font-bold px-3 py-1 uppercase tracking-wide rounded">Fachada</span>
             </div>
             <div class="md:col-span-2 relative group overflow-hidden rounded-lg shadow-md">
-                <img src="https://repsantograu.blob.core.windows.net/fotos/Sala.jpg" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" alt="Sala">
+                <img src="https://repsantograu.blob.core.windows.net/fotos/Sala.jpg" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" alt="Sala" loading="lazy">
                 <span class="absolute bottom-2 left-2 md:top-4 md:left-4 md:bottom-auto bg-black/70 text-white text-[10px] md:text-xs font-bold px-3 py-1 uppercase tracking-wide rounded">Sala de Estar</span>
             </div>
             <div class="relative group overflow-hidden rounded-lg shadow-md">
-                <img src="https://repsantograu.blob.core.windows.net/fotos/Cozinha.jpg" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" alt="Cozinha">
+                <img src="https://repsantograu.blob.core.windows.net/fotos/Cozinha.jpg" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" alt="Cozinha" loading="lazy">
                 <span class="absolute bottom-2 left-2 md:top-4 md:left-4 md:bottom-auto bg-black/70 text-white text-[10px] md:text-xs font-bold px-3 py-1 uppercase tracking-wide rounded">Cozinha</span>
             </div>
             <div class="relative group overflow-hidden rounded-lg shadow-md">
-                <img src="https://repsantograu.blob.core.windows.net/fotos/Copa.jpg" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" alt="Quarto Duplo Súite">
+                <img src="https://repsantograu.blob.core.windows.net/fotos/Copa.jpg" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" alt="Quarto Duplo Súite" loading="lazy">
                 <span class="absolute bottom-2 left-2 md:top-4 md:left-4 md:bottom-auto bg-black/70 text-white text-[10px] md:text-xs font-bold px-3 py-1 uppercase tracking-wide rounded">Copa</span>
             </div>
             <div class="md:col-span-4 grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
@@ -288,7 +340,7 @@
         </div>
         <div class="bg-gray-100 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-inner border border-gray-200 reveal">
             <div class="w-full md:w-2/3 h-56 md:h-auto bg-gray-300 relative group">
-                <img src="https://repsantograu.blob.core.windows.net/fotos/mapa.png" class="w-full h-full object-cover object-center mix-blend-multiply" alt="Mapa">
+                <img src="https://repsantograu.blob.core.windows.net/fotos/mapa.png" class="w-full h-full object-cover object-center mix-blend-multiply" alt="Mapa" loading="lazy">
                 <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div class="bg-repRed text-white px-4 py-2 rounded-full shadow-lg text-sm font-bold flex items-center gap-2 animate-bounce">
                         <i class="fas fa-map-marker-alt"></i> 2 min da UNIFEI
@@ -318,7 +370,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:rotate-2">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2011.png" class="w-full h-full object-cover object-center" alt="2011">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2011.png" class="w-full h-full object-cover object-center" alt="2011" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2011</div>
                 </div>
@@ -326,7 +378,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:-rotate-1">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2012.png" class="w-full h-full object-cover object-center" alt="2012">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2012.png" class="w-full h-full object-cover object-center" alt="2012" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2012</div>
                 </div>
@@ -334,7 +386,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:rotate-1">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2013.png" class="w-full h-full object-cover object-center" alt="2013">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2013.png" class="w-full h-full object-cover object-center" alt="2013" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2013</div>
                 </div>
@@ -342,7 +394,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:-rotate-2">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2014.png" class="w-full h-full object-cover object-center" alt="2014">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2014.png" class="w-full h-full object-cover object-center" alt="2014" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2014</div>
                 </div>
@@ -350,7 +402,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:rotate-3">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2015.png" class="w-full h-full object-cover object-center" alt="2015">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2015.png" class="w-full h-full object-cover object-center" alt="2015" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2015</div>
                 </div>
@@ -358,7 +410,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:-rotate-1">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2016.png" class="w-full h-full object-cover object-center" alt="2016">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2016.png" class="w-full h-full object-cover object-center" alt="2016" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2016</div>
                 </div>
@@ -366,7 +418,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:rotate-2">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2017.png" class="w-full h-full object-cover object-center" alt="2017">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2017.png" class="w-full h-full object-cover object-center" alt="2017" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2017</div>
                 </div>
@@ -374,7 +426,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:-rotate-2">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2018.png" class="w-full h-full object-cover object-center" alt="2018">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2018.png" class="w-full h-full object-cover object-center" alt="2018" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2018</div>
                 </div>
@@ -382,7 +434,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:rotate-1">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2019.png" class="w-full h-full object-cover object-center" alt="2019">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2019.png" class="w-full h-full object-cover object-center" alt="2019" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2019</div>
                 </div>
@@ -390,7 +442,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:-rotate-3">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2020.png" class="w-full h-full object-cover object-center" alt="2020">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2020.png" class="w-full h-full object-cover object-center" alt="2020" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2020</div>
                 </div>
@@ -398,7 +450,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:-rotate-1">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2022.png" class="w-full h-full object-cover object-center" alt="2022">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2022.png" class="w-full h-full object-cover object-center" alt="2022" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2022</div>
                 </div>
@@ -406,7 +458,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:rotate-1">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2023.png" class="w-full h-full object-cover object-center" alt="2023">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2023.png" class="w-full h-full object-cover object-center" alt="2023" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2023</div>
                 </div>
@@ -414,7 +466,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:-rotate-2">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2024.png" class="w-full h-full object-cover object-center" alt="2024">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2024.png" class="w-full h-full object-cover object-center" alt="2024" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2024</div>
                 </div>
@@ -422,7 +474,7 @@
             <div class="flex-none snap-center">
                 <div class="polaroid w-56 transform md:rotate-2">
                     <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-                        <img src="https://repsantograu.blob.core.windows.net/fotos/2025.jpg" class="w-full h-full object-cover object-center" alt="2025">
+                        <img src="https://repsantograu.blob.core.windows.net/fotos/2025.jpg" class="w-full h-full object-cover object-center" alt="2025" loading="lazy">
                     </div>
                     <div class="font-serif text-center text-repRed font-bold text-xl">2025</div>
                 </div>
@@ -439,64 +491,64 @@
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-8 mb-12 md:mb-16 reveal items-center justify-items-center">
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/mrs.png" alt="MRS" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/mrs.png" alt="MRS" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/embraer.png" alt="Embraer" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/embraer.png" alt="Embraer" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/general_water.jpg" alt="General Water" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/general_water.jpg" alt="General Water" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/caravela.png" alt="Caravela" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/caravela.png" alt="Caravela" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/neoenergia.png" alt="Neoenergia" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/neoenergia.png" alt="Neoenergia" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/radix.webp" alt="Radix" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/radix.webp" alt="Radix" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/callbell.jpg" alt="Callbell" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/callbell.jpg" alt="Callbell" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/andritz.png" alt="Andritz" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/andritz.png" alt="Andritz" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/aptiv.png" alt="Aptiv" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/aptiv.png" alt="Aptiv" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/btgpactual.webp" alt="BTG Pactual" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/btgpactual.webp" alt="BTG Pactual" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/Creator.png" alt="Creator" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/Creator.png" alt="Creator" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/wonder.jpg" alt="Wonder" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/wonder.jpg" alt="Wonder" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/hitachi.png" alt="Hitachi" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/hitachi.png" alt="Hitachi" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/porshe.jpg" alt="Porsche" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/porshe.jpg" alt="Porsche" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/jirau.png" alt="Jirau" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/jirau.png" alt="Jirau" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/valgroup.png" alt="Valgroup" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/valgroup.png" alt="Valgroup" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/basf.png" alt="BASF" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/basf.png" alt="BASF" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/bacio.jpg" alt="Bacio di Latte" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/bacio.jpg" alt="Bacio di Latte" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/fupai.png" alt="Fupai" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/fupai.png" alt="Fupai" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
                 <div class="group transition duration-500 opacity-60 hover:opacity-100 grayscale hover:grayscale-0">
-                    <img src="https://repsantograu.blob.core.windows.net/fotos/hvex.png" alt="Hvex" class="w-28 h-12 md:w-32 md:h-16 object-contain">
+                    <img src="https://repsantograu.blob.core.windows.net/fotos/hvex.png" alt="Hvex" class="w-28 h-12 md:w-32 md:h-16 object-contain" loading="lazy">
                 </div>
             </div>
             <div class="flex flex-col md:flex-row justify-between items-center border-t border-gray-200 pt-8 text-xs md:text-sm text-gray-500">
