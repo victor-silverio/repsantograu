@@ -2,6 +2,8 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>República Santo Grau | Moradia Estudantil e Vagas em Itajubá (UNIFEI)</title>
     <meta name="description" content="República estudantil em Itajubá próxima à UNIFEI (2 min). Vagas masculinas, quartos individuais e duplos, tudo incluso (limpeza, comida, internet fibra). Tradição desde 2011 no bairro Pinheirinho.">
@@ -14,7 +16,10 @@
     <link rel="canonical" href="https://repsantograu.online" />
     <meta name="keywords" content="República estudantil Itajubá, UNIFEI, moradia universitária, vagas masculinas, República Santo Grau, Pinheirinho, quarto duplo, Rep, rep, República em Itajubá, Vagas em repúblicas, Repúblicas Itajubá">
     <link rel="icon" type="image/webp" href="https://repsantograu.blob.core.windows.net/fotos/logo_rep_transparente.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link href="./dist/output.css" rel="stylesheet">
     <style>
@@ -152,35 +157,47 @@
             </div>
         </div>
     </nav>
-    <section class="relative h-[100svh] md:h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://repsantograu.blob.core.windows.net/fotos/frente_reitoria.webp" width="640" height="335" alt="Fundo República" class="w-full h-full object-cover object-center opacity-50">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-repRed/10 to-black/90"></div>
+<section class="relative h-[100svh] md:h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <picture>
+            <source media="(max-width: 767px)" srcset="https://repsantograu.blob.core.windows.net/fotos/frente_reitoria_mobile.webp">
+            
+            <img 
+                src="https://repsantograu.blob.core.windows.net/fotos/frente_reitoria.webp" 
+                width="640" 
+                height="335" 
+                alt="Fundo República" 
+                class="w-full h-full object-cover object-center opacity-50"
+                fetchpriority="high"
+            >
+        </picture>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-repRed/10 to-black/90"></div>
+    </div>
+
+    <div class="relative z-10 text-center px-4 reveal active w-full max-w-4xl mx-auto">
+        <div class="mb-6 mx-auto w-28 h-28 md:w-40 md:h-40 border-4 border-repGold rounded-full flex items-center justify-center bg-black/50 backdrop-blur-sm shadow-[0_0_20px_rgba(212,175,55,0.5)] overflow-hidden">
+            <img src="https://repsantograu.blob.core.windows.net/fotos/logo_rep_transparente.webp" width="1080" height="1350" alt="Logo República Santo Grau" class="w-full h-full object-cover object-center">
         </div>
-        <div class="relative z-10 text-center px-4 reveal active w-full max-w-4xl mx-auto">
-            <div class="mb-6 mx-auto w-28 h-28 md:w-40 md:h-40 border-4 border-repGold rounded-full flex items-center justify-center bg-black/50 backdrop-blur-sm shadow-[0_0_20px_rgba(212,175,55,0.5)] overflow-hidden">
-                <img src="https://repsantograu.blob.core.windows.net/fotos/logo_rep_transparente.webp" width="1080" height="1350" alt="Logo República Santo Grau" class="w-full h-full object-cover object-center">
-            </div>
-            <h1 class="text-4xl md:text-7xl font-serif font-bold text-white tracking-wider mb-2 leading-tight">
-                REPÚBLICA <br class="md:hidden" /> <span class="text-repGold">SANTO GRAU</span>
-                <span class="block text-lg md:text-2xl mt-2 text-gray-300 font-sans tracking-normal">
-                    Moradia Estudantil em Itajubá
-                </span>
-            </h1>
-            <p class="text-lg md:text-2xl text-gray-200 font-light tracking-[0.2em] mb-8 mt-4 md:mt-0">
-                DESDE 2011 • ITAJUBÁ - MG
-            </p>
-            <a href="https://instagram.com/republicasantograuitajuba" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 border border-repGold/50 rounded-full text-repGold hover:bg-repGold hover:text-black transition-all duration-300 backdrop-blur-md text-sm md:text-base">
-                <i class="fab fa-instagram text-xl"></i>
-                <span>@republicasantograuitajuba</span>
-            </a>
-        </div>
-        <div class="absolute bottom-6 md:bottom-10 z-10 animate-bounce">
-            <a href="#sobre" class="text-white opacity-70 hover:opacity-100 transition flex flex-col items-center">
-                <p class="text-[10px] md:text-xs uppercase tracking-widest mb-2">Role para descobrir</p>
-                <i class="fas fa-chevron-down text-xl md:text-2xl"></i>
-            </a>
-        </div>
+        <h1 class="text-4xl md:text-7xl font-serif font-bold text-white tracking-wider mb-2 leading-tight">
+            REPÚBLICA <br class="md:hidden" /> <span class="text-repGold">SANTO GRAU</span>
+            <span class="block text-lg md:text-2xl mt-2 text-gray-300 font-sans tracking-normal">
+                Moradia Estudantil em Itajubá
+            </span>
+        </h1>
+        <p class="text-lg md:text-2xl text-gray-200 font-light tracking-[0.2em] mb-8 mt-4 md:mt-0">
+            DESDE 2011 • ITAJUBÁ - MG
+        </p>
+        <a href="https://instagram.com/republicasantograuitajuba" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 border border-repGold/50 rounded-full text-repGold hover:bg-repGold hover:text-black transition-all duration-300 backdrop-blur-md text-sm md:text-base">
+            <i class="fab fa-instagram text-xl"></i>
+            <span>@republicasantograuitajuba</span>
+        </a>
+    </div>
+    <div class="absolute bottom-6 md:bottom-10 z-10 animate-bounce">
+        <a href="#sobre" class="text-white opacity-70 hover:opacity-100 transition flex flex-col items-center">
+            <p class="text-[10px] md:text-xs uppercase tracking-widest mb-2">Role para descobrir</p>
+            <i class="fas fa-chevron-down text-xl md:text-2xl"></i>
+        </a>
+    </div>
     </section>
 
     <section id="sobre" class="py-12 md:py-32 container mx-auto px-6">
@@ -309,7 +326,18 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-auto md:auto-rows-[200px] mb-12 md:mb-20 reveal">
             
             <div class="h-[200px] md:h-auto md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-lg shadow-md">
-                <img src="https://repsantograu.blob.core.windows.net/fotos/fachada.webp" width="4032" height="3024" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" alt="Fachada" loading="lazy">
+                <picture>
+                    <source media="(max-width: 767px)" srcset="https://repsantograu.blob.core.windows.net/fotos/fachada_mobile.webp">
+                    
+                    <img 
+                        src="https://repsantograu.blob.core.windows.net/fotos/fachada.webp" 
+                        width="4032" 
+                        height="3024" 
+                        class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" 
+                        alt="Fachada" 
+                        loading="lazy"
+                    >
+                </picture>
                 <span class="absolute bottom-2 left-2 md:top-4 md:left-4 md:bottom-auto bg-repGold text-white text-[10px] md:text-xs font-bold px-3 py-1 uppercase tracking-wide rounded">Fachada</span>
             </div>
             
