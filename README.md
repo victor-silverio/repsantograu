@@ -83,6 +83,7 @@ repsantograu/
 ├── robots.txt           # Diretrizes para indexadores (SEO)
 ├── sitemap.xml          # Mapa do site para motores de busca
 └── README.md            # Documentação do projeto
+```
 
 ## 📞 Contato
 
