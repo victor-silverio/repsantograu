@@ -4,7 +4,12 @@
     <!-- .webp?v=1 para atualizar cache -->
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preload" as="image" href="https://repsantograu.blob.core.windows.net/fotos/frente_reitoria.webp">
+    <link rel="preload" as="image" 
+      href="https://repsantograu.blob.core.windows.net/fotos/frente_reitoria_mobile.webp" 
+      media="(max-width: 767px)">
+    <link rel="preload" as="image" 
+      href="https://repsantograu.blob.core.windows.net/fotos/frente_reitoria.webp" 
+      media="(min-width: 768px)">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://repsantograu.blob.core.windows.net">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,17 +67,6 @@
             }
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         .polaroid {
             background: #fff;
             padding: 0.8rem 0.8rem 2.5rem 0.8rem;
@@ -95,34 +89,42 @@
         }
     </style>
     <script type="application/ld+json">
-    {
-    "@context": "https://schema.org",
-    "@type": "SingleFamilyResidence",
-    "name": "República Santo Grau",
-    "description": "República estudantil tradicional em Itajubá, localizada a 2 minutos da UNIFEI. Oferece quartos individuais e duplos com serviço completo.",
-    "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Itajubá",
-        "addressRegion": "MG",
-        "addressCountry": "BR",
-        "addressDistrict": "Pinheirinho" 
-    },
-    "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "-22.4133", 
-        "longitude": "-45.4497"
-    },
-    "url": "https://www.repsantograu.online", 
-    "image": "https://repsantograu.blob.core.windows.net/fotos/frente_reitoria.webp",
-    "priceRange": "R$ 1050 - R$ 1180",
-    "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Internet Fibra Óptica", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Almoço e Jantar incluso", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Limpeza inclusa", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "2 min da UNIFEI", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Garagem", "value": true }
-    ]
-    }
+        {
+        "@context": "https://schema.org",
+        "@type": "Residence",
+        "additionalType": "https://schema.org/StudentHousing",
+        "name": "República Santo Grau",
+        "alternateName": "República Estudantil Santo Grau",
+        "description": "República estudantil masculina em Itajubá (Bairro Pinheirinho), a 2 minutos da UNIFEI. Vagas em quartos individuais e duplos com internet fibra, limpeza e alimentação inclusas.",
+        "telephone": "+55-19-99252-1926",
+        "url": "https://www.repsantograu.online",
+        "image": [
+            "https://repsantograu.blob.core.windows.net/fotos/frente_reitoria.webp",
+            "https://repsantograu.blob.core.windows.net/fotos/fachada.webp"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Bairro Pinheirinho",
+            "addressLocality": "Itajubá",
+            "addressRegion": "MG",
+            "postalCode": "37500-000",
+            "addressCountry": "BR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "-22.4133", 
+            "longitude": "-45.4497"
+        },
+        "amenityFeature": [
+            { "@type": "LocationFeatureSpecification", "name": "Internet Fibra Óptica (2 Links)", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Almoço e Jantar inclusos", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Limpeza e Lavanderia", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "2 min da UNIFEI", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Garagem", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Quartos Mobiliados", "value": true }
+        ],
+        "priceRange": "R$ 1050 - R$ 1180"
+        }
     </script>
 </head>
 
@@ -178,7 +180,7 @@
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-repRed/10 to-black/90"></div>
     </div>
 
-    <div class="relative z-10 text-center px-4 reveal active w-full max-w-4xl mx-auto">
+    <div class="relative z-10 text-center px-4 w-full max-w-4xl mx-auto">
         <div class="mb-6 mx-auto w-28 h-28 md:w-40 md:h-40 border-4 border-repGold rounded-full flex items-center justify-center bg-black/50 backdrop-blur-sm shadow-[0_0_20px_rgba(212,175,55,0.5)] overflow-hidden">
             <img src="https://repsantograu.blob.core.windows.net/fotos/logo_rep_transparente.webp" width="1080" height="1350" alt="Logo República Santo Grau" class="w-full h-full object-cover object-center">
         </div>
@@ -631,7 +633,8 @@
                 });
             }, observerOptions);
 
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            const hiddenElements = document.querySelectorAll('.reveal');
+            hiddenElements.forEach((el) => observer.observe(el));
 
             const menuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
