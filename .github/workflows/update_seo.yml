@@ -1,0 +1,41 @@
+name: Update SEO Ratings
+
+on:
+  schedule:
+    # Executa todos os dias às 03:00 da manhã (Horário UTC)
+    - cron: '0 3 * * *'
+  workflow_dispatch: # Permite rodar manualmente pelo botão no GitHub para testar
+
+jobs:
+  update-ratings:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write # Permissão crucial para o bot conseguir fazer commit
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run Update Script
+      env:
+        GCP_API_KEY: ${{ secrets.GCP_API_KEY }}
+        PLACE_ID: ${{ secrets.PLACE_ID }}
+      run: python update_ratings.py
+
+    - name: Commit and Push if changed
+      run: |
+        git config --global user.name 'SEO Bot'
+        git config --global user.email 'seobot@repsantograu.online'
+        git add index.html
+        # Só commita se houver diferença
+        git diff --quiet && git diff --staged --quiet || (git commit -m "chore(seo): update google ratings count" && git push)
