@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "route": "/(.*)",
+      "rewrite": "/index.html"
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  },
+  "globalHeaders": {
+    "content-security-policy": "default-src https: 'unsafe-inline' 'unsafe-eval'; img-src https: data: blob:;"
+  },
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/index.html"
+    }
+  },
+  "networking": {
+    "allowedIpRanges": []
+  },
+  "forwardingGateway": {
+    "requiredHeaders": {
+      "X-Azure-FDID": ""
+    },
+    "allowedForwardedHosts": []
+  }
+}
