@@ -2,20 +2,19 @@ name: Update SEO Ratings
 
 on:
   schedule:
-    # Executa todos os dias às 03:00 da manhã (Horário UTC)
     - cron: '0 3 * * *'
-  workflow_dispatch: # Permite rodar manualmente pelo botão no GitHub para testar
+  workflow_dispatch:
 
 jobs:
   update-ratings:
     runs-on: ubuntu-latest
     
-    permissions:
-      contents: write # Permissão crucial para o bot conseguir fazer commit
-
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.PAT_TOKEN }} # <--- AQUI ESTÁ A MÁGICA
+        # Se não funcionar com PAT_TOKEN, tente secrets.GITHUB_TOKEN, mas PAT é o que dispara eventos.
 
     - name: Setup Python
       uses: actions/setup-python@v4
@@ -37,5 +36,5 @@ jobs:
         git config --global user.name 'SEO Bot'
         git config --global user.email 'seobot@repsantograu.online'
         git add index.html
-        # Só commita se houver diferença
+        # O push usará a autenticação do checkout (PAT_TOKEN)
         git diff --quiet && git diff --staged --quiet || (git commit -m "chore(seo): update google ratings count" && git push)
