@@ -55,8 +55,7 @@ def update_html(new_data):
         try:
             json_data = json.loads(json_str)
             
-            # Verifica se é o JSON correto (Residence)
-            if json_data.get('@type') == 'Residence':
+            if json_data.get('@type') == 'LodgingBusiness':
                 
                 # Garante estrutura
                 if 'aggregateRating' not in json_data:
