@@ -64,6 +64,7 @@ repsantograu/
 ├── robots.txt           # Diretrizes para crawlers
 ├── sitemap.xml          # Mapa do site dinâmico
 └── README.md            # Documentação
+```
 
 ---
 
