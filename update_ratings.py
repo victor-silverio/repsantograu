@@ -1,6 +1,7 @@
 import os
 import requests
 import re
+from datetime import datetime
 
 API_KEY = os.environ.get("GCP_API_KEY")
 PLACE_ID = os.environ.get("PLACE_ID")
@@ -51,33 +52,46 @@ def update_html(new_data):
         rv_pattern = re.compile(r'("ratingValue"\s*:\s*")([\d.]+)(")')
         
         def replace_rc(m):
-            if m.group(2) != str(new_data['reviewCount']):
+            if new_data and m.group(2) != str(new_data['reviewCount']):
                 print(f"[SEO] Atualizando reviewCount: {m.group(2)} -> {new_data['reviewCount']}")
                 return f'{m.group(1)}{new_data["reviewCount"]}{m.group(3)}'
             return m.group(0)
 
         def replace_rv(m):
-            if m.group(2) != str(new_data['ratingValue']):
+            if new_data and m.group(2) != str(new_data['ratingValue']):
                 print(f"[SEO] Atualizando ratingValue: {m.group(2)} -> {new_data['ratingValue']}")
                 return f'{m.group(1)}{new_data["ratingValue"]}{m.group(3)}'
             return m.group(0)
 
-        new_script_content = rc_pattern.sub(replace_rc, new_script_content)
-        new_script_content = rv_pattern.sub(replace_rv, new_script_content)
+        if new_data:
+            new_script_content = rc_pattern.sub(replace_rc, new_script_content)
+            new_script_content = rv_pattern.sub(replace_rv, new_script_content)
 
         if new_script_content != script_content:
             updated_content = updated_content[:match_json.start(2)] + new_script_content + updated_content[match_json.end(2):]
             changes_made = True
 
-    text_pattern = re.compile(r'(<span id="google-rating-text">)(.*?)(</span>)')
-    new_visible_text = f"Nota {new_data['ratingValue']} no Google (baseada em {new_data['reviewCount']} avaliações)"
+    if new_data:
+        text_pattern = re.compile(r'(<span id="google-rating-text">)(.*?)(</span>)')
+        new_visible_text = f"Nota {new_data['ratingValue']} no Google (baseada em {new_data['reviewCount']} avaliações)"
+        
+        match_text = text_pattern.search(updated_content)
+        if match_text:
+            current_text = match_text.group(2)
+            if current_text != new_visible_text:
+                print(f"[UX] Atualizando texto visível: '{current_text}' -> '{new_visible_text}'")
+                updated_content = text_pattern.sub(f'\\1{new_visible_text}\\3', updated_content)
+                changes_made = True
+
+    current_year = str(datetime.now().year)
+    copyright_pattern = re.compile(r'(©\s*)(\d{4})(\s*República Santo Grau)')
     
-    match_text = text_pattern.search(updated_content)
-    if match_text:
-        current_text = match_text.group(2)
-        if current_text != new_visible_text:
-            print(f"[UX] Atualizando texto visível: '{current_text}' -> '{new_visible_text}'")
-            updated_content = text_pattern.sub(f'\\1{new_visible_text}\\3', updated_content)
+    match_copyright = copyright_pattern.search(updated_content)
+    if match_copyright:
+        existing_year = match_copyright.group(2)
+        if existing_year != current_year:
+            print(f"[FOOTER] Atualizando ano de copyright: {existing_year} -> {current_year}")
+            updated_content = copyright_pattern.sub(f'\\g<1>{current_year}\\g<3>', updated_content)
             changes_made = True
 
     if changes_made:
@@ -89,8 +103,7 @@ def update_html(new_data):
 
 if __name__ == "__main__":
     ratings = get_google_ratings()
-    if ratings:
-        if update_html(ratings):
-            print("HTML Atualizado com sucesso.")
-        else:
-            print("Nenhuma alteração necessária.")
+    if update_html(ratings):
+        print("HTML Atualizado com sucesso.")
+    else:
+        print("Nenhuma alteração necessária.")
