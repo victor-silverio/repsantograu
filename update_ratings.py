@@ -1,5 +1,4 @@
 import os
-import json
 import requests
 import re
 
@@ -7,7 +6,6 @@ API_KEY = os.environ.get("GCP_API_KEY")
 PLACE_ID = os.environ.get("PLACE_ID")
 
 def get_google_ratings():
-    """Busca dados na Google Places API (New)"""
     if not API_KEY or not PLACE_ID:
         print("Erro: Chaves não configuradas.")
         return None
@@ -43,50 +41,42 @@ def update_html(new_data):
     updated_content = content
 
     json_pattern = re.compile(r'(<script type="application/ld\+json">)(.*?)(</script>)', re.DOTALL)
-    matches = json_pattern.finditer(content)
+    match_json = json_pattern.search(content)
 
-    for match in matches:
-        full_match = match.group(0)
-        json_str = match.group(2)
+    if match_json:
+        script_content = match_json.group(2)
+        new_script_content = script_content
         
-        try:
-            json_data = json.loads(json_str)
-            if json_data.get('@type') == 'LodgingBusiness':
-                if 'aggregateRating' not in json_data:
-                    json_data['aggregateRating'] = {}
+        rc_pattern = re.compile(r'("reviewCount"\s*:\s*")(\d+)(")')
+        rv_pattern = re.compile(r'("ratingValue"\s*:\s*")([\d.]+)(")')
+        
+        def replace_rc(m):
+            if m.group(2) != str(new_data['reviewCount']):
+                print(f"[SEO] Atualizando reviewCount: {m.group(2)} -> {new_data['reviewCount']}")
+                return f'{m.group(1)}{new_data["reviewCount"]}{m.group(3)}'
+            return m.group(0)
 
-                current_count = str(json_data['aggregateRating'].get('reviewCount', '0'))
-                new_count = str(new_data['reviewCount'])
-                
-                if current_count != new_count:
-                    print(f"[SEO] Atualizando reviewCount: {current_count} -> {new_count}")
-                    
-                    json_data['aggregateRating'].update({
-                        "@type": "AggregateRating",
-                        "ratingValue": str(new_data['ratingValue']),
-                        "reviewCount": new_count,
-                        "bestRating": "5",
-                        "worstRating": "1"
-                    })
-                    
-                    new_json_str = json.dumps(json_data, indent=4, ensure_ascii=False)
-                    new_script_tag = f'<script type="application/ld+json">\n{new_json_str}\n</script>'
-                    updated_content = updated_content.replace(full_match, new_script_tag)
-                    changes_made = True
-        except json.JSONDecodeError:
-            continue
+        def replace_rv(m):
+            if m.group(2) != str(new_data['ratingValue']):
+                print(f"[SEO] Atualizando ratingValue: {m.group(2)} -> {new_data['ratingValue']}")
+                return f'{m.group(1)}{new_data["ratingValue"]}{m.group(3)}'
+            return m.group(0)
+
+        new_script_content = rc_pattern.sub(replace_rc, new_script_content)
+        new_script_content = rv_pattern.sub(replace_rv, new_script_content)
+
+        if new_script_content != script_content:
+            updated_content = updated_content[:match_json.start(2)] + new_script_content + updated_content[match_json.end(2):]
+            changes_made = True
 
     text_pattern = re.compile(r'(<span id="google-rating-text">)(.*?)(</span>)')
-    
     new_visible_text = f"Nota {new_data['ratingValue']} no Google (baseada em {new_data['reviewCount']} avaliações)"
     
-    text_match = text_pattern.search(updated_content)
-    if text_match:
-        current_visible_text = text_match.group(2)
-        
-        if current_visible_text != new_visible_text:
-            print(f"[UX] Atualizando texto visível: '{current_visible_text}' -> '{new_visible_text}'")
-
+    match_text = text_pattern.search(updated_content)
+    if match_text:
+        current_text = match_text.group(2)
+        if current_text != new_visible_text:
+            print(f"[UX] Atualizando texto visível: '{current_text}' -> '{new_visible_text}'")
             updated_content = text_pattern.sub(f'\\1{new_visible_text}\\3', updated_content)
             changes_made = True
 
