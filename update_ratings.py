@@ -3,7 +3,6 @@ import json
 import requests
 import re
 
-# Configurações
 API_KEY = os.environ.get("GCP_API_KEY")
 PLACE_ID = os.environ.get("PLACE_ID")
 
@@ -36,17 +35,15 @@ def get_google_ratings():
 
 def update_html(new_data):
     file_path = 'index.html'
+    changes_made = False
     
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
-
-    # Regex para encontrar APENAS o bloco do JSON-LD
-    # Procura por <script type="application/ld+json"> ... </script>
-    pattern = re.compile(r'(<script type="application/ld\+json">)(.*?)(</script>)', re.DOTALL)
     
-    matches = pattern.finditer(content)
     updated_content = content
-    changes_made = False
+
+    json_pattern = re.compile(r'(<script type="application/ld\+json">)(.*?)(</script>)', re.DOTALL)
+    matches = json_pattern.finditer(content)
 
     for match in matches:
         full_match = match.group(0)
@@ -54,21 +51,16 @@ def update_html(new_data):
         
         try:
             json_data = json.loads(json_str)
-            
             if json_data.get('@type') == 'LodgingBusiness':
-                
-                # Garante estrutura
                 if 'aggregateRating' not in json_data:
                     json_data['aggregateRating'] = {}
 
-                # Checa se precisa atualizar
                 current_count = str(json_data['aggregateRating'].get('reviewCount', '0'))
                 new_count = str(new_data['reviewCount'])
                 
                 if current_count != new_count:
-                    print(f"Atualizando reviewCount: {current_count} -> {new_count}")
+                    print(f"[SEO] Atualizando reviewCount: {current_count} -> {new_count}")
                     
-                    # Atualiza os dados
                     json_data['aggregateRating'].update({
                         "@type": "AggregateRating",
                         "ratingValue": str(new_data['ratingValue']),
@@ -77,20 +69,26 @@ def update_html(new_data):
                         "worstRating": "1"
                     })
                     
-                    # Gera o novo JSON formatado
                     new_json_str = json.dumps(json_data, indent=4, ensure_ascii=False)
-                    
-                    # Reconstrói a tag completa
                     new_script_tag = f'<script type="application/ld+json">\n{new_json_str}\n</script>'
-                    
-                    # Substitui apenas este trecho no conteúdo original
                     updated_content = updated_content.replace(full_match, new_script_tag)
                     changes_made = True
-                else:
-                    print("Valores iguais, sem update.")
-                    
         except json.JSONDecodeError:
             continue
+
+    text_pattern = re.compile(r'(<span id="google-rating-text">)(.*?)(</span>)')
+    
+    new_visible_text = f"Nota {new_data['ratingValue']} no Google (baseada em {new_data['reviewCount']} avaliações)"
+    
+    text_match = text_pattern.search(updated_content)
+    if text_match:
+        current_visible_text = text_match.group(2)
+        
+        if current_visible_text != new_visible_text:
+            print(f"[UX] Atualizando texto visível: '{current_visible_text}' -> '{new_visible_text}'")
+
+            updated_content = text_pattern.sub(f'\\1{new_visible_text}\\3', updated_content)
+            changes_made = True
 
     if changes_made:
         with open(file_path, 'w', encoding='utf-8') as f:
