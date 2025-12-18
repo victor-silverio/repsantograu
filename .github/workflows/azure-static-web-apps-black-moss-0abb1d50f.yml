@@ -4,10 +4,18 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'update_ratings.py'
+      - 'requirements.txt'
+      - '.github/workflows/update_seo.yml'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
+    paths-ignore:
+      - 'update_ratings.py'
+      - 'requirements.txt'
+      - '.github/workflows/update_seo.yml'
 
 jobs:
   build_and_deploy_job:
