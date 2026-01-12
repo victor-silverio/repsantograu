@@ -58,16 +58,51 @@ O projeto utiliza **GitHub Actions** conectado ao **Microsoft Azure**. Existem d
 repsantograu/
 ├── .github/workflows/   # Workflows de CI/CD e Automação Python
 ├── .gitignore           # Arquivos ignorados
-├── index.html           # SPA Principal
-├── update_ratings.py    # Script Python de automação de SEO
-├── requirements.txt     # Dependências do script Python
+├── index.html           # SPA Principal (HTML, CSS inlined, JSON-LD SEO)
+├── manifest.json        # PWA manifest
+├── staticwebapp.config.json # Azure Static Web Apps configuration
+├── update_ratings.py    # Script Python que atualiza avaliações/SEO
+├── requirements.txt     # Dependências do script Python (`requests`)
 ├── robots.txt           # Diretrizes para crawlers
-├── sitemap.xml          # Mapa do site dinâmico
+├── sitemap.xml          # Mapa do site
 └── README.md            # Documentação
 ```
 
 ---
+ 
+## 📝 Changelog (Resumo das alterações recentes)
 
+- **Data:** 2026-01-12 — Atualização do `README.md` com inventário e notas.
+- **Adicionado:** `manifest.json` (PWA), `staticwebapp.config.json` (Azure SWA headers/rewrite), pasta `veio/` com `package.json`, `tailwind.config.js` e `src/input.css` para o fluxo de build do CSS.
+- **Atualizado:** `index.html` (conteúdo inline, JSON-LD para SEO e assets preloaded), `sitemap.xml` (`lastmod` mantido/atualizado conforme deploy automatizado), `update_ratings.py` (script de automação presente e listado).
+- **Removido:** Nenhum arquivo crítico detectado como removido no estado atual do repositório.
+
+> Observação: muitos assets de mídia (imagens, ícones) são servidos externamente via Azure Blob Storage e estão referenciados diretamente em `index.html`.
+
+## ⚙️ Notas de desenvolvimento local
+
+- O site é estático — abrir `index.html` no navegador funciona para visualização rápida.
+- Para trabalhar no CSS com Tailwind (se desejar rebuild): entre em `veio/` e use o fluxo Node/Tailwind indicado em `veio/package.json` (instalar dependências e rodar o build localmente).
+
+Exemplo rápido (PowerShell):
+
+```powershell
+cd veio
+npm install
+npm run build
+```
+
+## 🔁 Automação de SEO
+
+- O script `update_ratings.py` busca as avaliações via Google Places API (variáveis de ambiente `GCP_API_KEY` e `PLACE_ID`) e atualiza o JSON-LD dentro de `index.html` quando há alterações de nota ou contagem. Suas dependências estão em `requirements.txt` (`requests`).
+
+## ✅ Status atual
+
+- Deploy: hospeda em Azure Static Web Apps (CI/CD via GitHub Actions).
+- SEO: JSON-LD e OpenGraph configurados em `index.html`.
+- PWA: `manifest.json` presente para comportamento standalone.
+
+---
 ## 🚀 Como Executar Localmente
 
 Como o projeto é estático, a execução local é simples.
