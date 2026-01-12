@@ -32,6 +32,25 @@ def get_google_ratings():
         print(f"Erro API: {e}")
     return None
 
+def update_sitemap():
+    """Atualiza a tag <lastmod> no sitemap.xml com a data de hoje."""
+    file_path = 'sitemap.xml'
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        current_date = datetime.now().strftime('%Y-%m-%d')
+        new_content = re.sub(r'<lastmod>.*?</lastmod>', f'<lastmod>{current_date}</lastmod>', content)
+        
+        if new_content != content:
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            print(f"[SEO] Sitemap atualizado para: {current_date}")
+            return True
+    except Exception as e:
+        print(f"Erro ao atualizar sitemap: {e}")
+    return False
+
 def update_html(new_data):
     file_path = 'index.html'
     changes_made = False
@@ -105,5 +124,6 @@ if __name__ == "__main__":
     ratings = get_google_ratings()
     if update_html(ratings):
         print("HTML Atualizado com sucesso.")
+        update_sitemap()
     else:
         print("Nenhuma alteração necessária.")
