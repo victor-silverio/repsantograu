@@ -3,6 +3,9 @@ name: Update SEO Ratings
 on:
   schedule:
     - cron: '0 3 * * *'
+  push:
+    paths:
+      - 'index.html'
   workflow_dispatch:
 
 jobs:
@@ -13,8 +16,8 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
       with:
-        token: ${{ secrets.PAT_TOKEN }} # <--- AQUI ESTÁ A MÁGICA
-        # Se não funcionar com PAT_TOKEN, tente secrets.GITHUB_TOKEN, mas PAT é o que dispara eventos.
+        token: ${{ secrets.PAT_TOKEN }}
+        fetch-depth: 0
 
     - name: Setup Python
       uses: actions/setup-python@v4
@@ -38,5 +41,4 @@ jobs:
         git config --global user.email 'seobot@repsantograu.online'
         git add index.html
         git add sitemap.xml
-        # O push usará a autenticação do checkout (PAT_TOKEN)
-        git diff --quiet && git diff --staged --quiet || (git commit -m "chore(seo): update google ratings count" && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "chore(seo): update ratings or sitemap date" && git push)

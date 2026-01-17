@@ -1,9 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
    <url>
       <loc>https://www.repsantograu.online/</loc>
-      <lastmod>2026-01-12</lastmod>
+      <lastmod>2026-01-17</lastmod>
       <changefreq>daily</changefreq>
       <priority>1.0</priority>
+
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/fachada-republica-estudantil-itajuba.webp</image:loc>
+        <image:title>Fachada República Santo Grau em Itajubá</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/sala.webp</image:loc>
+        <image:title>Sala de Estar</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/copa.webp</image:loc>
+        <image:title>Copa da República</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/cozinha.webp</image:loc>
+        <image:title>Cozinha da República</image:title>
+      </image:image>
+
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/churrasco_pais.webp</image:loc>
+        <image:title>Churrasco com os Pais</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/encontrao.webp</image:loc>
+        <image:title>Encontrão de Ex-Moradores</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/masterbixo.webp</image:loc>
+        <image:title>Master Chef de Bixos</image:title>
+      </image:image>
+
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2025.webp</image:loc>
+        <image:title>Turma de 2025</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2024.webp</image:loc>
+        <image:title>Turma de 2024</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2023.webp</image:loc>
+        <image:title>Turma de 2023</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2022.webp</image:loc>
+        <image:title>Turma de 2022</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2020.webp</image:loc>
+        <image:title>Turma de 2020</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2019.webp</image:loc>
+        <image:title>Turma de 2019</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2018.webp</image:loc>
+        <image:title>Turma de 2018</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2017.webp</image:loc>
+        <image:title>Turma de 2017</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2016.webp</image:loc>
+        <image:title>Turma de 2016</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2015.webp</image:loc>
+        <image:title>Turma de 2015</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2014.webp</image:loc>
+        <image:title>Turma de 2014</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2013.webp</image:loc>
+        <image:title>Turma de 2013</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2012.webp</image:loc>
+        <image:title>Turma de 2012</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/2011.webp</image:loc>
+        <image:title>Turma de 2011</image:title>
+      </image:image>
+
+      <image:image>
+        <image:loc>https://www.repsantograu.online/imagens/logo_rep_transparente.webp</image:loc>
+        <image:title>Logo República Santo Grau</image:title>
+      </image:image>
    </url>
 </urlset>
