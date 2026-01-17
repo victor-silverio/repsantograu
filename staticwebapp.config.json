@@ -5,6 +5,26 @@
   },
   "routes": [
     {
+      "route": "/.github/*",
+      "statusCode": 404
+    },
+    {
+      "route": "/divulgacao_rep/*",
+      "statusCode": 404
+    },
+    {
+      "route": "/README.md",
+      "statusCode": 404
+    },
+    {
+      "route": "/requirements.txt",
+      "statusCode": 404
+    },
+    {
+      "route": "/*.py",
+      "statusCode": 404
+    },
+    {
       "route": "/index.html",
       "headers": {
         "Cache-Control": "no-cache"
