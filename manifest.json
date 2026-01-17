@@ -9,13 +9,13 @@
   "scope": "/",
   "icons": [
     {
-      "src": "https://repsantograufotos.blob.core.windows.net/fotos/favicon-192x192.png",
+      "src": "https://www.repsantograu.online/imagens/favicon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://repsantograufotos.blob.core.windows.net/fotos/apple-touch-icon.png",
+      "src": "https://www.repsantograu.online/imagens/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
     }
