@@ -1,10 +1,24 @@
 import os
 import requests
 import re
+import subprocess
 from datetime import datetime
 
 API_KEY = os.environ.get("GCP_API_KEY")
 PLACE_ID = os.environ.get("PLACE_ID")
+
+def get_git_last_commit_date(filename):
+    """Pega a data da última modificação do arquivo no Git (YYYY-MM-DD)."""
+    try:
+        # Comando git para pegar a data do último commit do arquivo
+        result = subprocess.check_output(
+            ['git', 'log', '-1', '--format=%cd', '--date=short', filename],
+            text=True
+        ).strip()
+        return result
+    except Exception as e:
+        print(f"Erro ao verificar git log para {filename}: {e}")
+        return None
 
 def get_google_ratings():
     if not API_KEY or not PLACE_ID:
@@ -32,23 +46,43 @@ def get_google_ratings():
         print(f"Erro API: {e}")
     return None
 
-def update_sitemap():
-    """Atualiza a tag <lastmod> no sitemap.xml com a data de hoje."""
+def update_sitemap(force_update=False):
+    """
+    Atualiza o sitemap se forçado (pelo script Python) 
+    OU se o index.html tiver um commit mais recente que o sitemap.
+    """
     file_path = 'sitemap.xml'
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
-        current_date = datetime.now().strftime('%Y-%m-%d')
-        new_content = re.sub(r'<lastmod>.*?</lastmod>', f'<lastmod>{current_date}</lastmod>', content)
-        
-        if new_content != content:
-            with open(file_path, 'w', encoding='utf-8') as f:
-                f.write(new_content)
-            print(f"[SEO] Sitemap atualizado para: {current_date}")
-            return True
-    except Exception as e:
-        print(f"Erro ao atualizar sitemap: {e}")
+    html_path = 'index.html'
+    
+    should_update = force_update
+
+    if not should_update:
+        date_html = get_git_last_commit_date(html_path)
+        date_sitemap = get_git_last_commit_date(file_path)
+
+        if date_html and date_sitemap:
+            if date_html > date_sitemap:
+                print(f"[SEO] Detectada alteração manual no index.html ({date_html}) sem atualização do sitemap.")
+                should_update = True
+            else:
+                print("[SEO] Sitemap já está sincronizado com a versão mais recente do HTML.")
+
+    if should_update:
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            current_date = datetime.now().strftime('%Y-%m-%d')
+            new_content = re.sub(r'<lastmod>.*?</lastmod>', f'<lastmod>{current_date}</lastmod>', content, count=1)
+            
+            if new_content != content:
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    f.write(new_content)
+                print(f"[SEO] Sitemap atualizado para: {current_date}")
+                return True
+        except Exception as e:
+            print(f"Erro ao atualizar sitemap: {e}")
+    
     return False
 
 def update_html(new_data):
@@ -122,8 +156,12 @@ def update_html(new_data):
 
 if __name__ == "__main__":
     ratings = get_google_ratings()
-    if update_html(ratings):
-        print("HTML Atualizado com sucesso.")
-        update_sitemap()
+    
+    html_changed_by_script = update_html(ratings)
+    
+    if html_changed_by_script:
+        print("HTML foi alterado pelo script (notas novas ou ano). Atualizando sitemap...")
+        update_sitemap(force_update=True)
     else:
-        print("Nenhuma alteração necessária.")
+        print("Nenhuma alteração de notas. Verificando histórico do Git...")
+        update_sitemap(force_update=False)
