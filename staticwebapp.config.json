@@ -1,8 +1,4 @@
 {
-  "navigationFallback": {
-    "rewrite": "/index.html",
-    "exclude": ["/*.{png,jpg,gif,webp,css,js,ico,xml,txt}"]
-  },
   "routes": [
     {
       "route": "/.github/*",
@@ -42,7 +38,8 @@
   },
   "responseOverrides": {
     "404": {
-      "rewrite": "/index.html"
+      "rewrite": "/404.html",
+      "statusCode": 404
     }
   }
 }
