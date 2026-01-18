@@ -33,6 +33,18 @@
         "Content-Type": "text/plain"
       }
     },
+      {
+      "route": "/assets/*",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, must-revalidate"
+      }
+    },
+      {
+      "route": "/icons/*",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, must-revalidate"
+      }
+    },
     {
       "route": "/*.{png,jpg,gif,webp,css,js,ico,xml,txt,json}",
       "headers": {
