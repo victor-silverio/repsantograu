@@ -19,3 +19,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+ADDITIONAL TERMS: LICENSE AND USAGE RIGHTS
+
+The source code of this project (HTML, CSS, JavaScript) is licensed under the MIT License above. You are free to use, modify, and distribute the structure of this site for your own projects.
+
+However, the data and visual identity are PROPRIETARY:
+
+1. The images (photos of the house, logos), descriptive texts, direct contact links, and the "República Santo Grau" identity are NOT included in the free license.
+2. If you fork this project, you MUST remove all images, texts, and links referring to our republic and insert your own.

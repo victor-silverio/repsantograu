@@ -13,7 +13,7 @@
       "statusCode": 404
     },
     {
-      "route": "/README.md",
+      "route": "/*.md",
       "statusCode": 404
     },
     {
