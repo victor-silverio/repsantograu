@@ -1,107 +1,126 @@
-# 🏠 República Santo Grau — Site oficial
+# República Santo Grau — Site Oficial
 
-![Azure Static Web Apps CI/CD](https://github.com/victor-silverio/repsantograu/actions/workflows/azure-static-web-apps-black-moss-0abb1d50f.yml/badge.svg) ![SEO Automation](https://github.com/victor-silverio/repsantograu/actions/workflows/update_seo.yml/badge.svg) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.online&label=Online&color=success)
+![Azure Static Web Apps CI/CD](https://github.com/victor-silverio/repsantograu/actions/workflows/azure-static-web-apps-black-moss-0abb1d50f.yml/badge.svg) ![SEO Automation](https://github.com/victor-silverio/repsantograu/actions/workflows/update_seo.yml/badge.svg) ![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.online&label=Online&color=success)
 
-Este repositório contém o site oficial da **República Santo Grau** (Itajubá, MG). O site foi construído como uma Single Page Application (SPA) estática, com foco em velocidade, SEO técnico e experiência mobile-first. Ele centraliza a apresentação da casa, história, networking de ex-moradores e automações de manutenção.
+Repositório com o código do site da República Santo Grau (Itajubá, MG). É uma Single Page Application que cuida de performance, SEO automático e segurança.
 
-🔗 Acesse em: [www.repsantograu.online](https://www.repsantograu.online/)
+**Site:** [www.repsantograu.online](https://www.repsantograu.online/)
 
-## 🚀 Funcionalidades e Diferenciais
+## Segurança e Infraestrutura
 
-O projeto vai além de uma landing page estática, integrando funcionalidades dinâmicas via scripts e design moderno:
+O site roda em cima de algumas tecnologias:
 
-- **Seções Ricas:**
-  - **História Interativa:** Linha do tempo (Carousel) com fotos desde 2011.
-  - **Networking:** Showcase de empresas onde ex-moradores atuam (Embraer, MRS, BTG, etc.).
-  - **FAQ:** Seção de perguntas frequentes com dados estruturados (`FAQPage`).
-  - **Tour:** Galeria de infraestrutura e links para drive de fotos.
-- **PWA (Progressive Web App):** Configurável via `manifest.json` para instalação nativa em celulares.
-- **SEO Técnico Automatizado:** Dados estruturados (JSON-LD) para `LodgingBusiness` atualizados automaticamente.
-- **Hospedagem:** Azure Static Web Apps com SSL, distribuição global e cache agressivo para assets estáticos.
-- **Performance:** Imagens em formato WebP, carregamento *lazy* e fontes otimizadas.
+- **Cloudflare:** Protege contra DDoS, gerencia o DNS e acelera a entrega dos assets usando CDN.
+- **Azure Static Web Apps:** Hospedagem serverless com deploy automático via GitHub Actions. A segurança é gerenciada pelo arquivo `staticwebapp.config.json`.
+- **SSL/TLS:** Conexão criptografada de ponta a ponta.
 
-## 🛠️ Stack Tecnológico
+## Funcionalidades
 
-| Área | Tecnologias |
+O site é uma PWA (Progressive Web App) com alguns recursos:
+
+- **Instalável:** Usuários podem instalar como um app nativo no Android/iOS. Configuração em `manifest.json`.
+- **Animações:** Usa `IntersectionObserver` para revelar elementos conforme a página é rolada e um carrossel touch-friendly na linha do tempo.
+- **SEO:** Dados estruturados em JSON-LD para rich snippets no Google.
+- **Performance:** Imagens em WebP, pré-carregamento de assets críticos e fontes otimizadas.
+
+## Stack Tecnológico
+
+| Camada | O que usei |
 | :--- | :--- |
-| **Frontend** | HTML5 Semântico, Tailwind CSS (CDN), JavaScript Vanilla (ES6+) |
-| **Estilização** | Font Awesome, Google Fonts (Montserrat & Playfair Display) |
-| **Automação/Scripting** | Python 3.9 (`requests`, `regex`, `subprocess`) |
-| **Infraestrutura** | Azure Static Web Apps |
-| **CI/CD** | GitHub Actions (Deploy contínuo e Jobs agendados) |
+| **Frontend** | HTML5, Tailwind CSS (CDN), JavaScript |
+| **Estilo** | Font Awesome, Google Fonts, WebP |
+| **Scripts** | Python 3.9 (requests, regex, subprocess) |
+| **Deploy** | Azure Static Web Apps + Cloudflare |
+| **CI/CD** | GitHub Actions |
 
-## ⚙️ Automação Inteligente (SEO & Manutenção)
+## Automação (Script Python)
 
-O projeto possui um "zelador digital" que roda diariamente via GitHub Actions (`.github/workflows/update_seo.yml`). O script `update_ratings.py` realiza:
+O destaque aqui é o script `update_ratings.py`, que roda diariamente no GitHub Actions e faz algumas coisas legais:
 
-1.  **Monitoramento de Reputação:** Consulta a **Google Places API** para buscar a nota e contagem de avaliações atuais.
-2.  **Atualização de SEO:** Se houver mudanças, atualiza automaticamente o JSON-LD e o texto visível no site.
-3.  **Manutenção Temporal:**
-    * **Copyright:** Atualiza automaticamente o ano no rodapé (`© 202X`) na virada de ano.
-    * **Sitemap Inteligente:** Verifica via `git log` se houve alterações reais no `index.html` antes de atualizar a tag `<lastmod>` no `sitemap.xml`, evitando commits desnecessários.
-4.  **Auto-Commit:** O bot realiza o commit e push das alterações diretamente na branch principal, disparando um novo deploy na Azure.
+**1. Sincroniza com Google Maps**
+- Puxa a nota e número de avaliações da Google Places API.
+- Se mudou algo, atualiza o HTML e o JSON-LD automaticamente.
 
-## 📂 Estrutura do Projeto
+**2. Atualiza o Copyright**
+- No fim do ano, atualiza automaticamente o ano no footer.
 
-```text
+**3. Gerencia o Sitemap**
+- Checa o git log pra saber se o `index.html` foi modificado.
+- Só atualiza a tag `<lastmod>` se realmente houve mudanças, evitando commits desnecessários.
+
+**4. Faz Deploy Automático**
+- Se o script fizer alguma mudança, ele commita direto na main e dispara um novo deploy na Azure.
+
+## Estrutura de Arquivos
+
+```
 repsantograu/
-├── .github/workflows/          # Pipelines (Azure Deploy e SEO Bot)
-├── imagens/                    # Assets otimizados (WebP)
-├── index.html                  # Single Page Application (Core)
-├── update_ratings.py           # Script de automação (Python)
-├── sitemap.xml                 # Mapa do site (atualizado dinamicamente)
-├── robots.txt                  # Diretrizes para crawlers
-├── manifest.json               # Configuração PWA
-├── staticwebapp.config.json    # Regras de roteamento e cache Azure
-├── requirements.txt            # Dependências do script Python
-└── README.md                   # Documentação
+├── .github/workflows/          # Deploy e automação
+├── imagens/                    # Fotos otimizadas em WebP
+├── icons/                      # Ícones e favicons
+├── index.html                  # Página principal
+├── update_ratings.py           # Script de automação
+├── staticwebapp.config.json    # Config de segurança do Azure
+├── manifest.json               # Config da PWA
+├── sitemap.xml                 # Mapa do site
+├── robots.txt                  # Diretrizes para buscadores
+└── requirements.txt            # Dependências Python
 ```
 
-## 💻 Executando Localmente
+## Como Usar Localmente
 
-### Pré-requisitos
+### Você vai precisar de:
 
-- Navegador moderno
-- Python 3.9+ (para testar scripts de automação)
+- Python 3.9+
 - Git
+- Um servidor local (tipo Live Server da extensão do VS Code)
 
-### Passos rápidos
+### Instalação
 
 1. Clone o repositório:
 
 ```bash
 git clone https://github.com/victor-silverio/repsantograu.git
-cd repsantograu
 ```
 
-2. Para visualizar o site, basta abrir o `index.html` em seu navegador ou usar uma extensão como Live Server no VS Code.
-
-3. Para testar o script de automação (requer chaves de API):
+2. Instale as dependências Python:
 
 ```bash
 pip install -r requirements.txt
 ```
 
+3. Configure as variáveis de ambiente (precisam disso pra rodar o script):
+
 ```bash
-# No Linux/Mac
-export GCP_API_KEY="sua_chave_google"
+# Linux/Mac
+export GCP_API_KEY="sua_api_key"
 export PLACE_ID="seu_place_id"
 
-# No Windows (PowerShell)
-$env:GCP_API_KEY="sua_chave_google"
+# Windows (PowerShell)
+$env:GCP_API_KEY="sua_api_key"
 $env:PLACE_ID="seu_place_id"
+```
 
+### Rodando localmente
+
+**Frontend:** Só abre o `index.html` no navegador. Tailwind vem do CDN, sem precisa de build.
+
+**Script:** Se quiser testar a automação:
+
+```bash
 python update_ratings.py
 ```
 
-## 📞 Contato
+## Contato
 
-Dúvidas sobre o desenvolvimento ou sobre a república?
+Dúvidas sobre o projeto ou interesse em morar na República?
 
 | Canal | Link |
 | :--- | :--- |
-| Email | Victoraugusto4096@outlook.com |
-| WhatsApp | +55 (12) 99217-1061 |
-| Instagram | @republicasantograuitajuba |
+| **WhatsApp** | +55 (12) 99217-1061 |
+| **Instagram** | [@republicasantograuitajuba](https://instagram.com/republicasantograuitajuba) |
+| **Email** | [Victoraugusto4096@outlook.com](mailto:Victoraugusto4096@outlook.com) |
+
+---
 
 © 2026 República Santo Grau. Desenvolvido por Victor Augusto.
