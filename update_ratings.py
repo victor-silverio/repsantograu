@@ -10,7 +10,6 @@ PLACE_ID = os.environ.get("PLACE_ID")
 def get_git_last_commit_date(filename):
     """Pega a data da última modificação do arquivo no Git (YYYY-MM-DD)."""
     try:
-        # Comando git para pegar a data do último commit do arquivo
         result = subprocess.check_output(
             ['git', 'log', '-1', '--format=%cd', '--date=short', filename],
             text=True
@@ -82,6 +81,47 @@ def update_sitemap(force_update=False):
                 return True
         except Exception as e:
             print(f"Erro ao atualizar sitemap: {e}")
+    
+    return False
+
+def update_humans_txt(force_update=False):
+    file_path = 'humans.txt'
+    html_path = 'index.html'
+    should_update = force_update
+
+    if not should_update:
+        date_html = get_git_last_commit_date(html_path)
+        date_humans = get_git_last_commit_date(file_path)
+        
+        if date_html and date_humans:
+            if date_html > date_humans:
+                print(f"[SEO] Detectada alteração no index.html ({date_html}). Atualizando humans.txt.")
+                should_update = True
+            else:
+                print("[SEO] humans.txt já está sincronizado.")
+
+    if should_update:
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            current_date = datetime.now().strftime('%Y/%m/%d')
+            
+            pattern = re.compile(r'(Last update:\s*)(\d{4}/\d{2}/\d{2})')
+            
+            if pattern.search(content):
+                new_content = pattern.sub(f'\\g<1>{current_date}', content)
+                
+                if new_content != content:
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(new_content)
+                    print(f"[SEO] humans.txt atualizado para: {current_date}")
+                    return True
+            else:
+                print("[SEO] Campo 'Last update' não encontrado em humans.txt")
+
+        except Exception as e:
+            print(f"Erro ao atualizar humans.txt: {e}")
     
     return False
 
@@ -160,8 +200,10 @@ if __name__ == "__main__":
     html_changed_by_script = update_html(ratings)
     
     if html_changed_by_script:
-        print("HTML foi alterado pelo script (notas novas ou ano). Atualizando sitemap...")
+        print("HTML foi alterado pelo script. Atualizando arquivos dependentes...")
         update_sitemap(force_update=True)
+        update_humans_txt(force_update=True)
     else:
-        print("Nenhuma alteração de notas. Verificando histórico do Git...")
+        print("Nenhuma alteração automática no HTML. Verificando histórico do Git...")
         update_sitemap(force_update=False)
+        update_humans_txt(force_update=False)
