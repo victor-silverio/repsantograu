@@ -1,0 +1,15 @@
+/* TEAM */
+  Developer: Victor Augusto de Aquino Silvério
+  Contact: victoraugusto4096 [at] gmail.com
+  Instagram: @victor_augusto1209
+  Location: Itajubá, MG, Brazil
+
+/* THANKS */
+  UNIFEI
+  Ex-moradores da Santo Grau
+
+/* SITE */
+  Last update: 2026/01/23
+  Standards: HTML5, CSS3, JS
+  Components: TailwindCSS, FontAwesome
+  Software: VSCode

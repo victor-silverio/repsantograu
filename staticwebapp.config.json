@@ -33,13 +33,13 @@
         "Content-Type": "text/plain"
       }
     },
-      {
+    {
       "route": "/assets/*",
       "headers": {
         "Cache-Control": "public, max-age=31536000, must-revalidate"
       }
     },
-      {
+    {
       "route": "/icons/*",
       "headers": {
         "Cache-Control": "public, max-age=31536000, must-revalidate"
@@ -53,12 +53,24 @@
     }
   ],
   "globalHeaders": {
-    "content-security-policy": "default-src https: 'unsafe-inline' 'unsafe-eval'; img-src https: data: blob:;"
+    "content-security-policy": "default-src https: 'unsafe-inline' 'unsafe-eval'; img-src https: data: blob:;",
+    "X-Frame-Options": "DENY",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*", "/css/*"]
   },
   "responseOverrides": {
     "404": {
       "rewrite": "/404.html",
       "statusCode": 404
     }
+  },
+  "mimeTypes": {
+    ".webp": "image/webp",
+    ".json": "application/json"
   }
 }
