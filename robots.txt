@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /.github/
+Disallow: /divulgacao_rep/
+Disallow: /.well-known/
+Disallow: /requirements.txt
 Sitemap: https://www.repsantograu.online/sitemap.xml

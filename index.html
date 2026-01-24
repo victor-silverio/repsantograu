@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-    <link rel="preload" as="image" href="/imagens/fundo_mobile.webp" media="(max-width: 767px)" fetchpriority="high"/>
-    <link rel="preload" as="image" href="/imagens/frente_reitoria.webp" media="(min-width: 768px)" fetchpriority="high"/>
+    <link rel="preload" as="image" href="/imagens/fundo_mobile.webp?v=1" media="(max-width: 767px)" fetchpriority="high"/>
+    <link rel="preload" as="image" href="/imagens/frente_reitoria.webp?v=1" media="(min-width: 768px)" fetchpriority="high"/>
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
     <noscript>
@@ -31,7 +31,10 @@
     
     <meta content="República Santo Grau: Vagas em Itajubá" property="og:title"/>
     <meta content="A 2 min da UNIFEI. Quartos individuais e duplos com tudo incluso: limpeza, refeições e internet. Venha conhecer!" property="og:description"/>
-    <meta content="https://www.repsantograu.online/imagens/frente_reitoria.webp" property="og:image"/>
+    <meta content="https://www.repsantograu.online/imagens/share_image.jpg" property="og:image"/>
+    <meta content="image/jpeg" property="og:image:type"/>
+    <meta content="1200" property="og:image:width"/>
+    <meta content="900" property="og:image:height"/>
     <meta content="website" property="og:type"/>
     <meta content="pt_BR" property="og:locale"/>
     <meta content="https://www.repsantograu.online/" property="og:url"/>
@@ -54,7 +57,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="República Santo Grau: Vagas em Itajubá">
     <meta name="twitter:description" content="A 2 min da UNIFEI. Quartos individuais e duplos com tudo incluso.">
-    <meta name="twitter:image" content="https://www.repsantograu.online/imagens/fachada-republica-estudantil-itajuba.webp">
+    <meta name="twitter:image" content="https://www.repsantograu.online/imagens/share_image.jpg">
     
     <style>
         /*! Inicio css */
@@ -82,6 +85,10 @@
 
         #timeline-carousel::-webkit-scrollbar {
             display: none;
+        }
+
+        .timeline-pattern {
+            background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2V6h4V4h-4zM36 0V4h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
         }
 
         @media (min-width: 768px) {
@@ -295,7 +302,7 @@
 <div class="container mx-auto px-6 py-3">
 <div class="flex flex-wrap items-center justify-between">
 <a class="flex items-center gap-3 group" href="#">
-<img alt="Logotipo oficial da República Santo Grau - Moradia Estudantil Masculina" class="h-10 w-10 object-contain transition duration-300" height="1350" src="/icons/logo_rep_transparente.webp" width="1080"/>
+<img alt="Logotipo oficial da República Santo Grau - Moradia Estudantil Masculina" class="h-10 w-10 object-contain transition duration-300" height="1350" src="/icons/logo_rep_transparente.webp?v=1" width="1080"/>
 <span class="self-center text-lg font-serif font-bold whitespace-nowrap text-repGold tracking-wide">SANTO GRAU</span>
 </a>
 <button aria-controls="mobile-menu" aria-expanded="false" class="inline-flex items-center p-2 ml-3 text-sm text-gray-200 rounded-lg md:hidden hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-repGold" id="mobile-menu-btn" type="button">
@@ -317,14 +324,14 @@
 <section class="relative h-[100svh] md:h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
 <div class="absolute inset-0 z-0">
 <picture>
-<source media="(max-width: 767px)" srcset="/imagens/fundo_mobile.webp"/>
-<img alt="Vista frontal do prédio da reitoria no campus Itajubá da UNIFEI" class="w-full h-full object-cover object-center opacity-50" fetchpriority="high" height="335" src="/imagens/frente_reitoria.webp" width="640"/>
+<source media="(max-width: 767px)" srcset="/imagens/fundo_mobile.webp?v=1"/>
+<img alt="Vista frontal do prédio da reitoria no campus Itajubá da UNIFEI" class="w-full h-full object-cover object-center opacity-50" fetchpriority="high" height="308" src="/imagens/frente_reitoria.webp?v=1" width="558"/>
 </picture>
 <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-repRed/10 to-black/90"></div>
 </div>
 <div class="relative z-10 text-center px-4 w-full max-w-4xl mx-auto">
 <div class="mb-6 mx-auto w-28 h-28 md:w-40 md:h-40 border-4 border-repGold rounded-full flex items-center justify-center bg-black/50 backdrop-blur-sm shadow-[0_0_20px_rgba(212,175,55,0.5)] overflow-hidden">
-<img alt="Brasão da República Santo Grau - Moradia Estudantil em Itajubá perto da UNIFEI" class="w-full h-full object-cover object-center" height="1350" src="/icons/logo_rep_transparente.webp" width="1080"/>
+<img alt="Brasão da República Santo Grau - Moradia Estudantil em Itajubá perto da UNIFEI" class="w-full h-full object-cover object-center" height="1350" src="/icons/logo_rep_transparente.webp?v=1" width="1080"/>
 </div>
 <h1 class="text-4xl md:text-7xl font-serif font-bold text-white tracking-wider mb-2 leading-tight">
             REPÚBLICA <br class="md:hidden"/> <span class="text-repGold">SANTO GRAU</span>
@@ -352,7 +359,7 @@
 <div class="w-full md:w-1/3 flex justify-center reveal">
 <div class="relative">
 <div class="absolute inset-0 bg-repGold blur-3xl opacity-20 rounded-full"></div>
-<img alt="Brasão oficial da República Santo Grau" class="relative w-48 h-48 md:w-80 md:h-80 object-contain object-center drop-shadow-2xl" height="1350" loading="lazy" src="/icons/logo_rep_transparente.webp" width="1080"/>
+<img alt="Brasão oficial da República Santo Grau" class="relative w-48 h-48 md:w-80 md:h-80 object-contain object-center drop-shadow-2xl" height="1350" loading="lazy" src="/icons/logo_rep_transparente.webp?v=1" width="1080"/>
 </div>
 </div>
 <div class="w-full md:w-2/3 reveal">
@@ -493,21 +500,21 @@
 <h2 class="text-3xl text-center font-serif text-repRed mb-10 md:mb-16 reveal">Eventos e Festas da República</h2>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 <div class="group relative overflow-hidden h-64 md:h-80 shadow-xl reveal rounded-lg md:rounded-none">
-<img alt="Moradores e ex-alunos reunidos no Encontrão da República Santo Grau" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" height="1280" loading="lazy" src="/imagens/encontrao.webp" width="960"/>
+<img alt="Moradores e ex-alunos reunidos no Encontrão da República Santo Grau" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" height="480" loading="lazy" src="/imagens/encontrao.webp?v=1" width="364"/>
 <div class="absolute inset-0 bg-gradient-to-t from-repRed/90 to-transparent flex flex-col justify-end p-6 translate-y-4 group-hover:translate-y-0 transition duration-300">
 <h3 class="text-repGold font-bold text-lg md:text-xl uppercase tracking-widest border-l-2 border-white pl-3">Encontrão</h3>
 <p class="text-white text-xs md:text-sm mt-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition delay-100">Encontro entre moradores e ex-moradores</p>
 </div>
 </div>
 <div class="group relative overflow-hidden h-64 md:h-80 shadow-xl reveal delay-100 rounded-lg md:rounded-none">
-<img alt="Famílias reunidas no churrasco dos pais na república" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" height="1280" loading="lazy" src="/imagens/churrasco_pais.webp" width="960"/>
+<img alt="Famílias reunidas no churrasco dos pais na república" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" height="338" loading="lazy" src="/imagens/churrasco_pais.webp?v=1" width="364"/>
 <div class="absolute inset-0 bg-gradient-to-t from-repRed/90 to-transparent flex flex-col justify-end p-6 translate-y-4 group-hover:translate-y-0 transition duration-300">
 <h3 class="text-repGold font-bold text-lg md:text-xl uppercase tracking-widest border-l-2 border-white pl-3">Churrasco dos Pais</h3>
 <p class="text-white text-xs md:text-sm mt-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition delay-100">Uma tarde com as famílias</p>
 </div>
 </div>
 <div class="group relative overflow-hidden h-64 md:h-80 shadow-xl reveal delay-200 rounded-lg md:rounded-none">
-<img alt="Competição culinária MasterBixo promovida pelos moradores da República Santo Grau" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" height="1920" loading="lazy" src="/imagens/masterbixo.webp" width="1080"/>
+<img alt="Competição culinária MasterBixo promovida pelos moradores da República Santo Grau" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-110" height="647" loading="lazy" src="/imagens/masterbixo.webp?v=1" width="364"/>
 <div class="absolute inset-0 bg-gradient-to-t from-repRed/90 to-transparent flex flex-col justify-end p-6 translate-y-4 group-hover:translate-y-0 transition duration-300">
 <h3 class="text-repGold font-bold text-lg md:text-xl uppercase tracking-widest border-l-2 border-white pl-3">MasterBixo</h3>
 <p class="text-white text-xs md:text-sm mt-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition delay-100">Competição culinária em busca do melhor Chef!</p>
@@ -526,21 +533,21 @@
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-auto md:auto-rows-[200px] mb-12 md:mb-20 reveal">
 <div class="h-[200px] md:h-auto md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-lg shadow-md">
 <picture>
-<source media="(max-width: 767px)" srcset="/imagens/fachada_mobile.webp"/>
-<img alt="Fachada da República Estudantil Santo Grau no bairro Pinheirinho em Itajubá" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" height="3024" loading="lazy" src="/imagens/fachada-republica-estudantil-itajuba.webp" width="4032"/>
+<source media="(max-width: 767px)" srcset="/imagens/fachada_mobile.webp?v=1"/>
+<img alt="Fachada da República Estudantil Santo Grau no bairro Pinheirinho em Itajubá" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" height="456" loading="lazy" src="/imagens/fachada-republica-estudantil-itajuba.webp?v=1" width="608"/>
 </picture>
 <span class="absolute bottom-2 left-2 md:top-4 md:left-4 md:bottom-auto bg-repGold text-gray-900 text-[10px] md:text-xs font-bold px-3 py-1 uppercase tracking-wide rounded">Fachada</span>
 </div>
 <div class="h-[200px] md:h-auto md:col-span-2 relative group overflow-hidden rounded-lg shadow-md">
-<img alt="Sala de estar da República Santo Grau com TV 4K e sofás confortáveis para lazer dos estudantes" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" height="1200" loading="lazy" src="/imagens/sala.webp" width="1600"/>
+<img alt="Sala de estar da República Santo Grau com TV 4K e sofás confortáveis para lazer dos estudantes" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" height="273" loading="lazy" src="/imagens/sala.webp?v=1" width="364"/>
 <span class="absolute bottom-2 left-2 md:top-4 md:left-4 md:bottom-auto bg-black/70 text-white text-[10px] md:text-xs font-bold px-3 py-1 uppercase tracking-wide rounded">Sala de Estar</span>
 </div>
 <div class="h-[200px] md:h-auto relative group overflow-hidden rounded-lg shadow-md">
-<img alt="Cozinha completa e equipada da moradia estudantil com eletrodomésticos e armários organizados" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" height="1200" loading="lazy" src="/imagens/cozinha.webp" width="1600"/>
+<img alt="Cozinha completa e equipada da moradia estudantil com eletrodomésticos e armários organizados" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" height="273" loading="lazy" src="/imagens/cozinha.webp?v=1" width="364"/>
 <span class="absolute bottom-2 left-2 md:top-4 md:left-4 md:bottom-auto bg-black/70 text-white text-[10px] md:text-xs font-bold px-3 py-1 uppercase tracking-wide rounded">Cozinha</span>
 </div>
 <div class="h-[200px] md:h-auto relative group overflow-hidden rounded-lg shadow-md">
-<img alt="Copa e área de refeições da república estudantil em Itajubá" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" height="1200" loading="lazy" src="/imagens/copa.webp" width="1600"/>
+<img alt="Copa e área de refeições da república estudantil em Itajubá" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" height="600" loading="lazy" src="/imagens/copa.webp?v=1" width="800"/>
 <span class="absolute bottom-2 left-2 md:top-4 md:left-4 md:bottom-auto bg-black/70 text-white text-[10px] md:text-xs font-bold px-3 py-1 uppercase tracking-wide rounded">Copa</span>
 </div>
 <div class="md:col-span-4 grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
@@ -570,7 +577,7 @@
 </div>
 <div class="bg-gray-100 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-inner border border-gray-200 reveal">
 <div class="w-full md:w-2/3 h-56 md:h-auto bg-gray-300 relative group">
-<img alt="Mapa de localização da República Santo Grau no bairro Pinheirinho, a 2 minutos da UNIFEI" class="w-full h-full object-cover object-center mix-blend-multiply" height="431" loading="lazy" src="/imagens/mapa.webp" width="440"/>
+<img alt="Mapa de localização da República Santo Grau no bairro Pinheirinho, a 2 minutos da UNIFEI" class="w-full h-full object-cover object-center mix-blend-multiply" height="431" loading="lazy" src="/imagens/mapa.webp?v=1" width="440"/>
 <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
 <div class="bg-repRed text-white px-4 py-2 rounded-full shadow-lg text-sm font-bold flex items-center gap-2 animate-bounce">
 <i class="fas fa-map-marker-alt"></i> 2 min da UNIFEI
@@ -600,7 +607,7 @@
 </div>
 </section>
 <section class="py-12 md:py-20 bg-repRed text-white overflow-hidden relative" id="timeline">
-<div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2V6h4V4h-4zM36 0V4h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+<div class="absolute inset-0 opacity-10 timeline-pattern"></div>
 <div class="container mx-auto px-6 mb-8 reveal">
 <h2 class="text-2xl md:text-3xl font-serif font-bold text-repGold">Linha do Tempo</h2>
 <p class="text-white/80 text-sm md:text-base">Deslize para ver nossa história!</p>
@@ -613,7 +620,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:rotate-2">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2011" class="w-full h-full object-cover object-center" height="488" loading="lazy" src="/imagens/2011.webp" width="637"/>
+<img alt="Moradores da República Santo Grau em 2011" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2011.webp?v=1" width="666"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2011</div>
 </div>
@@ -621,7 +628,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:-rotate-1">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2012" class="w-full h-full object-cover object-center" height="486" loading="lazy" src="/imagens/2012.webp" width="652"/>
+<img alt="Moradores da República Santo Grau em 2012" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2012.webp?v=1" width="684"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2012</div>
 </div>
@@ -629,7 +636,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:rotate-1">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2013" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2013.webp" width="767"/>
+<img alt="Moradores da República Santo Grau em 2013" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2013.webp?v=1" width="767"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2013</div>
 </div>
@@ -637,7 +644,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:-rotate-2">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2014" class="w-full h-full object-cover object-center" height="495" loading="lazy" src="/imagens/2014.webp" width="659"/>
+<img alt="Moradores da República Santo Grau em 2014" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2014.webp?v=1" width="679"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2014</div>
 </div>
@@ -645,7 +652,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:rotate-3">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2015" class="w-full h-full object-cover object-center" height="465" loading="lazy" src="/imagens/2015.webp" width="703"/>
+<img alt="Moradores da República Santo Grau em 2015" class="w-full h-full object-cover object-center" height="507" loading="lazy" src="/imagens/2015.webp?v=1" width="767"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2015</div>
 </div>
@@ -653,7 +660,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:-rotate-1">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2016" class="w-full h-full object-cover object-center" height="488" loading="lazy" src="/imagens/2016.webp" width="873"/>
+<img alt="Moradores da República Santo Grau em 2016" class="w-full h-full object-cover object-center" height="429" loading="lazy" src="/imagens/2016.webp?v=1" width="767"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2016</div>
 </div>
@@ -661,7 +668,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:rotate-2">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2017" class="w-full h-full object-cover object-center" height="424" loading="lazy" src="/imagens/2017.webp" width="568"/>
+<img alt="Moradores da República Santo Grau em 2017" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2017.webp?v=1" width="683"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2017</div>
 </div>
@@ -669,7 +676,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:-rotate-2">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2018" class="w-full h-full object-cover object-center" height="414" loading="lazy" src="/imagens/2018.webp" width="740"/>
+<img alt="Moradores da República Santo Grau em 2018" class="w-full h-full object-cover object-center" height="429" loading="lazy" src="/imagens/2018.webp?v=1" width="767"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2018</div>
 </div>
@@ -677,7 +684,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:rotate-1">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2019" class="w-full h-full object-cover object-center" height="565" loading="lazy" src="/imagens/2019.webp" width="690"/>
+<img alt="Moradores da República Santo Grau em 2019" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2019.webp?v=1" width="623"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2019</div>
 </div>
@@ -685,7 +692,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:-rotate-3">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2020" class="w-full h-full object-cover object-center" height="571" loading="lazy" src="/imagens/2020.webp" width="686"/>
+<img alt="Moradores da República Santo Grau em 2020" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2020.webp?v=1" width="613"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2020</div>
 </div>
@@ -693,7 +700,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:-rotate-1">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2022" class="w-full h-full object-cover object-center" height="523" loading="lazy" src="/imagens/2022.webp" width="701"/>
+<img alt="Moradores da República Santo Grau em 2022" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2022.webp?v=1" width="684"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2022</div>
 </div>
@@ -701,7 +708,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:rotate-1">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2023" class="w-full h-full object-cover object-center" height="508" loading="lazy" src="/imagens/2023.webp" width="684"/>
+<img alt="Moradores da República Santo Grau em 2023" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2023.webp?v=1" width="687"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2023</div>
 </div>
@@ -709,7 +716,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:-rotate-2">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2024" class="w-full h-full object-cover object-center" height="558" loading="lazy" src="/imagens/2024.webp" width="688"/>
+<img alt="Moradores da República Santo Grau em 2024" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2024.webp?v=1" width="629"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2024</div>
 </div>
@@ -717,7 +724,7 @@
 <div class="flex-none snap-center">
 <div class="polaroid w-56 transform md:rotate-2">
 <div class="bg-gray-200 w-full h-40 mb-3 overflow-hidden">
-<img alt="Moradores da República Santo Grau em 2025" class="w-full h-full object-cover object-center" height="1280" loading="lazy" src="/imagens/2025.webp" width="960"/>
+<img alt="Moradores da República Santo Grau em 2025" class="w-full h-full object-cover object-center" height="510" loading="lazy" src="/imagens/2025.webp?v=1" width="383"/>
 </div>
 <div class="font-serif text-center text-repRed font-bold text-xl">2025</div>
 </div>
@@ -737,64 +744,64 @@
 </div>
 <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-8 mb-12 md:mb-16 reveal items-center justify-items-center">
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="MRS - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="153" loading="lazy" src="/imagens/mrs.webp" width="328"/>
+<img alt="MRS - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="153" loading="lazy" src="/imagens/mrs.webp?v=1" width="328"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Embraer - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="161" loading="lazy" src="/imagens/embraer.webp" width="960"/>
+<img alt="Embraer - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="161" loading="lazy" src="/imagens/embraer.webp?v=1" width="960"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="General Water - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" height="200" loading="lazy" src="/imagens/general_water.webp" width="200"/>
+<img alt="General Water - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" height="200" loading="lazy" src="/imagens/general_water.webp?v=1" width="200"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Caravela - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="225" loading="lazy" src="/imagens/caravela.webp" width="225"/>
+<img alt="Caravela - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="225" loading="lazy" src="/imagens/caravela.webp?v=1" width="225"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Neoenergia - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="898" loading="lazy" src="/imagens/neoenergia.webp" width="1500"/>
+<img alt="Neoenergia - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="898" loading="lazy" src="/imagens/neoenergia.webp?v=1" width="1500"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Radix - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="204" loading="lazy" src="/imagens/radix.webp" width="600"/>
+<img alt="Radix - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="204" loading="lazy" src="/imagens/radix.webp?v=1" width="600"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Callbell - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" height="500" loading="lazy" src="/imagens/callbell.webp" width="1550"/>
+<img alt="Callbell - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" height="500" loading="lazy" src="/imagens/callbell.webp?v=1" width="1550"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Andritz - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="600" loading="lazy" src="/imagens/andritz.webp" width="600"/>
+<img alt="Andritz - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="600" loading="lazy" src="/imagens/andritz.webp?v=1" width="600"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Aptiv - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="600" loading="lazy" src="/imagens/aptiv.webp" width="600"/>
+<img alt="Aptiv - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="600" loading="lazy" src="/imagens/aptiv.webp?v=1" width="600"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="BTG Pactual - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="428" loading="lazy" src="/imagens/btgpactual.webp" width="640"/>
+<img alt="BTG Pactual - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="428" loading="lazy" src="/imagens/btgpactual.webp?v=1" width="640"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Creator - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="142" loading="lazy" src="/imagens/creator.webp" width="400"/>
+<img alt="Creator - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="142" loading="lazy" src="/imagens/creator.webp?v=1" width="400"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Wonder - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" height="453" loading="lazy" src="/imagens/wonder.webp" width="489"/>
+<img alt="Wonder - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" height="453" loading="lazy" src="/imagens/wonder.webp?v=1" width="489"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Hitachi - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="163" loading="lazy" src="/imagens/hitachi.webp" width="310"/>
+<img alt="Hitachi - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="163" loading="lazy" src="/imagens/hitachi.webp?v=1" width="310"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Porsche - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" height="720" loading="lazy" src="/imagens/porshe.webp" width="1280"/>
+<img alt="Porsche - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain mix-blend-multiply" height="720" loading="lazy" src="/imagens/porshe.webp?v=1" width="1280"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Jirau - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="225" loading="lazy" src="/imagens/jirau.webp" width="225"/>
+<img alt="Jirau - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="225" loading="lazy" src="/imagens/jirau.webp?v=1" width="225"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Valgroup - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="99" loading="lazy" src="/imagens/valgroup.webp" width="511"/>
+<img alt="Valgroup - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="99" loading="lazy" src="/imagens/valgroup.webp?v=1" width="511"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="BASF - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="135" loading="lazy" src="/imagens/basf.webp" width="374"/>
+<img alt="BASF - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="135" loading="lazy" src="/imagens/basf.webp?v=1" width="374"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Bacio di Latte - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="512" loading="lazy" src="/imagens/bacio.webp" width="512"/>
+<img alt="Bacio di Latte - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="512" loading="lazy" src="/imagens/bacio.webp?v=1" width="512"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Fupai - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="1537" loading="lazy" src="/imagens/fupai.webp" width="3013"/>
+<img alt="Fupai - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="1537" loading="lazy" src="/imagens/fupai.webp?v=1" width="3013"/>
 </div>
 <div class="group transition duration-500 opacity-100 grayscale-0 md:opacity-60 md:grayscale md:hover:opacity-100 md:hover:grayscale-0">
-<img alt="Hvex - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="225" loading="lazy" src="/imagens/hvex.webp" width="225"/>
+<img alt="Hvex - Empresa onde trabalham ex-moradores da Santo Grau" class="w-28 h-12 md:w-32 md:h-16 object-contain" height="225" loading="lazy" src="/imagens/hvex.webp?v=1" width="225"/>
 </div>
 </div>
 <section class="py-12 md:py-20 bg-white" id="faq">
@@ -868,6 +875,14 @@
                     const isExpanded = mobileMenu.classList.contains('hidden') ? 'false' : 'true';
                     menuBtn.setAttribute('aria-expanded', isExpanded);
                 });
+
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        menuBtn.setAttribute('aria-expanded', 'false');
+                    });
+                });
             }
 
             const slider = document.querySelector('#timeline-carousel');
@@ -922,6 +937,31 @@
                         slider.scrollLeft = scrollLeft - walk;
                     });
                 });
+
+                slider.addEventListener('touchstart', (e) => {
+                    isDown = true;
+                    slider.classList.add('cursor-grabbing');
+                    startX = e.touches[0].pageX - slider.offsetLeft;
+                    scrollLeft = slider.scrollLeft;
+                }, { passive: true });
+
+                slider.addEventListener('touchend', () => {
+                    isDown = false;
+                    slider.classList.remove('cursor-grabbing');
+                    slider.classList.add('cursor-grab', 'snap-x', 'snap-mandatory', 'scroll-smooth');
+                });
+
+                slider.addEventListener('touchmove', (e) => {
+                    if (!isDown) return;
+                    
+                    if (animationId) cancelAnimationFrame(animationId);
+
+                    animationId = requestAnimationFrame(() => {
+                        const x = e.touches[0].pageX - slider.offsetLeft;
+                        const walk = (x - startX) * 2;
+                        slider.scrollLeft = scrollLeft - walk;
+                    });
+                }, { passive: true });
                 
             }
         });
