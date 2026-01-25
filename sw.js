@@ -1,4 +1,4 @@
-const CACHE_NAME = 'santo-grau-v5';
+const CACHE_NAME = 'santo-grau-v6';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -45,10 +45,13 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(event.request)
         .then((networkResponse) => {
-          return caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          });
+          if (networkResponse.status >= 200 && networkResponse.status < 300) {
+            return caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, networkResponse.clone());
+              return networkResponse;
+            });
+          }
+          return networkResponse;
         })
         .catch(() => {
           return caches.match(event.request);
