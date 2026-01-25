@@ -1,4 +1,4 @@
-const CACHE_NAME = 'santo-grau-v11';
+const CACHE_NAME = 'santo-grau-v12';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -10,6 +10,9 @@ const ASSETS_TO_CACHE = [
   '/icons/logo_rep_transparente.webp',
   '/imagens/frente_reitoria.webp',
   '/imagens/fundo_mobile.webp',
+  '/fonts/montserrat-v31-latin-700.woff2',
+  '/fonts/montserrat-v31-latin-regular.woff2',
+  '/fonts/playfair-display-v40-latin-700.woff2',
   '/icons/favicon-192x192.png'
 ];
 
