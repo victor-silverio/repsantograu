@@ -7,7 +7,6 @@ from datetime import datetime
 API_KEY = os.environ.get("GCP_API_KEY")
 PLACE_ID = os.environ.get("PLACE_ID")
 
-# Lista de arquivos monitorados. Se qualquer um mudar, atualiza datas e cache.
 TRACKED_FILES = [
     'index.html',
     'src/input.css',
@@ -15,9 +14,7 @@ TRACKED_FILES = [
 ]
 
 def get_git_last_commit_date(filename):
-    """Pega a data da última modificação do arquivo no Git (YYYY-MM-DD)."""
     try:
-        # Verifica se o arquivo existe antes de tentar pegar o log
         if not os.path.exists(filename):
             print(f"[WARN] Arquivo monitorado não encontrado localmente: {filename}")
             return None
@@ -32,7 +29,6 @@ def get_git_last_commit_date(filename):
         return None
 
 def get_latest_tracked_change():
-    """Retorna a data mais recente de modificação entre todos os arquivos monitorados."""
     latest_date = None
     
     for filename in TRACKED_FILES:
@@ -70,10 +66,6 @@ def get_google_ratings():
     return None
 
 def update_sitemap(force_update=False):
-    """
-    Atualiza o sitemap se forçado OU se algum arquivo monitorado
-    tiver um commit mais recente que o sitemap.
-    """
     file_path = 'sitemap.xml'
     should_update = force_update
 
@@ -94,7 +86,6 @@ def update_sitemap(force_update=False):
                 content = f.read()
             
             current_date = datetime.now().strftime('%Y-%m-%d')
-            # Substitui o conteúdo da tag <lastmod>
             new_content = re.sub(r'<lastmod>.*?</lastmod>', f'<lastmod>{current_date}</lastmod>', content, count=1)
             
             if new_content != content:
@@ -108,10 +99,6 @@ def update_sitemap(force_update=False):
     return False
 
 def update_humans_txt(force_update=False):
-    """
-    Atualiza o humans.txt se forçado OU se algum arquivo monitorado
-    tiver um commit mais recente que ele.
-    """
     file_path = 'humans.txt'
     should_update = force_update
 
@@ -152,16 +139,12 @@ def update_humans_txt(force_update=False):
     return False
 
 def update_cache_version():
-    """
-    Incrementa a versão do cache no sw.js
-    """
     file_path = 'sw.js'
     
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # Procura por: const CACHE_NAME = 'santo-grau-vX'
         pattern = re.compile(r"const CACHE_NAME = 'santo-grau-v(\d+)'")
         match = pattern.search(content)
         
@@ -192,7 +175,6 @@ def update_html(new_data):
     
     updated_content = content
 
-    # Atualiza JSON-LD (Schema)
     json_pattern = re.compile(r'(<script type="application/ld\+json">)(.*?)(</script>)', re.DOTALL)
     match_json = json_pattern.search(content)
 
@@ -223,7 +205,6 @@ def update_html(new_data):
             updated_content = updated_content[:match_json.start(2)] + new_script_content + updated_content[match_json.end(2):]
             changes_made = True
 
-    # Atualiza Texto Visível (Rodapé)
     if new_data:
         text_pattern = re.compile(r'(<span id="google-rating-text">)(.*?)(</span>)')
         new_visible_text = f"Nota {new_data['ratingValue']} no Google (baseada em {new_data['reviewCount']} avaliações)"
@@ -236,7 +217,6 @@ def update_html(new_data):
                 updated_content = text_pattern.sub(f'\\1{new_visible_text}\\3', updated_content)
                 changes_made = True
 
-    # Atualiza Copyright (Ano)
     current_year = str(datetime.now().year)
     copyright_pattern = re.compile(r'(©\s*)(\d{4})(\s*República Santo Grau)')
     
@@ -256,13 +236,10 @@ def update_html(new_data):
     return False
 
 if __name__ == "__main__":
-    # 1. Tenta buscar dados novos do Google
     ratings = get_google_ratings()
     
-    # 2. Atualiza HTML com os dados (se houver mudança)
     html_changed_by_script = update_html(ratings)
     
-    # 3. Lógica de Atualização em Cascata
     if html_changed_by_script:
         print("HTML foi alterado pelo script (dados/ano). Forçando atualização de dependentes...")
         update_sitemap(force_update=True)
@@ -271,11 +248,8 @@ if __name__ == "__main__":
     else:
         print("Nenhuma alteração automática no HTML. Verificando histórico do Git para arquivos monitorados...")
         
-        # Verifica se index.html, css ou js mudaram recentemente
         sitemap_updated = update_sitemap(force_update=False)
         humans_updated = update_humans_txt(force_update=False)
         
-        # Se sitemap ou humans.txt foram atualizados (seja por mudança no HTML, CSS ou JS),
-        # precisamos invalidar o cache dos usuários.
         if sitemap_updated or humans_updated:
             update_cache_version()
