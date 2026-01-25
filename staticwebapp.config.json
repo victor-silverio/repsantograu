@@ -1,8 +1,16 @@
 {
   "routes": [
+    
     {
       "route": "/.github/*",
       "statusCode": 404
+    },
+    {
+      "route": "/sw.js",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Content-Type": "application/javascript"
+      }
     },
     {
       "route": "/divulgacao_rep/*",

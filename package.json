@@ -1,0 +1,26 @@
+{
+  "name": "repsantograu",
+  "version": "1.0.0",
+  "description": "![Azure Static Web Apps CI/CD](https://github.com/victor-silverio/repsantograu/actions/workflows/azure-static-web-apps-black-moss-0abb1d50f.yml/badge.svg) ![SEO Automation](https://github.com/victor-silverio/repsantograu/actions/workflows/update_seo.yml/badge.svg) ![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.online&label=Online&color=success)",
+  "main": "sw.js",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./styles.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victor-silverio/repsantograu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/victor-silverio/repsantograu/issues"
+  },
+  "homepage": "https://github.com/victor-silverio/repsantograu#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
+}

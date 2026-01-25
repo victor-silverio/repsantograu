@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  /* Configuração de Cores Personalizadas */
+  --color-repGold: #D4AF37;
+  --color-repRed: #8B0000;
+  --color-repWhite: #FAFAFA;
+  --color-repGrey: #333333;
+  --color-whatsapp: #0E7066;
+  --color-whatsappDark: #075E54;
+
+  /* Configuração de Fontes */
+  --font-sans: "Montserrat", sans-serif;
+  --font-serif: "Playfair Display", serif;
+}
+
+/* Seus estilos CSS personalizados */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#timeline-carousel {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#timeline-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.timeline-pattern {
+    background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2V6h4V4h-4zM36 0V4h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+}
+
+@media (min-width: 768px) {
+    #timeline-carousel {
+        scrollbar-width: auto;
+    }
+
+    #timeline-carousel::-webkit-scrollbar {
+        display: block;
+        height: 10px;
+    }
+
+    #timeline-carousel::-webkit-scrollbar-track {
+        background: #333;
+        border-radius: 4px;
+    }
+
+    #timeline-carousel::-webkit-scrollbar-thumb {
+        background: #D4AF37;
+        border-radius: 4px;
+        border: 2px solid #333;
+    }
+
+    #timeline-carousel::-webkit-scrollbar-thumb:hover {
+        background: #b5952f;
+    }
+}
+
+.polaroid {
+    background: #fff;
+    padding: 0.8rem 0.8rem 2.5rem 0.8rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-width: 14rem;
+}
+
+@media (hover: hover) {
+    .polaroid:hover {
+        transform: scale(1.05) rotate(-1deg);
+        z-index: 10;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}

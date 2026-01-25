@@ -2,6 +2,8 @@ const CACHE_NAME = 'santo-grau-v5';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
+  '/404.html',
+  '/styles.css',
   '/manifest.json',
   '/icons/logo_rep_transparente.webp',
   '/imagens/frente_reitoria.webp',
