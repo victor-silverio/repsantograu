@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  /* Configuração de Cores Personalizadas */
   --color-repGold: #D4AF37;
   --color-repRed: #8B0000;
   --color-repWhite: #FAFAFA;
@@ -9,12 +8,10 @@
   --color-whatsapp: #0E7066;
   --color-whatsappDark: #075E54;
 
-  /* Configuração de Fontes */
   --font-sans: "Montserrat", sans-serif;
   --font-serif: "Playfair Display", serif;
 }
 
-/* Seus estilos CSS personalizados */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
