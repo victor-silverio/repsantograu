@@ -206,5 +206,5 @@ Dúvidas sobre o projeto, contribuições ou interesse em morar na República?
 | **GitHub** | [victor-silverio/repsantograu](https://github.com/victor-silverio/repsantograu) |
 
 ---
-g
+
 © 2026 República Santo Grau. Desenvolvido por [Victor Augusto](https://github.com/victor-silverio).

@@ -125,6 +125,37 @@ def update_humans_txt(force_update=False):
     
     return False
 
+def update_cache_version():
+    """
+    Incrementa a versão do cache no sw.js
+    """
+    file_path = 'sw.js'
+    
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        pattern = re.compile(r"const CACHE_NAME = 'santo-grau-v(\d+)'")
+        match = pattern.search(content)
+        
+        if match:
+            current_version = int(match.group(1))
+            new_version = current_version + 1
+            
+            new_content = pattern.sub(f"const CACHE_NAME = 'santo-grau-v{new_version}'", content)
+            
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            
+            print(f"[CACHE] Versão do cache incrementada: v{current_version} -> v{new_version}")
+            return True
+        else:
+            print("[CACHE] Padrão de versão não encontrado em sw.js")
+    except Exception as e:
+        print(f"Erro ao atualizar versão do cache: {e}")
+    
+    return False
+
 def update_html(new_data):
     file_path = 'index.html'
     changes_made = False
@@ -203,7 +234,11 @@ if __name__ == "__main__":
         print("HTML foi alterado pelo script. Atualizando arquivos dependentes...")
         update_sitemap(force_update=True)
         update_humans_txt(force_update=True)
+        update_cache_version()
     else:
         print("Nenhuma alteração automática no HTML. Verificando histórico do Git...")
-        update_sitemap(force_update=False)
-        update_humans_txt(force_update=False)
+        sitemap_updated = update_sitemap(force_update=False)
+        humans_updated = update_humans_txt(force_update=False)
+        
+        if sitemap_updated or humans_updated:
+            update_cache_version()

@@ -42,4 +42,5 @@ jobs:
         git add index.html
         git add sitemap.xml
         git add humans.txt
+        git add sw.js
         git diff --quiet && git diff --staged --quiet || (git commit -m "chore(seo): update ratings or sitemap date" && git push)
