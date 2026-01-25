@@ -4,6 +4,7 @@ const ASSETS_TO_CACHE = [
   '/index.html',
   '/404.html',
   '/styles.css',
+  '/src/script.js',
   '/manifest.json',
   '/icons/logo_rep_transparente.webp',
   '/imagens/frente_reitoria.webp',
@@ -54,7 +55,9 @@ self.addEventListener('fetch', (event) => {
           return networkResponse;
         })
         .catch(() => {
-          return caches.match(event.request);
+          return caches.match(event.request).then((cachedResponse) => {
+            return cachedResponse || caches.match('/404.html');
+          });
         })
     );
     return;

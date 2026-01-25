@@ -17,6 +17,10 @@
       "statusCode": 404
     },
     {
+      "route": "/imagens/cache.txt",
+      "statusCode": 404
+    },
+    {
       "route": "/*.md",
       "statusCode": 404
     },

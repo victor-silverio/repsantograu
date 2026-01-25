@@ -37,7 +37,22 @@ Os valores incluem todas as contas (aluguel, internet, luz, água, limpeza e ali
 - **Site:** https://www.repsantograu.online
 
 ## Sobre este Site (Tech Stack)
-Este site é uma PWA (Progressive Web App) desenvolvida pelo morador Victor Augusto.
-- **Frontend:** HTML5, Tailwind CSS, JavaScript.
-- **Infraestrutura:** Azure Static Web Apps, Cloudflare (CDN/Security).
-- **Automação:** Scripts Python para atualização automática de SEO e avaliações do Google Maps via GitHub Actions.
+Este site é uma PWA (Progressive Web App) moderna desenvolvida pelo morador Victor Augusto.
+
+### Tecnologias
+- **Frontend:** HTML5, Tailwind CSS v4.1.18, JavaScript vanilla.
+- **PWA:** Service Worker (offline-first), Manifest.json (instalável em Android/iOS/Desktop).
+- **Build:** Node.js + Tailwind CLI (local development com auto-reload).
+- **Infraestrutura:** Azure Static Web Apps (serverless), Cloudflare (CDN/Security/DDoS Protection).
+- **Segurança:** CSP, HTTPS obrigatório, cache inteligente (1 ano para assets, revalidação para HTML).
+- **SEO:** JSON-LD structured data, sitemap dinâmico, meta tags otimizadas.
+- **Automação:** Scripts Python (requests, regex, subprocess) para atualização diária de ratings do Google Maps via GitHub Actions.
+- **CI/CD:** GitHub Actions (deploy automático na Azure ao detectar mudanças).
+
+### Features
+- Instalável como app nativo (Progressive Web App).
+- Funciona offline graças ao Service Worker.
+- Animações com IntersectionObserver (lazy reveal effect).
+- Carrossel de timeline responsivo com touch support.
+- Imagens otimizadas em WebP (reduz 30% do tamanho).
+- Ratings sincronizados automaticamente com Google Places API 3x por dia.
