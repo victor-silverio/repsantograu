@@ -1,4 +1,5 @@
-const CACHE_NAME = 'santo-grau-v10';
+const CACHE_NAME = 'santo-grau-v11';
+
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -37,40 +38,34 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
+  
   if (url.origin !== location.origin) return;
 
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request)
+  event.respondWith(
+    caches.open(CACHE_NAME).then(async (cache) => {
+
+      const cachedResponse = await cache.match(event.request);
+
+      const fetchPromise = fetch(event.request)
         .then((networkResponse) => {
-          if (networkResponse.status >= 200 && networkResponse.status < 300) {
-            return caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, networkResponse.clone());
-              return networkResponse;
-            });
+
+          if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+            cache.put(event.request, networkResponse.clone());
           }
           return networkResponse;
         })
         .catch(() => {
-          return caches.match(event.request).then((cachedResponse) => {
-            return cachedResponse || caches.match('/404.html');
-          });
-        })
-    );
-    return;
-  }
 
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request).then((networkResponse) => {
-        return caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
+          if (event.request.mode === 'navigate') {
+            return cache.match('/404.html');
+          }
         });
-      });
+
+      return cachedResponse || fetchPromise;
     })
   );
 });
