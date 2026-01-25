@@ -8,72 +8,114 @@ Repositório com o código do site da República Santo Grau (Itajubá, MG). É u
 
 ## Segurança e Infraestrutura
 
-O site roda em cima de algumas tecnologias:
+O site roda em cima de uma arquitetura bem pensada pra segurança e performance:
 
-- **Cloudflare:** Protege contra DDoS, gerencia o DNS e acelera a entrega dos assets usando CDN.
-- **Azure Static Web Apps:** Hospedagem serverless com deploy automático via GitHub Actions. A segurança é gerenciada pelo arquivo `staticwebapp.config.json`.
-- **SSL/TLS:** Conexão criptografada de ponta a ponta.
+### Infraestrutura
 
-## Funcionalidades
+- **Cloudflare:** Protege contra DDoS, gerencia o DNS global e acelera a entrega dos assets usando CDN. Todos os acessos passam por lá primeiro.
+- **Azure Static Web Apps:** Hospedagem serverless com HTTPS nativo. Deployment automático em segundos via GitHub Actions. Suporta API backend sem custo extra (quando necessário).
+- **SSL/TLS:** Conexão criptografada de ponta a ponta (HTTPS obrigatório, HTTP redireciona).
 
-O site é uma PWA (Progressive Web App) com alguns recursos:
+### Configurações de Segurança (staticwebapp.config.json)
 
-- **Instalável:** Usuários podem instalar como um app nativo no Android/iOS. Configuração em `manifest.json`.
-- **Animações:** Usa `IntersectionObserver` para revelar elementos conforme a página é rolada e um carrossel touch-friendly na linha do tempo.
-- **SEO:** Dados estruturados em JSON-LD para rich snippets no Google.
-- **Performance:** Imagens em WebP, pré-carregamento de assets críticos e fontes otimizadas.
+- **CSP (Content Security Policy):** Bloqueia scripts de terceiros não-autorizados.
+- **X-Frame-Options:** Impede clickjacking.
+- **X-Content-Type-Options:** Previne MIME sniffing.
+- **Strict-Transport-Security:** Força HTTPS por 1 ano.
+- **Permissions-Policy:** Desabilita acesso a câmera, microfone, geolocalização e pagamentos.
+- **Cache inteligente:** Assets compilados (JS, CSS, imagens) ficam 1 ano no cache. HTML é sempre revalidado.
+
+### Funcionalidades
+
+O site é uma PWA (Progressive Web App) com recursos modernos:
+
+- **Instalável:** Usuários podem instalar como um app nativo (Android/iOS/Desktop). Configuração em `manifest.json`. Funciona offline graças ao Service Worker.
+- **Offline First:** O `sw.js` usa cache-first strategy para assets estáticos. Página principal é acessível sem internet.
+- **Animações:** Usa `IntersectionObserver` para revelar elementos conforme a página é rolada (lazy reveal effect). Carrossel de timeline com scroll smooth e suporte touch.
+- **SEO Otimizado:** Dados estruturados em JSON-LD para rich snippets no Google (Organization, Place, Review schema). Sitemap dinâmico. Meta tags otimizadas.
+- **Performance:** Imagens em WebP (reduz 30% do tamanho). Fontes otimizadas via Google Fonts. Pré-carregamento de assets críticos. Tailwind CSS com tree-shaking (CSS puro, sem JIT bloat).
 
 ## Stack Tecnológico
 
 | Camada | O que usei |
 | :--- | :--- |
-| **Frontend** | HTML5, Tailwind CSS (CDN), JavaScript |
-| **Estilo** | Font Awesome, Google Fonts, WebP |
+| **Frontend** | HTML5, Tailwind CSS v4.1.18, JavaScript vanilla |
+| **Estilo** | Font Awesome 6.4, Google Fonts, WebP |
+| **PWA** | Service Worker (sw.js), Manifest.json |
 | **Scripts** | Python 3.9 (requests, regex, subprocess) |
+| **Build** | Node.js + Tailwind CLI |
 | **Deploy** | Azure Static Web Apps + Cloudflare |
 | **CI/CD** | GitHub Actions |
 
 ## Automação (Script Python)
 
-O destaque aqui é o script `update_ratings.py`, que roda diariamente no GitHub Actions e faz algumas coisas legais:
+O destaque aqui é o script `update_ratings.py`, que roda **diariamente via GitHub Actions** (às 03:00 UTC) e mantém o site sempre atualizado. Ele também é acionado manualmente através da aba "Actions" no GitHub ou automaticamente quando há push no `index.html`.
 
 **1. Sincroniza com Google Maps**
 - Puxa a nota e número de avaliações da Google Places API.
-- Se mudou algo, atualiza o HTML e o JSON-LD automaticamente.
+- Atualiza automaticamente o JSON-LD (structured data) no HTML.
+- Atualiza os campos de rating na página principal se houver mudanças.
 
 **2. Atualiza o Copyright**
-- No fim do ano, atualiza automaticamente o ano no footer.
+- No fim do ano, atualiza automaticamente o ano no footer (agora é 2026).
+- Evita commits desnecessários se o ano não mudou.
 
 **3. Gerencia o Sitemap**
-- Checa o git log pra saber se o `index.html` foi modificado.
-- Só atualiza a tag `<lastmod>` se realmente houve mudanças, evitando commits desnecessários.
+- Compara datas do git log entre `index.html` e `sitemap.xml`.
+- Só atualiza a tag `<lastmod>` se o HTML foi modificado após o sitemap.
+- Mantém tudo sincronizado sem gerar commits fake.
 
-**4. Faz Deploy Automático**
-- Se o script fizer alguma mudança, ele commita direto na main e dispara um novo deploy na Azure.
+**4. Sincroniza humans.txt**
+- Atualiza a data "Last update" do arquivo `humans.txt` conforme mudanças no `index.html`.
+- Segue o mesmo padrão inteligente do sitemap.
+
+**5. Deploy Automático Inteligente**
+- Se o script fizer alguma mudança, ele commita automaticamente na branch main.
+- O Azure Static Web Apps detecta o novo commit e faz o deploy em seguida.
+- Usa um bot de automação (SEO Bot) para fazer commits sem precisar de intervenção manual.
+
+### CI/CD Pipeline
+
+```yaml
+Trigger (3x por dia) → Python Script → Verifica mudanças 
+  → Atualiza arquivos → Commit & Push → Azure Detects → Deploy
+```
 
 ## Estrutura de Arquivos
 
 ```
 repsantograu/
-├── .github/workflows/          # Deploy e automação
+├── .github/workflows/          # Automação: deploy e SEO
+│   ├── azure-static-web-apps-*.yml    # Deploy automático
+│   └── update_seo.yml                 # Atualização de ratings diários
+├── src/                        # Assets em desenvolvimento
+│   ├── input.css               # Tailwind CSS puro
+│   └── script.js               # Lógica do frontend
 ├── imagens/                    # Fotos otimizadas em WebP
 ├── icons/                      # Ícones e favicons
-├── index.html                  # Página principal
-├── update_ratings.py           # Script de automação
-├── staticwebapp.config.json    # Config de segurança do Azure
-├── manifest.json               # Config da PWA
-├── sitemap.xml                 # Mapa do site
+├── .well-known/                # Security.txt e outros padrões web
+├── index.html                  # Página principal (SPA)
+├── 404.html                    # Página de erro customizada
+├── sw.js                       # Service Worker (PWA)
+├── styles.css                  # CSS compilado (gerado)
+├── update_ratings.py           # Script de automação SEO
+├── staticwebapp.config.json    # Segurança e cache (Azure)
+├── manifest.json               # Configuração da PWA
+├── sitemap.xml                 # Mapa do site (dinâmico)
 ├── robots.txt                  # Diretrizes para buscadores
-└── requirements.txt            # Dependências Python
+├── package.json                # Dependências Node.js
+├── requirements.txt            # Dependências Python
+└── README.md                   # Este arquivo
 ```
 
 ## Como Usar Localmente
 
 ### Você vai precisar de:
 
-- Python 3.9+
+- Node.js 18+ (para compilar o Tailwind CSS)
+- Python 3.9+ (para rodar o script de automação)
 - Git
-- Um servidor local (tipo Live Server da extensão do VS Code)
+- Um navegador moderno
 
 ### Instalação
 
@@ -81,46 +123,88 @@ repsantograu/
 
 ```bash
 git clone https://github.com/victor-silverio/repsantograu.git
+cd repsantograu
 ```
 
-2. Instale as dependências Python:
+2. Instale as dependências Node.js:
+
+```bash
+npm install
+```
+
+3. Instale as dependências Python:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Configure as variáveis de ambiente (precisam disso pra rodar o script):
+### Rodando Localmente
+
+**Para desenvolvimento com auto-reload do Tailwind CSS:**
 
 ```bash
-# Linux/Mac
-export GCP_API_KEY="sua_api_key"
-export PLACE_ID="seu_place_id"
-
-# Windows (PowerShell)
-$env:GCP_API_KEY="sua_api_key"
-$env:PLACE_ID="seu_place_id"
+npm run dev
 ```
 
-### Rodando localmente
+Depois abra o `index.html` no seu navegador ou use a extensão Live Server do VS Code. O Tailwind recompilará automaticamente a cada mudança no `src/input.css` ou no HTML.
 
-**Frontend:** Só abre o `index.html` no navegador. Tailwind vem do CDN, sem precisa de build.
+**Para gerar a versão de produção (minificada):**
 
-**Script:** Se quiser testar a automação:
+```bash
+npm run build
+```
+
+**Para testar o script de automação SEO:**
+
+Antes, configure as variáveis de ambiente:
+
+```bash
+# Windows (PowerShell)
+$env:GCP_API_KEY="sua_api_key_aqui"
+$env:PLACE_ID="seu_place_id_aqui"
+
+# Linux/Mac
+export GCP_API_KEY="sua_api_key_aqui"
+export PLACE_ID="seu_place_id_aqui"
+```
+
+Depois rode:
 
 ```bash
 python update_ratings.py
 ```
 
+### Estrutura do Frontend
+
+- **index.html** – Single Page Application com toda a estrutura HTML
+- **styles.css** – Tailwind CSS compilado (NÃO edite diretamente!)
+- **src/script.js** – JavaScript que gerencia:
+  - Menu mobile responsivo
+  - Animações com `IntersectionObserver`
+  - Carrossel de timeline com scroll touch-friendly
+  - Service Worker registration (PWA)
+- **sw.js** – Service Worker com cache-first strategy para funcionar offline
+
+### Estrutura do Backend/Automação
+
+- **update_ratings.py** – Roda diariamente via GitHub Actions e:
+  - Puxa ratings do Google Places API
+  - Atualiza JSON-LD e HTML com novos dados
+  - Sincroniza a data do sitemap com o último commit do `index.html`
+  - Atualiza `humans.txt` automaticamente
+  - Commita e faz push se houver mudanças
+
 ## Contato
 
-Dúvidas sobre o projeto ou interesse em morar na República?
+Dúvidas sobre o projeto, contribuições ou interesse em morar na República?
 
 | Canal | Link |
 | :--- | :--- |
 | **WhatsApp** | +55 (12) 99217-1061 |
 | **Instagram** | [@republicasantograuitajuba](https://instagram.com/republicasantograuitajuba) |
-| **Email** | [Victoraugusto4096@outlook.com](mailto:Victoraugusto4096@outlook.com) |
+| **Email** | [Victoraugusto4096@gmail.com](mailto:Victoraugusto4096@gmail.com) |
+| **GitHub** | [victor-silverio/repsantograu](https://github.com/victor-silverio/repsantograu) |
 
 ---
 
-© 2026 República Santo Grau. Desenvolvido por Victor Augusto.
+© 2026 República Santo Grau. Desenvolvido com ❤️ por [Victor Augusto](https://github.com/victor-silverio).
