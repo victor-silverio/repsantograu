@@ -125,6 +125,8 @@ html {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    cursor: zoom-in;
+    transition: transform 0.5s ease;
 }
 
 @media (min-width: 768px) {
