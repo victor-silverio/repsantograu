@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+   
    <url>
       <loc>https://www.repsantograu.online/</loc>
       <lastmod>2026-01-25</lastmod>
@@ -23,7 +24,6 @@
         <image:loc>https://www.repsantograu.online/imagens/cozinha.webp</image:loc>
         <image:title>Cozinha da República</image:title>
       </image:image>
-
       <image:image>
         <image:loc>https://www.repsantograu.online/imagens/churrasco_pais.webp</image:loc>
         <image:title>Churrasco com os Pais</image:title>
@@ -93,10 +93,17 @@
         <image:loc>https://www.repsantograu.online/imagens/2011.webp</image:loc>
         <image:title>Turma de 2011</image:title>
       </image:image>
-
       <image:image>
         <image:loc>https://www.repsantograu.online/imagens/logo_rep_transparente.webp</image:loc>
         <image:title>Logo República Santo Grau</image:title>
       </image:image>
    </url>
+
+   <url>
+      <loc>https://www.repsantograu.online/fotos.html</loc>
+      <lastmod>2026-01-25</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
 </urlset>

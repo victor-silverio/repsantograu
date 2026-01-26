@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="theme-color" content="#8B0000" />
+    <title>Galeria de Fotos | República Santo Grau</title>
+    
+    <link href="./styles.css" rel="stylesheet">
+    <script src="src/script.js" defer></script>
+
+    <link rel="preload" href="/fonts/montserrat-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/montserrat-v31-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body class="bg-repWhite text-repGrey antialiased overflow-x-hidden">
+
+    <nav class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <a class="flex items-center gap-3" href="index.html">
+                    <img alt="Logotipo Santo Grau" class="h-10 w-10 object-contain" src="/icons/logo_rep_transparente.webp"/>
+                    <span class="text-lg font-serif font-bold text-repGold tracking-wide">SANTO GRAU</span>
+                </a>
+                <a href="index.html" class="text-white hover:text-repGold transition-colors font-sans font-medium text-sm">Voltar ao Início</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-12 bg-black text-center">
+        <h1 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
+            NOSSA <span class="text-repGold">CASA</span>
+        </h1>
+        <p class="text-gray-400 font-sans tracking-widest mt-4 uppercase text-xs md:text-sm">Galeria Detalhada</p>
+    </section>
+
+    <main class="container mx-auto px-6 py-12 space-y-24">
+
+        <section class="reveal">
+            <h2 class="gallery-title">Fachada e Entrada</h2>
+            <div class="flex flex-wrap gap-6 justify-center">
+                <div class="gallery-container">
+                    <img src="/imagens/Casa/Fachada/foto_fachada.webp" alt="Fachada 1" width="1600" height="1200" class="gallery-img">
+                </div>
+                <div class="gallery-container">
+                    <img src="/imagens/Casa/Fachada/foto_fachada_1.webp" alt="Fachada 2" width="1600" height="1200" class="gallery-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2 class="gallery-title">Sala de Estar</h2>
+            <div class="flex flex-wrap gap-6 justify-center">
+                <div class="gallery-container">
+                    <img src="/imagens/Casa/Sala/Foto_Sala_1.webp" alt="Sala 1" width="1600" height="1200" class="gallery-img">
+                </div>
+                <div class="gallery-container">
+                    <img src="/imagens/Casa/Sala/Foto_Sala_2.webp" alt="Sala 2" width="1600" height="1200" class="gallery-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2 class="gallery-title">Quarto Duplo c/ Suíte</h2>
+            <div class="flex flex-wrap gap-4 justify-center items-center">
+                
+                <div class="gallery-container" style="width: 500px; height: 450px;">
+                    <img alt="Quarto Suíte 1" src="/imagens/Casa/Suite/Foto_Quarto_Duplo_Suite_1.webp" class="gallery-img">
+                </div>
+
+                <div class="gallery-container" style="width: 600px; height: 450px;">
+                    <img alt="Quarto Suíte 2" src="/imagens/Casa/Suite/Foto_Quarto_Duplo_Suite_2.webp" class="gallery-img">
+                </div>
+
+                <div class="gallery-container" style="width: 600px; height: 450px;">
+                    <img alt="Quarto Suíte 3" src="/imagens/Casa/Suite/Foto_Quarto_Duplo_Suite_3.webp" class="gallery-img">
+                </div>
+
+                <div class="gallery-container" style="width: 600px; height: 800px;">
+                    <img alt="Quarto Suíte 4" src="/imagens/Casa/Suite/Foto_Quarto_Duplo_Suite_4.webp" class="gallery-img">
+                </div>
+
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2 class="gallery-title">Quarto Duplo 2</h2>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <div class="gallery-container"><img alt="" src="/imagens/Casa/Quarto_Duplo_2/Foto_Quarto_Duplo_1.webp" width="600" height="450" class="gallery-img"></div>
+                <div class="gallery-container"><img alt="" src="/imagens/Casa/Quarto_Duplo_2/Foto_Quarto_Duplo_2.webp" width="600" height="450" class="gallery-img"></div>
+                <div class="gallery-container"><img alt="" src="/imagens/Casa/Quarto_Duplo_2/Foto_Quarto_Duplo_3.webp" width="600" height="450" class="gallery-img"></div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2 class="gallery-title">Quarto Duplo 3</h2>
+            <div class="flex flex-wrap gap-6 justify-center">
+                <div class="gallery-container"><img alt="" src="/imagens/Casa/Quarto_Duplo_3/Foto_Quarto_Duplo_1.webp" width="600" height="450" class="gallery-img"></div>
+                <div class="gallery-container"><img alt="" src="/imagens/Casa/Quarto_Duplo_3/Foto_Quarto_Duplo_2.webp" width="600" height="450" class="gallery-img"></div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="flex flex-wrap gap-12 justify-center">
+                <div class="text-center">
+                    <h2 class="gallery-title text-center">Cozinha</h2>
+                    <div class="gallery-container"><img alt="" src="/imagens/Casa/Cozinha/Foto_Cozinha.webp" width="1600" height="1200" class="gallery-img"></div>
+                </div>
+                <div class="text-center">
+                    <h2 class="gallery-title text-center">Copa</h2>
+                    <div class="gallery-container"><img alt="" src="/imagens/Casa/Copa/Foto_Copa.webp" width="1600" height="1200" class="gallery-img"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white pt-12 pb-8 border-t-8 border-repGold">
+        <div class="container mx-auto px-6 text-center">
+            <img src="/icons/logo_rep_transparente.webp" class="h-16 mx-auto mb-4 opacity-50" alt="Logo">
+            <p class="text-gray-500 text-sm">© 2026 República Santo Grau. Itajubá - MG.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
