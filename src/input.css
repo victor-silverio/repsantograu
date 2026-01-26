@@ -1,39 +1,39 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/montserrat-v31-latin-regular.woff2') format('woff2');
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/montserrat-v31-latin-regular.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/montserrat-v31-latin-700.woff2') format('woff2');
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/montserrat-v31-latin-700.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Playfair Display';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/playfair-display-v40-latin-700.woff2') format('woff2');
+    font-family: 'Playfair Display';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/playfair-display-v40-latin-700.woff2') format('woff2');
 }
 
 @theme {
-  --color-repGold: #D4AF37;
-  --color-repRed: #8B0000;
-  --color-repWhite: #FAFAFA;
-  --color-repGrey: #333333;
-  --color-whatsapp: #0E7066;
-  --color-whatsappDark: #075E54;
+    --color-repGold: #D4AF37;
+    --color-repRed: #8B0000;
+    --color-repWhite: #FAFAFA;
+    --color-repGrey: #333333;
+    --color-whatsapp: #0E7066;
+    --color-whatsappDark: #075E54;
 
-  --font-sans: "Montserrat", sans-serif;
-  --font-serif: "Playfair Display", serif;
+    --font-sans: "Montserrat", sans-serif;
+    --font-serif: "Playfair Display", serif;
 }
 
 .reveal {
@@ -133,4 +133,29 @@ html {
     .gallery-container:hover .gallery-img {
         transform: scale(1.03);
     }
+}
+
+/* Accordion Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+details>summary {
+    list-style: none;
+}
+
+details>summary::-webkit-details-marker {
+    display: none;
 }
