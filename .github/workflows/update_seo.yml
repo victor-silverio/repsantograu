@@ -3,15 +3,6 @@ name: Update SEO Ratings
 on:
   schedule:
     - cron: '0 3 * * *'
-  push:
-    branches:
-      - main
-    paths:
-      - 'index.html'
-      - 'fotos.html'
-      - 'styles.css'
-      - 'src/script.js'
-      - 'update_ratings.py'
   workflow_dispatch:
 
 jobs:
@@ -41,7 +32,7 @@ jobs:
       env:
         GCP_API_KEY: ${{ secrets.GCP_API_KEY }}
         PLACE_ID: ${{ secrets.PLACE_ID }}
-      run: python update_ratings.py
+      run: python update_script.py
 
     - name: Commit and Push if changed
       run: |

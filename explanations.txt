@@ -2,7 +2,7 @@
 
 Answer: Although it might not appear so, the contrast is fine and legible, scoring 100 on the Lighthouse test.
 
-2. Heavy photos.html 
+2. Heavy and slow photos.html 
 
 Answer: Its purpose does not require fast loading speeds; it is strictly a page for displaying house photos. Therefore, there is no need for quality reduction or other optimizations for fast loading.
 
