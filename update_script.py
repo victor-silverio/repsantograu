@@ -229,14 +229,107 @@ def update_html(new_data):
 if __name__ == "__main__":
     ratings = get_google_ratings()
     
-    html_changed = update_html(ratings)
+import json
+
+def update_availability():
+    try:
+        with open('src/vagas.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        total = data.get('total_slots', 0)
+        occupied = data.get('occupied_slots', 0)
+        year = data.get('year', datetime.now().year)
+        room_type = data.get('room_type', 'quartos duplos')
+        
+        available = total - occupied
+        
+        file_path = 'index.html'
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            
+        updated_content = content
+        changes_made = False
+        
+        if available > 0:
+            badge_text = f"{available} Vagas Disponíveis para {year}"
+            badge_html = f'''
+        <div id="vacancy-badge" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 animate-fadeIn">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
+            <span class="text-white font-sans text-sm md:text-base font-medium tracking-wide">
+                {badge_text}
+            </span>
+        </div>'''
+        else:
+            badge_text = f"Vagas Esgotadas para {year}"
+            badge_html = f'''
+        <div id="vacancy-badge" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/20 backdrop-blur-md border border-red-500/30 mb-6 animate-fadeIn">
+            <span class="relative flex h-3 w-3">
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            </span>
+            <span class="text-white font-sans text-sm md:text-base font-medium tracking-wide">
+                {badge_text}
+            </span>
+        </div>'''
+        
+        badge_pattern = re.compile(r'(<div id="vacancy-badge".*?</div>)', re.DOTALL)
+        if badge_pattern.search(content):
+            current_match = badge_pattern.search(content).group(1)
+            if ' '.join(current_match.split()) != ' '.join(badge_html.split()):
+                print(f"[VAGAS] Atualizando badge: {badge_text}")
+                updated_content = badge_pattern.sub(badge_html.strip(), updated_content)
+                changes_made = True
+                
+        faq_pattern = re.compile(r'(Atualmente as vagas são para )(.*?)(?=\.)')
+        match_faq = faq_pattern.search(updated_content)
+        if match_faq and match_faq.group(2) != room_type:
+            print(f"[VAGAS] Atualizando FAQ: {match_faq.group(2)} -> {room_type}")
+            updated_content = faq_pattern.sub(f'\\g<1>{room_type}', updated_content)
+            changes_made = True
+
+        json_desc_pattern = re.compile(r'("description":\s*")(.*?)(")')
+        match_desc = json_desc_pattern.search(updated_content)
+        
+        if match_desc:
+            current_desc = match_desc.group(2)
+            
+            clean_desc = re.sub(r'\s*\(Vagas.*?\)', '', current_desc).strip()
+            clean_desc = re.sub(r'\s*Vagas Esgotadas.*', '', clean_desc).strip()
+            
+            if available > 0:
+                new_desc = f"{clean_desc} (Vagas Disponíveis: {available} para {year})"
+            else:
+                new_desc = f"{clean_desc} (Vagas Esgotadas para {year})"
+            
+            if current_desc != new_desc:
+                print(f"[SEO] Atualizando descrição JSON-LD com vagas.")
+                updated_content = json_desc_pattern.sub(f'\\1{new_desc}\\3', updated_content, count=1)
+                changes_made = True
+
+        if changes_made:
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(updated_content)
+            return True
+            
+    except Exception as e:
+        print(f"Erro ao atualizar disponibilidade: {e}")
+        
+    return False
+
+if __name__ == "__main__":
+    ratings = get_google_ratings()
     
-    sitemap_updated = update_sitemap(force_update=html_changed)
-    humans_updated = update_humans_txt(force_update=html_changed)
+    html_changed = update_html(ratings)
+    vagas_changed = update_availability()
+    
+    sitemap_updated = update_sitemap(force_update=(html_changed or vagas_changed))
+    humans_updated = update_humans_txt(force_update=(html_changed or vagas_changed))
     
     should_update_cache = False
     
-    if html_changed or sitemap_updated or humans_updated:
+    if html_changed or vagas_changed or sitemap_updated or humans_updated:
         should_update_cache = True
     else:
         latest_file_ts = get_latest_tracked_timestamp()

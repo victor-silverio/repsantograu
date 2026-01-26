@@ -128,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Lightbox Logic
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
@@ -148,18 +147,17 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxCaption.textContent = img.getAttribute('alt') || '';
 
             lightbox.classList.remove('hidden');
-            // Small delay to allow display:block to apply before opacity transition
             setTimeout(() => {
                 lightbox.classList.remove('opacity-0');
             }, 10);
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
         };
 
         const closeLightbox = () => {
             lightbox.classList.add('opacity-0');
             setTimeout(() => {
                 lightbox.classList.add('hidden');
-                lightboxImg.src = ''; // Clear src
+                lightboxImg.src = '';
             }, 300);
             document.body.style.overflow = '';
         };
@@ -181,12 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         closeBtn.addEventListener('click', closeLightbox);
 
-        // Close on background click
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) closeLightbox();
         });
 
-        // Navigation buttons
         nextBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
             showNext();
@@ -197,7 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
             showPrev();
         });
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (lightbox.classList.contains('hidden')) return;
 
@@ -206,7 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'ArrowLeft') showPrev();
         });
 
-        // Touch Swipe Support
         let touchStartX = 0;
         let touchEndX = 0;
 
