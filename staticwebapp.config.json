@@ -16,7 +16,7 @@
       "statusCode": 404
     },
     {
-      "route": "/imagens/cache.txt",
+      "route": "/private/*",
       "statusCode": 404
     },
     {
@@ -25,10 +25,6 @@
     },
     {
       "route": "/requirements.txt",
-      "statusCode": 404
-    },
-    {
-      "route": "/explanations.txt",
       "statusCode": 404
     },
     {
