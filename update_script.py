@@ -14,31 +14,37 @@ TRACKED_FILES = [
     'src/script.js'
 ]
 
-def get_git_last_commit_date(filename):
+def get_git_commit_timestamp(filename):
     try:
         if not os.path.exists(filename):
-            print(f"[WARN] Arquivo monitorado não encontrado localmente: {filename}")
+            return 0
+        result = subprocess.check_output(
+            ['git', 'log', '-1', '--format=%ct', filename],
+            text=True
+        ).strip()
+        return int(result) if result else 0
+    except Exception:
+        return 0
+
+def get_git_last_commit_date_str(filename):
+    try:
+        if not os.path.exists(filename):
             return None
-            
         result = subprocess.check_output(
             ['git', 'log', '-1', '--format=%cd', '--date=short', filename],
             text=True
         ).strip()
         return result
-    except Exception as e:
-        print(f"Erro ao verificar git log para {filename}: {e}")
+    except Exception:
         return None
 
-def get_latest_tracked_change():
-    latest_date = None
-    
+def get_latest_tracked_timestamp():
+    latest_ts = 0
     for filename in TRACKED_FILES:
-        date = get_git_last_commit_date(filename)
-        if date:
-            if latest_date is None or date > latest_date:
-                latest_date = date
-    
-    return latest_date
+        ts = get_git_commit_timestamp(filename)
+        if ts > latest_ts:
+            latest_ts = ts
+    return latest_ts
 
 def get_google_ratings():
     if not API_KEY or not PLACE_ID:
@@ -68,18 +74,15 @@ def get_google_ratings():
 
 def update_sitemap(force_update=False):
     file_path = 'sitemap.xml'
+    
     should_update = force_update
-
     if not should_update:
-        latest_change = get_latest_tracked_change()
-        date_sitemap = get_git_last_commit_date(file_path)
-
-        if latest_change and date_sitemap:
-            if latest_change > date_sitemap:
-                print(f"[SEO] Detectada alteração recente ({latest_change}) em arquivos monitorados. Atualizando sitemap.")
-                should_update = True
-            else:
-                print("[SEO] Sitemap já está sincronizado com a versão mais recente dos arquivos.")
+        latest_change_ts = get_latest_tracked_timestamp()
+        sitemap_ts = get_git_commit_timestamp(file_path)
+        
+        if latest_change_ts > sitemap_ts:
+            print(f"[SEO] Arquivos alterados recentemente. Atualizando sitemap.")
+            should_update = True
 
     if should_update:
         try:
@@ -94,6 +97,9 @@ def update_sitemap(force_update=False):
                     f.write(new_content)
                 print(f"[SEO] Sitemap atualizado para: {current_date}")
                 return True
+            else:
+                print("[SEO] Sitemap já está com a data de hoje.")
+                return False
         except Exception as e:
             print(f"Erro ao atualizar sitemap: {e}")
     
@@ -104,15 +110,11 @@ def update_humans_txt(force_update=False):
     should_update = force_update
 
     if not should_update:
-        latest_change = get_latest_tracked_change()
-        date_humans = get_git_last_commit_date(file_path)
+        latest_change_ts = get_latest_tracked_timestamp()
+        humans_ts = get_git_commit_timestamp(file_path)
         
-        if latest_change and date_humans:
-            if latest_change > date_humans:
-                print(f"[SEO] Detectada alteração recente ({latest_change}). Atualizando humans.txt.")
-                should_update = True
-            else:
-                print("[SEO] humans.txt já está sincronizado.")
+        if latest_change_ts > humans_ts:
+            should_update = True
 
     if should_update:
         try:
@@ -120,20 +122,15 @@ def update_humans_txt(force_update=False):
                 content = f.read()
             
             current_date = datetime.now().strftime('%Y/%m/%d')
-            
             pattern = re.compile(r'(Last update:\s*)(\d{4}/\d{2}/\d{2})')
             
             if pattern.search(content):
                 new_content = pattern.sub(f'\\g<1>{current_date}', content)
-                
                 if new_content != content:
                     with open(file_path, 'w', encoding='utf-8') as f:
                         f.write(new_content)
                     print(f"[SEO] humans.txt atualizado para: {current_date}")
                     return True
-            else:
-                print("[SEO] Campo 'Last update' não encontrado em humans.txt")
-
         except Exception as e:
             print(f"Erro ao atualizar humans.txt: {e}")
     
@@ -141,7 +138,6 @@ def update_humans_txt(force_update=False):
 
 def update_cache_version():
     file_path = 'sw.js'
-    
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -152,7 +148,6 @@ def update_cache_version():
         if match:
             current_version = int(match.group(1))
             new_version = current_version + 1
-            
             new_content = pattern.sub(f"const CACHE_NAME = 'santo-grau-v{new_version}'", content)
             
             with open(file_path, 'w', encoding='utf-8') as f:
@@ -164,7 +159,6 @@ def update_cache_version():
             print("[CACHE] Padrão de versão não encontrado em sw.js")
     except Exception as e:
         print(f"Erro ao atualizar versão do cache: {e}")
-    
     return False
 
 def update_html(new_data):
@@ -175,7 +169,7 @@ def update_html(new_data):
         content = f.read()
     
     updated_content = content
-
+    
     json_pattern = re.compile(r'(<script type="application/ld\+json">)(.*?)(</script>)', re.DOTALL)
     match_json = json_pattern.search(content)
 
@@ -183,22 +177,22 @@ def update_html(new_data):
         script_content = match_json.group(2)
         new_script_content = script_content
         
-        rc_pattern = re.compile(r'("reviewCount"\s*:\s*")(\d+)(")')
-        rv_pattern = re.compile(r'("ratingValue"\s*:\s*")([\d.]+)(")')
-        
-        def replace_rc(m):
-            if new_data and m.group(2) != str(new_data['reviewCount']):
-                print(f"[SEO] Atualizando reviewCount: {m.group(2)} -> {new_data['reviewCount']}")
-                return f'{m.group(1)}{new_data["reviewCount"]}{m.group(3)}'
-            return m.group(0)
-
-        def replace_rv(m):
-            if new_data and m.group(2) != str(new_data['ratingValue']):
-                print(f"[SEO] Atualizando ratingValue: {m.group(2)} -> {new_data['ratingValue']}")
-                return f'{m.group(1)}{new_data["ratingValue"]}{m.group(3)}'
-            return m.group(0)
-
         if new_data:
+            rc_pattern = re.compile(r'("reviewCount"\s*:\s*")(\d+)(")')
+            rv_pattern = re.compile(r'("ratingValue"\s*:\s*")([\d.]+)(")')
+            
+            def replace_rc(m):
+                if m.group(2) != str(new_data['reviewCount']):
+                    print(f"[SEO] Atualizando reviewCount: {m.group(2)} -> {new_data['reviewCount']}")
+                    return f'{m.group(1)}{new_data["reviewCount"]}{m.group(3)}'
+                return m.group(0)
+
+            def replace_rv(m):
+                if m.group(2) != str(new_data['ratingValue']):
+                    print(f"[SEO] Atualizando ratingValue: {m.group(2)} -> {new_data['ratingValue']}")
+                    return f'{m.group(1)}{new_data["ratingValue"]}{m.group(3)}'
+                return m.group(0)
+
             new_script_content = rc_pattern.sub(replace_rc, new_script_content)
             new_script_content = rv_pattern.sub(replace_rv, new_script_content)
 
@@ -212,22 +206,18 @@ def update_html(new_data):
         
         match_text = text_pattern.search(updated_content)
         if match_text:
-            current_text = match_text.group(2)
-            if current_text != new_visible_text:
-                print(f"[UX] Atualizando texto visível: '{current_text}' -> '{new_visible_text}'")
+            if match_text.group(2) != new_visible_text:
+                print(f"[UX] Atualizando texto visível.")
                 updated_content = text_pattern.sub(f'\\1{new_visible_text}\\3', updated_content)
                 changes_made = True
 
     current_year = str(datetime.now().year)
     copyright_pattern = re.compile(r'(©\s*)(\d{4})(\s*República Santo Grau)')
-    
     match_copyright = copyright_pattern.search(updated_content)
-    if match_copyright:
-        existing_year = match_copyright.group(2)
-        if existing_year != current_year:
-            print(f"[FOOTER] Atualizando ano de copyright: {existing_year} -> {current_year}")
-            updated_content = copyright_pattern.sub(f'\\g<1>{current_year}\\g<3>', updated_content)
-            changes_made = True
+    if match_copyright and match_copyright.group(2) != current_year:
+        print(f"[FOOTER] Atualizando ano.")
+        updated_content = copyright_pattern.sub(f'\\g<1>{current_year}\\g<3>', updated_content)
+        changes_made = True
 
     if changes_made:
         with open(file_path, 'w', encoding='utf-8') as f:
@@ -239,18 +229,24 @@ def update_html(new_data):
 if __name__ == "__main__":
     ratings = get_google_ratings()
     
-    html_changed_by_script = update_html(ratings)
+    html_changed = update_html(ratings)
     
-    if html_changed_by_script:
-        print("HTML foi alterado pelo script (dados/ano). Forçando atualização de dependentes...")
-        update_sitemap(force_update=True)
-        update_humans_txt(force_update=True)
-        update_cache_version()
+    sitemap_updated = update_sitemap(force_update=html_changed)
+    humans_updated = update_humans_txt(force_update=html_changed)
+    
+    should_update_cache = False
+    
+    if html_changed or sitemap_updated or humans_updated:
+        should_update_cache = True
     else:
-        print("Nenhuma alteração automática no HTML. Verificando histórico do Git para arquivos monitorados...")
+        latest_file_ts = get_latest_tracked_timestamp()
+        sw_file_ts = get_git_commit_timestamp('sw.js')
         
-        sitemap_updated = update_sitemap(force_update=False)
-        humans_updated = update_humans_txt(force_update=False)
-        
-        if sitemap_updated or humans_updated:
-            update_cache_version()
+        if latest_file_ts > sw_file_ts:
+            print(f"[CACHE] Detecção por timestamp: Arquivos ({latest_file_ts}) > sw.js ({sw_file_ts}). Atualizando...")
+            should_update_cache = True
+        else:
+            print("[CACHE] Nenhuma atualização pendente detectada (sw.js já é recente).")
+
+    if should_update_cache:
+        update_cache_version()
