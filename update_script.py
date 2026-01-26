@@ -72,36 +72,48 @@ def get_google_ratings():
         print(f"Erro API: {e}")
     return None
 
-def update_sitemap(force_update=False):
+def update_sitemap():
     file_path = 'sitemap.xml'
+    changes_made = False
     
-    should_update = force_update
-    if not should_update:
-        latest_change_ts = get_latest_tracked_timestamp()
-        sitemap_ts = get_git_commit_timestamp(file_path)
-        
-        if latest_change_ts > sitemap_ts:
-            print(f"[SEO] Arquivos alterados recentemente. Atualizando sitemap.")
-            should_update = True
+    url_file_map = {
+        'https://www.repsantograu.online/': 'index.html',
+        'https://www.repsantograu.online/fotos.html': 'fotos.html'
+    }
 
-    if should_update:
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        new_content = content
+        
+        for url, mapped_file in url_file_map.items():
+            file_date = get_git_last_commit_date_str(mapped_file)
             
-            current_date = datetime.now().strftime('%Y-%m-%d')
-            new_content = re.sub(r'<lastmod>.*?</lastmod>', f'<lastmod>{current_date}</lastmod>', content, count=1)
+            if not file_date:
+                continue
+                
+            pattern = re.compile(f'(<loc>{re.escape(url)}</loc>.*?<lastmod>)(.*?)(</lastmod>)', re.DOTALL)
             
-            if new_content != content:
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.write(new_content)
-                print(f"[SEO] Sitemap atualizado para: {current_date}")
-                return True
-            else:
-                print("[SEO] Sitemap já está com a data de hoje.")
-                return False
-        except Exception as e:
-            print(f"Erro ao atualizar sitemap: {e}")
+            match = pattern.search(new_content)
+            if match:
+                current_sitemap_date = match.group(2)
+                
+                if current_sitemap_date != file_date:
+                    print(f"[SEO] Sitemap: Atualizando {mapped_file} ({url}) de {current_sitemap_date} para {file_date}")
+                    new_content = new_content[:match.start(2)] + file_date + new_content[match.end(2):]
+                    changes_made = True
+                else:
+                    print(f"[SEO] Sitemap: {mapped_file} já está atualizado ({file_date}).")
+        
+        if changes_made:
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            print("[SEO] Sitemap.xml salvo com alterações.")
+            return True
+            
+    except Exception as e:
+        print(f"Erro ao atualizar sitemap: {e}")
     
     return False
 
@@ -324,7 +336,7 @@ if __name__ == "__main__":
     html_changed = update_html(ratings)
     vagas_changed = update_availability()
     
-    sitemap_updated = update_sitemap(force_update=(html_changed or vagas_changed))
+    sitemap_updated = update_sitemap()
     humans_updated = update_humans_txt(force_update=(html_changed or vagas_changed))
     
     should_update_cache = False
