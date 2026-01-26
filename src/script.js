@@ -62,60 +62,104 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnRight = document.getElementById('scroll-right');
 
     if (slider) {
+        const items = slider.querySelectorAll('.snap-center');
+
+
+        const updateUI = () => {
+            // Update Arrows
+            if (btnLeft && btnRight) {
+                btnLeft.style.opacity = slider.scrollLeft > 20 ? '1' : '0';
+                const maxScroll = slider.scrollWidth - slider.clientWidth - 20;
+                btnRight.style.opacity = slider.scrollLeft < maxScroll ? '1' : '0';
+            }
+        };
+
+        slider.addEventListener('scroll', updateUI);
+        window.addEventListener('resize', updateUI);
+        updateUI();
+
         if (btnLeft && btnRight) {
             btnLeft.addEventListener('click', () => {
-                slider.scrollBy({ left: -300, behavior: 'smooth' });
+                const itemWidth = items[0].offsetWidth + 24; // Dynamic width
+                slider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
             });
 
             btnRight.addEventListener('click', () => {
-                slider.scrollBy({ left: 300, behavior: 'smooth' });
+                const itemWidth = items[0].offsetWidth + 24; // Dynamic width
+                slider.scrollBy({ left: itemWidth, behavior: 'smooth' });
             });
         }
 
         let isDown = false;
         let startX;
         let scrollLeft;
-        let animationId;
 
         slider.querySelectorAll('img').forEach(img => img.setAttribute('draggable', 'false'));
 
-        slider.addEventListener('mousedown', (e) => {
+        // Use Pointer Events for unified handling and better capture
+        slider.addEventListener('pointerdown', (e) => {
+            // Only enable custom drag for mouse (desktop)
+            // Touch devices should use native scrolling
+            if (e.pointerType !== 'mouse') return;
+
             isDown = true;
+            e.preventDefault();
+            slider.setPointerCapture(e.pointerId); // Crucial: Keeps the event target on the slider even if mouse leaves
+
             slider.classList.add('cursor-grabbing');
             slider.classList.remove('cursor-grab', 'snap-x', 'snap-mandatory', 'scroll-smooth');
+
             startX = e.pageX - slider.offsetLeft;
             scrollLeft = slider.scrollLeft;
         });
 
-        const stopDrag = () => {
+        const stopDrag = (e) => {
             if (!isDown) return;
+            if (e.pointerType !== 'mouse') return;
+
             isDown = false;
+            slider.releasePointerCapture(e.pointerId);
             slider.classList.remove('cursor-grabbing');
-            slider.classList.add('cursor-grab', 'snap-x', 'snap-mandatory', 'scroll-smooth');
+
+            // Find nearest item to center logic
+            const center = slider.scrollLeft + (slider.clientWidth / 2);
+            let closestItem = null;
+            let minDistance = Infinity;
+
+            items.forEach((item) => {
+                const itemCenter = item.offsetLeft + (item.offsetWidth / 2);
+                const distance = Math.abs(center - itemCenter);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestItem = item;
+                }
+            });
+
+            if (closestItem) {
+                closestItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+
+            // Soft re-enable snap
+            setTimeout(() => {
+                slider.classList.add('cursor-grab', 'snap-x', 'snap-mandatory', 'scroll-smooth');
+            }, 600);
         };
 
-        slider.addEventListener('mouseleave', stopDrag);
-        slider.addEventListener('mouseup', stopDrag);
+        slider.addEventListener('pointerleave', stopDrag);
+        slider.addEventListener('pointerup', stopDrag);
+        slider.addEventListener('pointercancel', stopDrag);
 
-        slider.addEventListener('mousemove', (e) => {
+        slider.addEventListener('pointermove', (e) => {
             if (!isDown) return;
+            if (e.pointerType !== 'mouse') return;
+
             e.preventDefault();
-
-            if (animationId) cancelAnimationFrame(animationId);
-
-            animationId = requestAnimationFrame(() => {
-                const x = e.pageX - slider.offsetLeft;
-                const walk = (x - startX) * 2;
-                slider.scrollLeft = scrollLeft - walk;
-            });
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1.5; // Scroll speed multiplier
+            slider.scrollLeft = scrollLeft - walk;
         });
 
-        slider.addEventListener('touchstart', (e) => {
-            isDown = true;
-            slider.classList.add('cursor-grabbing');
-            startX = e.touches[0].pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        }, { passive: true });
+        let animationId; // Declare animationId for touchmove
 
         slider.addEventListener('touchend', () => {
             isDown = false;
