@@ -5,6 +5,34 @@
       "statusCode": 404
     },
     {
+      "route": "/node_modules/*",
+      "statusCode": 404
+    },
+    {
+      "route": "/package.json",
+      "statusCode": 404
+    },
+    {
+      "route": "/package-lock.json",
+      "statusCode": 404
+    },
+    {
+      "route": "/staticwebapp.config.json",
+      "statusCode": 404
+    },
+    {
+      "route": "/.gitignore",
+      "statusCode": 404
+    },
+    {
+      "route": "/LICENSE",
+      "statusCode": 404
+    },
+    {
+      "route": "/*.yml",
+      "statusCode": 404
+    },
+    {
       "route": "/sw.js",
       "headers": {
         "Cache-Control": "no-cache, no-store, must-revalidate",

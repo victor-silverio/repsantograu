@@ -5,4 +5,13 @@ Disallow: /divulgacao_rep/
 Disallow: /.well-known/
 Disallow: /requirements.txt
 Disallow: /private/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /staticwebapp.config.json
+Disallow: /update_script.py
+Disallow: /.gitignore
+Disallow: /README.md
+Disallow: /LICENSE
 Sitemap: https://www.repsantograu.online/sitemap.xml

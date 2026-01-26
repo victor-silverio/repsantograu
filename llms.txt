@@ -56,3 +56,16 @@ Este site é uma PWA (Progressive Web App) moderna desenvolvida pelo morador Vic
 - Carrossel de timeline responsivo com touch support.
 - Imagens otimizadas em WebP.
 - Ratings sincronizados automaticamente com Google Places API 3x por dia.
+
+## Estrutura de Arquivos
+- `/src/`: Código fonte frontend (CSS input, JS scripts).
+- `/imagens/`: Imagens otimizadas em WebP.
+- `/icons/`: Ícones e logos.
+- `/fonts/`: Fontes locais (Montserrat).
+- `/private/`: Arquivos protegidos.
+- `/divulgacao_rep/`: Material de divulgação.
+- `index.html`: Página principal.
+- `fotos.html`: Galeria de fotos.
+- `styles.css`: CSS gerado pelo Tailwind.
+- `sw.js`: Service Worker.
+- `update_script.py`: Script de automação.

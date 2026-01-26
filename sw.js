@@ -1,4 +1,4 @@
-const CACHE_NAME = 'santo-grau-v33';
+const CACHE_NAME = 'santo-grau-v34';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -47,10 +47,10 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== location.origin) return;
 
-  const isCriticalPage = url.pathname === '/' || 
-                         url.pathname.endsWith('index.html') || 
-                         url.pathname.endsWith('styles.css') || 
-                         url.pathname.endsWith('fotos.html');
+  const isCriticalPage = url.pathname === '/' ||
+    url.pathname.endsWith('index.html') ||
+    url.pathname.endsWith('styles.css') ||
+    url.pathname.endsWith('fotos.html');
 
   event.respondWith(
     caches.open(CACHE_NAME).then(async (cache) => {
