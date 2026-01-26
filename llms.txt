@@ -54,5 +54,5 @@ Este site é uma PWA (Progressive Web App) moderna desenvolvida pelo morador Vic
 - Funciona offline graças ao Service Worker.
 - Animações com IntersectionObserver (lazy reveal effect).
 - Carrossel de timeline responsivo com touch support.
-- Imagens otimizadas em WebP (reduz 30% do tamanho).
+- Imagens otimizadas em WebP.
 - Ratings sincronizados automaticamente com Google Places API 3x por dia.

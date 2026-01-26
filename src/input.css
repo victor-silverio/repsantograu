@@ -111,7 +111,7 @@ html {
 }
 
 .gallery-title {
-    @apply text-2xl md:text-3xl font-serif font-bold text-repRed mb-6 border-l-4 border-repGold pl-4;
+    @apply text-3xl md:text-4xl font-serif font-bold text-repRed mb-6 border-l-4 border-repGold pl-4;
 }
 
 .gallery-container {

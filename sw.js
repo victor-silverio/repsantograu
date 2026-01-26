@@ -42,34 +42,45 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
-  
   if (url.origin !== location.origin) return;
+
+  const isCriticalPage = url.pathname === '/' || 
+                         url.pathname.endsWith('index.html') || 
+                         url.pathname.endsWith('styles.css') || 
+                         url.pathname.endsWith('fotos.html');
 
   event.respondWith(
     caches.open(CACHE_NAME).then(async (cache) => {
-
       const cachedResponse = await cache.match(event.request);
 
-      const fetchPromise = fetch(event.request)
-        .then((networkResponse) => {
+      if (isCriticalPage) {
 
-          if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+        try {
+          const networkResponse = await fetch(event.request);
+          if (networkResponse.ok) {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          }
+        } catch (error) {
+
+          if (cachedResponse) return cachedResponse;
+        }
+
+        return cachedResponse || fetch(event.request);
+
+      } else {
+
+        const fetchPromise = fetch(event.request).then((networkResponse) => {
+          if (networkResponse.ok) {
             cache.put(event.request, networkResponse.clone());
           }
           return networkResponse;
-        })
-        .catch(() => {
-
-          if (event.request.mode === 'navigate') {
-            return cache.match('/404.html');
-          }
         });
-
-      return cachedResponse || fetchPromise;
+        return cachedResponse || fetchPromise;
+      }
     })
   );
 });
