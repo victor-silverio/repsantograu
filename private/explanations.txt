@@ -8,7 +8,7 @@ Answer: Its purpose does not require fast loading speeds; it is strictly a page 
 
 3. 'Stale-While-Revalidate' Cache 
 
-Answer: To avoid serving an outdated page for too long, the version declared in the service worker is changed with every relevant alteration. Additionally, it is updated by update_ratings.py if there are any changes to the HTML pages.
+Answer: To avoid serving an outdated page for too long, the version declared in the service worker is changed with every relevant alteration. Additionally, it is updated by update_script.py if there are any changes to the HTML pages.
 
 4. General Cache 
 
