@@ -135,7 +135,6 @@ html {
     }
 }
 
-/* Accordion Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
