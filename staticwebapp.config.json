@@ -28,6 +28,10 @@
       "statusCode": 404
     },
     {
+      "route": "/explanations.txt",
+      "statusCode": 404
+    },
+    {
       "route": "/*.py",
       "statusCode": 404
     },

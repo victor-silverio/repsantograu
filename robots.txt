@@ -4,4 +4,6 @@ Disallow: /.github/
 Disallow: /divulgacao_rep/
 Disallow: /.well-known/
 Disallow: /requirements.txt
+Disallow: /explanations.txt
+Disallow: /imagens/cache.txt
 Sitemap: https://www.repsantograu.online/sitemap.xml
