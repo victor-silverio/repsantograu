@@ -62,22 +62,19 @@
     "@context": "https://schema.org",
     "@graph": [
         {
-            "@type": "LodgingBusiness",
-            "additionalType": "https://schema.org/StudentHousing",
+            "@type": "StudentHousing",
+            "@id": "https://www.repsantograu.online/#organization",
             "name": "República Santo Grau",
             "alternateName": "República Estudantil Santo Grau",
             "description": "República estudantil masculina em Itajubá, a 2 minutos da UNIFEI. Vagas em quartos duplos com internet fibra, limpeza e alimentação inclusas. (Vagas Disponíveis: 3 para 2026)",
-            "telephone": "+55-19-99252-1926",
             "url": "https://www.repsantograu.online",
-            "@id": "https://www.repsantograu.online/#organization",
-            "logo": "https://www.repsantograu.online/icons/logo_rep_transparente.webp",
-            "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJkSXLklV7y5QRhqe0aD3bPAI",
-            "sameAs": [
-                "https://www.instagram.com/republicasantograuitajuba",
-                "https://www.facebook.com/republicasantograuitajuba",
-                "https://republicas.reppy.app.br/itajuba-mg/republica-santo-grau",
-                "https://nicetime.com.br/rep/santo-grau"
-            ],
+            "telephone": "+55-19-99252-1926",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.repsantograu.online/icons/logo_rep_transparente.webp",
+                "width": "1080",
+                "height": "1350"
+            },
             "image": [
                 "https://www.repsantograu.online/imagens/frente_reitoria.webp",
                 "https://www.repsantograu.online/imagens/fachada-republica-estudantil-itajuba.webp"
@@ -90,16 +87,12 @@
                 "postalCode": "37500-052",
                 "addressCountry": "BR"
             },
-            "areaServed": {
-                "@type": "City",
-                "name": "Itajubá",
-                "sameAs": "https://pt.wikipedia.org/wiki/Itajubá"
-            },
             "geo": {
                 "@type": "GeoCoordinates",
                 "latitude": "-22.4133",
                 "longitude": "-45.4497"
             },
+            "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJkSXLklV7y5QRhqe0aD3bPAI",
             "openingHoursSpecification": {
                 "@type": "OpeningHoursSpecification",
                 "dayOfWeek": [
@@ -115,39 +108,26 @@
                 "closes": "23:59"
             },
             "amenityFeature": [
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Internet Fibra Óptica (2 Links)",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Almoço e Jantar inclusos",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Limpeza e Lavanderia",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "2 min da UNIFEI",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Garagem",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Quartos Mobiliados",
-                    "value": true
-                }
+                { "@type": "LocationFeatureSpecification", "name": "Internet Fibra Óptica (2 Links)", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Almoço e Jantar inclusos", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Limpeza e Lavanderia", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "2 min da UNIFEI", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Garagem", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Quartos Mobiliados", "value": true }
             ],
             "priceRange": "R$ 1050 - R$ 1180",
-            "aggregateRating": {
+            "sameAs": [
+                "https://www.instagram.com/republicasantograuitajuba",
+                "https://www.facebook.com/republicasantograuitajuba",
+                "https://republicas.reppy.app.br/itajuba-mg/republica-santo-grau",
+                "https://nicetime.com.br/rep/santo-grau"
+            ],
+             "areaServed": {
+                "@type": "City",
+                "name": "Itajubá",
+                "sameAs": "https://pt.wikipedia.org/wiki/Itajubá"
+            },
+             "aggregateRating": {
                 "@type": "AggregateRating",
                 "ratingValue": "5",
                 "reviewCount": "21",
@@ -266,15 +246,17 @@
                 REPÚBLICA <br class="md:hidden" /> <span class="text-repGold">SANTO GRAU</span>
             </h1>
 
-            <div id="vacancy-badge" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 animate-fadeIn">
-            <span class="relative flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-            </span>
-            <span class="text-white font-sans text-sm md:text-base font-medium tracking-wide">
-                3 Vagas Disponíveis para 2026
-            </span>
-        </div>
+            <div id="vacancy-badge"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 animate-fadeIn">
+                <span class="relative flex h-3 w-3">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                <span class="text-white font-sans text-sm md:text-base font-medium tracking-wide">
+                    3 Vagas Disponíveis para 2026
+                </span>
+            </div>
 
             <p class="text-xl md:text-2xl mb-8 font-light tracking-wide text-gray-200 relative z-10">
                 Moradia Estudantil em Itajubá
