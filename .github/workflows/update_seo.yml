@@ -4,17 +4,25 @@ on:
   schedule:
     - cron: '0 3 * * *'
   push:
+    branches:
+      - main
     paths:
       - 'index.html'
+      - 'fotos.html'
+      - 'styles.css'
+      - 'src/script.js'
+      - 'update_ratings.py'
   workflow_dispatch:
 
 jobs:
   update-ratings:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         token: ${{ secrets.PAT_TOKEN }}
         fetch-depth: 0
@@ -39,8 +47,5 @@ jobs:
       run: |
         git config --global user.name 'SEO Bot'
         git config --global user.email 'seobot@repsantograu.online'
-        git add index.html
-        git add sitemap.xml
-        git add humans.txt
-        git add sw.js
-        git diff --quiet && git diff --staged --quiet || (git commit -m "chore(seo): update ratings or sitemap date" && git push)
+        git add .
+        git diff --quiet && git diff --staged --quiet || (git commit -m "chore(seo): update script" && git push)

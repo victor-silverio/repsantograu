@@ -15,6 +15,12 @@ on:
     paths-ignore:
       - 'update_ratings.py'
       - 'requirements.txt'
+      - '.gitignore'
+      - 'explanations.txt'
+      - 'LICENSE'
+      - 'README.md'
+      - 'imagens/cache.txt'
+      - 'divulgacao_rep/**'
       - '.github/workflows/update_seo.yml'
 
 jobs:
@@ -27,9 +33,6 @@ jobs:
         with:
           submodules: true
           lfs: false
-      - name: Update Sitemap lastmod
-        run: |
-          sed -i "s|<lastmod>.*</lastmod>|<lastmod>$(date +'%Y-%m-%d')</lastmod>|g" sitemap.xml
       
       - name: Build And Deploy
         id: builddeploy

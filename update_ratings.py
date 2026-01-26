@@ -9,7 +9,8 @@ PLACE_ID = os.environ.get("PLACE_ID")
 
 TRACKED_FILES = [
     'index.html',
-    'src/input.css',
+    'fotos.html',
+    'styles.css',
     'src/script.js'
 ]
 
