@@ -21,6 +21,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const revealElements = document.querySelectorAll('.reveal');
 
+    const amenitiesContainer = document.getElementById('amenities-container');
+    if (amenitiesContainer) {
+        fetch('src/amenities.json')
+            .then(response => response.json())
+            .then(data => {
+                const amenitiesHTML = data.map(item => `
+                    <div class="flex items-start gap-3">
+                        <div class="mt-1 w-6 flex justify-center flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-5 h-5 text-repGold">
+                                <path fill="currentColor" d="${item.iconPath}" />
+                            </svg>
+                        </div>
+                        <span class="text-gray-700">${item.content}</span>
+                    </div>
+                `).join('');
+                amenitiesContainer.innerHTML = amenitiesHTML;
+            })
+            .catch(error => console.error('Error loading amenities:', error));
+    }
+
     if (revealElements.length > 0) {
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

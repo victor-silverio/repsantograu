@@ -7,6 +7,7 @@ const ASSETS_TO_CACHE = [
   '/404.html',
   '/styles.css',
   '/src/script.js',
+  '/src/amenities.json',
   '/manifest.json',
   '/icons/logo_rep_transparente.webp',
   '/imagens/frente_reitoria.webp',
