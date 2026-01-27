@@ -1,20 +1,20 @@
-const CACHE_NAME = 'santo-grau-v46';
+const CACHE_NAME = 'santo-grau-v10';
 
 const ASSETS_TO_CACHE = [
   '/',
-  '/index.html',
-  '/fotos.html',
-  '/404.html',
-  '/styles.css',
-  '/src/script.js',
-  '/manifest.json',
-  '/icons/logo_rep_transparente.webp',
-  '/imagens/frente_reitoria.webp',
-  '/imagens/fundo_mobile.webp',
-  '/fonts/montserrat-v31-latin-700.woff2',
-  '/fonts/montserrat-v31-latin-regular.woff2',
-  '/fonts/playfair-display-v40-latin-700.woff2',
-  '/icons/favicon-192x192.png'
+  '/index.html?v=10',
+  '/fotos.html?v=10',
+  '/404.html?v=10',
+  '/styles.css?v=10',
+  '/src/script.js?v=10',
+  '/manifest.json?v=10',
+  '/icons/logo_rep_transparente.webp?v=10',
+  '/imagens/frente_reitoria.webp?v=10',
+  '/imagens/fundo_mobile.webp?v=10',
+  '/fonts/montserrat-v31-latin-700.woff2?v=10',
+  '/fonts/montserrat-v31-latin-regular.woff2?v=10',
+  '/fonts/playfair-display-v40-latin-700.woff2?v=10',
+  '/icons/favicon-192x192.png?v=10'
 ];
 
 self.addEventListener('install', (event) => {
