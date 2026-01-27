@@ -7,6 +7,8 @@
 /* THANKS */
   UNIFEI
   Ex-moradores da Santo Grau
+  SENAI 390
+  ETEC 077
 
 /* SITE */
   Last update: 2026/01/26
