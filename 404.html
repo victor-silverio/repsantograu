@@ -8,12 +8,9 @@
     <title>Página não encontrada | República Santo Grau</title>
     <meta name="robots" content="noindex, follow">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap"
-        rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="preload" href="/fonts/montserrat-v31-latin-regular.woff2?v=10" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/montserrat-v31-latin-700.woff2?v=10" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/playfair-display-v40-latin-700.woff2?v=10" as="font" type="font/woff2" crossorigin>
 
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png?v=10">
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48x48.png?v=10">
@@ -45,7 +42,10 @@
                     class="inline-flex items-center p-2 ml-3 text-sm text-gray-200 rounded-lg md:hidden hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-repGold"
                     id="mobile-menu-btn" type="button">
                     <span class="sr-only">Abrir menu principal</span>
-                    <i class="fas fa-bars text-xl"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-5 h-5">
+                        <path fill="currentColor"
+                            d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z" />
+                    </svg>
                 </button>
                 <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
                     <ul
@@ -94,7 +94,10 @@
 
             <a class="inline-flex items-center gap-2 px-8 py-3 border border-repGold bg-repGold/10 text-repGold hover:bg-repGold hover:text-black rounded-full transition-all duration-300 backdrop-blur-md text-sm md:text-base font-bold uppercase tracking-wide"
                 href="/">
-                <i class="fas fa-arrow-left"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-4 h-4">
+                    <path fill="currentColor"
+                        d="M169.4 297.4C156.9 309.9 156.9 330.2 169.4 342.7L361.4 534.7C373.9 547.2 394.2 547.2 406.7 534.7C419.2 522.2 419.2 501.9 406.7 489.4L237.3 320L406.6 150.6C419.1 138.1 419.1 117.8 406.6 105.3C394.1 92.8 373.8 92.8 361.3 105.3L169.3 297.3z" />
+                </svg>
                 <span>Voltar para a Home</span>
             </a>
 
