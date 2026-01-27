@@ -9,7 +9,7 @@
   Ex-moradores da Santo Grau
 
 /* SITE */
-  Last update: 2026/01/26
+  Last update: 2026/01/27
   Standards: HTML5, CSS3, JS
   Components: TailwindCSS, FontAwesome
   Software: VSCode
