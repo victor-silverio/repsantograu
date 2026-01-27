@@ -1,4 +1,4 @@
-const CACHE_NAME = 'santo-grau-v42';
+const CACHE_NAME = 'santo-grau-v43';
 
 const ASSETS_TO_CACHE = [
   '/',
