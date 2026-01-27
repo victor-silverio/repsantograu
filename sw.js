@@ -1,4 +1,4 @@
-const CACHE_NAME = 'santo-grau-v44';
+const CACHE_NAME = 'santo-grau-v45';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -55,7 +55,7 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(
     caches.open(CACHE_NAME).then(async (cache) => {
-      const cachedResponse = await cache.match(event.request);
+      const cachedResponse = await cache.match(event.request, { ignoreSearch: true });
 
       if (isCriticalPage) {
 
