@@ -30,11 +30,13 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "StudentHousing",
+      "@type": "LocalBusiness",
+      "additionalType": "https://schema.org/StudentHousing",
       "@id": "https://www.repsantograu.online/#organization",
       "name": "República Santo Grau",
       "description": "Galeria de fotos oficial da República Santo Grau. Confira nossa fachada, quartos mobiliados, suítes, sala de estar e áreas de convivência.",
-      "url": "https://www.repsantograu.online/fotos.html",
+      "url": "https://www.repsantograu.online/",
+      "priceRange": "R$ 1050 - R$ 1180",
       "telephone": "+55-19-99252-1926",
       "address": {
         "@type": "PostalAddress",
@@ -113,12 +115,12 @@
       ]
     },
     {
-        "@type": "WebPage",
-        "@id": "https://www.repsantograu.online/fotos.html",
-        "url": "https://www.repsantograu.online/fotos.html",
-        "name": "Galeria de Fotos | República Santo Grau",
-        "description": "Veja fotos da República Santo Grau em Itajubá. Quartos, áreas comuns e eventos.",
-        "mainEntity": { "@id": "https://www.repsantograu.online/#organization" }
+      "@type": "WebPage",
+      "@id": "https://www.repsantograu.online/fotos.html",
+      "url": "https://www.repsantograu.online/fotos.html",
+      "name": "Galeria de Fotos | República Santo Grau",
+      "description": "Veja fotos da República Santo Grau em Itajubá. Quartos, áreas comuns e eventos.",
+      "mainEntity": { "@id": "https://www.repsantograu.online/#organization" }
     }
   ]
 }

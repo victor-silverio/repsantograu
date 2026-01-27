@@ -59,130 +59,132 @@
 
     <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@graph": [
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "additionalType": "https://schema.org/StudentHousing",
+      "@id": "https://www.repsantograu.online/#schema-manual-santo-grau",
+      "name": "República Santo Grau",
+      "alternateName": "República Estudantil Santo Grau",
+      "description": "República estudantil masculina em Itajubá, a 2 minutos da UNIFEI. Vagas em quartos duplos com internet fibra, limpeza e alimentação inclusas. (Vagas Disponíveis: 3 para 2026)",
+      "url": "https://www.repsantograu.online/",
+      "telephone": "+55-19-99252-1926",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.repsantograu.online/icons/logo_rep_transparente.webp",
+        "width": "1080",
+        "height": "1350"
+      },
+      "image": [
+        "https://www.repsantograu.online/imagens/frente_reitoria.webp",
+        "https://www.repsantograu.online/imagens/fachada-republica-estudantil-itajuba.webp"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "R. Cel. Francisco Braz, 1270 - Pinheirinho",
+        "addressLocality": "Itajubá",
+        "addressRegion": "MG",
+        "postalCode": "37500-052",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -22.4133,
+        "longitude": -45.4497
+      },
+      "hasMap": "https://maps.app.goo.gl/seuLinkAqui",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Internet Fibra Óptica (2 Links)", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Almoço e Jantar inclusos", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Limpeza e Lavanderia", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "2 min da UNIFEI", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Garagem", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Quartos Mobiliados", "value": true }
+      ],
+      "priceRange": "R$ 1050 - R$ 1180",
+      "sameAs": [
+        "https://www.instagram.com/republicasantograuitajuba",
+        "https://www.facebook.com/republicasantograuitajuba",
+        "https://republicas.reppy.app.br/itajuba-mg/republica-santo-grau",
+        "https://nicetime.com.br/rep/santo-grau"
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "Itajubá",
+        "sameAs": "https://pt.wikipedia.org/wiki/Itajubá"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "21",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-            "@type": "StudentHousing",
-            "@id": "https://www.repsantograu.online/#organization",
-            "name": "República Santo Grau",
-            "alternateName": "República Estudantil Santo Grau",
-            "description": "República estudantil masculina em Itajubá, a 2 minutos da UNIFEI. Vagas em quartos duplos com internet fibra, limpeza e alimentação inclusas. (Vagas Disponíveis: 3 para 2026)",
-            "url": "https://www.repsantograu.online",
-            "telephone": "+55-19-99252-1926",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://www.repsantograu.online/icons/logo_rep_transparente.webp",
-                "width": "1080",
-                "height": "1350"
-            },
-            "image": [
-                "https://www.repsantograu.online/imagens/frente_reitoria.webp",
-                "https://www.repsantograu.online/imagens/fachada-republica-estudantil-itajuba.webp"
-            ],
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "R. Cel. Francisco Braz, 1270 - Pinheirinho",
-                "addressLocality": "Itajubá",
-                "addressRegion": "MG",
-                "postalCode": "37500-052",
-                "addressCountry": "BR"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "-22.4133",
-                "longitude": "-45.4497"
-            },
-            "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJkSXLklV7y5QRhqe0aD3bPAI",
-            "openingHoursSpecification": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                    "Sunday"
-                ],
-                "opens": "00:00",
-                "closes": "23:59"
-            },
-            "amenityFeature": [
-                { "@type": "LocationFeatureSpecification", "name": "Internet Fibra Óptica (2 Links)", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Almoço e Jantar inclusos", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Limpeza e Lavanderia", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "2 min da UNIFEI", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Garagem", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Quartos Mobiliados", "value": true }
-            ],
-            "priceRange": "R$ 1050 - R$ 1180",
-            "sameAs": [
-                "https://www.instagram.com/republicasantograuitajuba",
-                "https://www.facebook.com/republicasantograuitajuba",
-                "https://republicas.reppy.app.br/itajuba-mg/republica-santo-grau",
-                "https://nicetime.com.br/rep/santo-grau"
-            ],
-             "areaServed": {
-                "@type": "City",
-                "name": "Itajubá",
-                "sameAs": "https://pt.wikipedia.org/wiki/Itajubá"
-            },
-             "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "5",
-                "reviewCount": "21",
-                "bestRating": "5",
-                "worstRating": "1"
-            }
+          "@type": "Question",
+          "name": "A república fica perto da UNIFEI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim! Estamos localizados a apenas 2 minutos a pé da portaria principal da UNIFEI em Itajubá."
+          }
         },
         {
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "A república fica perto da UNIFEI?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Sim! Estamos localizados a apenas 2 minutos a pé da portaria principal da UNIFEI em Itajubá."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Como funcionam as vagas para bixos?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "As vagas são abertas semestralmente. Atualmente as vagas são para quartos duplos. O valor inclui todas as contas (internet, luz, água), limpeza e alimentação (almoço e jantar)."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Aceitam calouros de quais cursos?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Aceitamos estudantes de todos os cursos da UNIFEI. Nossa casa é composta por estudantes de diversos períodos, o que ajuda muito no networking e nos estudos."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "O que preciso levar na mudança? Os quartos têm móveis?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "A Santo Grau já é mobiliada! Os quartos contam com camas, colchões e guarda-roupas. Você só precisa trazer seus itens pessoais, roupa de cama/banho e, se quiser, sua cadeira de estudos preferida e computador. As áreas comuns (sala, cozinha, lavanderia) são 100% equipadas."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "A UNIFEI possui Moradia Estudantil Gratuita?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Não. Conforme indicado no <a href='https://prg.unifei.edu.br/faq_ingressantes/'>FAQ oficial</a>, a universidade não possui alojamento próprio e cita que os alunos <strong>normalmente moram em repúblicas estudantis</strong>. A República Santo Grau atende exatamente a essa necessidade: somos uma moradia compartilhada particular completa, focada em oferecer o melhor custo-benefício e infraestrutura para sua graduação."
-                    }
-                }
-            ]
+          "@type": "Question",
+          "name": "Como funcionam as vagas para bixos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As vagas são abertas semestralmente. Atualmente as vagas são para quartos duplos. O valor inclui todas as contas (internet, luz, água), limpeza e alimentação (almoço e jantar)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Aceitam calouros de quais cursos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aceitamos estudantes de todos os cursos da UNIFEI. Nossa casa é composta por estudantes de diversos períodos, o que ajuda muito no networking e nos estudos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que preciso levar na mudança? Os quartos têm móveis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Santo Grau já é mobiliada! Os quartos contam com camas, colchões e guarda-roupas. Você só precisa trazer seus itens pessoais, roupa de cama/banho e, se quiser, sua cadeira de estudos preferida e computador. As áreas comuns (sala, cozinha, lavanderia) são 100% equipadas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A UNIFEI possui Moradia Estudantil Gratuita?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. Conforme indicado no <a href='https://prg.unifei.edu.br/faq_ingressantes/'>FAQ oficial</a>, a universidade não possui alojamento próprio e cita que os alunos <strong>normalmente moram em repúblicas estudantis</strong>. A República Santo Grau atende exatamente a essa necessidade: somos uma moradia compartilhada particular completa, focada em oferecer o melhor custo-benefício e infraestrutura para sua graduação."
+          }
         }
-    ]
+      ]
+    }
+  ]
 }
 </script>
+
 </head>
 
 <body class="bg-repWhite text-repGrey antialiased overflow-x-hidden">
