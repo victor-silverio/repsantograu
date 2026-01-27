@@ -80,12 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (btnLeft && btnRight) {
             btnLeft.addEventListener('click', () => {
-                const itemWidth = items[0].offsetWidth + 24; // Dynamic width
+                const itemWidth = items[0].offsetWidth + 24;
                 slider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
             });
 
             btnRight.addEventListener('click', () => {
-                const itemWidth = items[0].offsetWidth + 24; // Dynamic width
+                const itemWidth = items[0].offsetWidth + 24;
                 slider.scrollBy({ left: itemWidth, behavior: 'smooth' });
             });
         }
@@ -96,15 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         slider.querySelectorAll('img').forEach(img => img.setAttribute('draggable', 'false'));
 
-        // Use Pointer Events for unified handling and better capture
         slider.addEventListener('pointerdown', (e) => {
-            // Only enable custom drag for mouse (desktop)
-            // Touch devices should use native scrolling
             if (e.pointerType !== 'mouse') return;
 
             isDown = true;
             e.preventDefault();
-            slider.setPointerCapture(e.pointerId); // Crucial: Keeps the event target on the slider even if mouse leaves
+            slider.setPointerCapture(e.pointerId);
 
             slider.classList.add('cursor-grabbing');
             slider.classList.remove('cursor-grab', 'snap-x', 'snap-mandatory', 'scroll-smooth');
@@ -121,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
             slider.releasePointerCapture(e.pointerId);
             slider.classList.remove('cursor-grabbing');
 
-            // Find nearest item to center logic
             const center = slider.scrollLeft + (slider.clientWidth / 2);
             let closestItem = null;
             let minDistance = Infinity;
@@ -139,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 closestItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }
 
-            // Soft re-enable snap
             setTimeout(() => {
                 slider.classList.add('cursor-grab', 'snap-x', 'snap-mandatory', 'scroll-smooth');
             }, 600);
@@ -155,11 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             e.preventDefault();
             const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 1.5; // Scroll speed multiplier
+            const walk = (x - startX) * 1.5;
             slider.scrollLeft = scrollLeft - walk;
         });
 
-        let animationId; // Declare animationId for touchmove
+        let animationId;
 
         slider.addEventListener('touchend', () => {
             isDown = false;
