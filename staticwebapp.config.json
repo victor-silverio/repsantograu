@@ -91,9 +91,21 @@
       }
     },
     {
-      "route": "/*.{png,jpg,gif,webp,css,js,ico,xml,txt,json}",
+      "route": "/*.{png,jpg,gif,webp,ico,xml,txt}",
       "headers": {
         "Cache-Control": "public, max-age=31536000, must-revalidate"
+      }
+    },
+    {
+      "route": "/styles.css",
+      "headers": {
+        "Cache-Control": "no-cache, must-revalidate"
+      }
+    },
+    {
+      "route": "/src/*",
+      "headers": {
+        "Cache-Control": "no-cache, must-revalidate"
       }
     }
   ],

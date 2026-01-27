@@ -1,4 +1,4 @@
-const CACHE_NAME = 'santo-grau-v45';
+const CACHE_NAME = 'santo-grau-v46';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -7,7 +7,6 @@ const ASSETS_TO_CACHE = [
   '/404.html',
   '/styles.css',
   '/src/script.js',
-  '/src/amenities.json',
   '/manifest.json',
   '/icons/logo_rep_transparente.webp',
   '/imagens/frente_reitoria.webp',
@@ -60,7 +59,7 @@ self.addEventListener('fetch', (event) => {
       if (isCriticalPage) {
 
         try {
-          const networkResponse = await fetch(event.request);
+          const networkResponse = await fetch(event.request, { cache: 'reload' });
           if (networkResponse.ok) {
             cache.put(event.request, networkResponse.clone());
             return networkResponse;
