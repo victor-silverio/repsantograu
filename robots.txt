@@ -6,7 +6,9 @@ Disallow: /.well-known/
 Disallow: /requirements.txt
 Disallow: /private/
 Disallow: /node_modules/
-Disallow: /src/
+Disallow: /src/amenities.json
+Disallow: /src/input.css
+Disallow: /src/vagas.json
 Disallow: /package.json
 Disallow: /package-lock.json
 Disallow: /staticwebapp.config.json

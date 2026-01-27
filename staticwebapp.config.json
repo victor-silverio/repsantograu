@@ -48,10 +48,6 @@
       "statusCode": 404
     },
     {
-      "route": "/src/vagas.json",
-      "statusCode": 404
-    },
-    {
       "route": "/*.md",
       "statusCode": 404
     },
@@ -80,12 +76,6 @@
       "headers": {
         "Cache-Control": "public, max-age=31536000, must-revalidate",
         "Content-Type": "text/plain"
-      }
-    },
-    {
-      "route": "/assets/*",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000, must-revalidate"
       }
     },
     {
@@ -119,6 +109,7 @@
     "exclude": [
       "/imagens/*",
       "/icons/*",
+      "/fonts/*",
       "/styles.css",
       "/src/*"
     ]
