@@ -8,7 +8,7 @@ Disallow: /requirements.txt
 Disallow: /node_modules/
 Disallow: /src/input.css
 Disallow: /src/vagas.json
-Disallow: /amenities.json
+Disallow: /src/amenities.json
 Disallow: /package.json
 Disallow: /package-lock.json
 Disallow: /staticwebapp.config.json
