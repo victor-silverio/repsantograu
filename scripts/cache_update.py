@@ -6,7 +6,7 @@ TRACKED_FILES = [
     'fotos.html',
     'styles.css',
     'src/script.js',
-    'src/vagas.json'
+    'src/input.css'
 ]
 
 SW_FILE = 'sw.js'

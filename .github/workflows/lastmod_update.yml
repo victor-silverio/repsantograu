@@ -29,7 +29,7 @@ jobs:
         pip install -r scripts/requirements.txt
 
     - name: Run Metadata update
-      run: python scripts/metadata_update.py
+      run: python scripts/lastmod_update.py
 
     - name: Commit and Push if changed
       run: |

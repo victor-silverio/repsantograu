@@ -1,90 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
-  <url>
-    <loc>https://www.repsantograu.online/</loc>
-    <lastmod>2026-01-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-
-    <image:image>
-      <image:loc>https://www.repsantograu.online/icons/logo_rep_transparente.webp</image:loc>
-      <image:title>Logotipo Oficial República Santo Grau</image:title>
-      <image:caption>Brasão da República Santo Grau - Moradia Estudantil em Itajubá perto da UNIFEI</image:caption>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/fachada-republica-estudantil-itajuba.webp</image:loc>
-      <image:title>Fachada República Santo Grau</image:title>
-      <image:caption>Fachada da República Estudantil Santo Grau no bairro Pinheirinho em Itajubá</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/Casa/Sala/Foto_Sala_1.webp</image:loc>
-      <image:title>Sala de Estar Mobiliada</image:title>
-      <image:caption>Sala de estar com TV 4K e sofás confortáveis para lazer dos estudantes</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/Casa/Cozinha/Foto_Cozinha.webp</image:loc>
-      <image:title>Cozinha Comunitária</image:title>
-      <image:caption>Cozinha completa e equipada da moradia estudantil com eletrodomésticos</image:caption>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/encontrao_2.webp</image:loc>
-      <image:title>Encontrão da Santo Grau</image:title>
-      <image:caption>Moradores e ex-alunos reunidos no Encontrão da República Santo Grau</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/churrasco_pais.webp</image:loc>
-      <image:title>Churrasco dos Pais</image:title>
-      <image:caption>Famílias reunidas no tradicional churrasco dos pais na república</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/masterbixo.webp</image:loc>
-      <image:title>MasterBixo</image:title>
-      <image:caption>Competição culinária MasterBixo promovida pelos moradores</image:caption>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.repsantograu.online/fotos.html</loc>
-    <lastmod>2026-01-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/Casa/Suite/Foto_Quarto_Duplo_Suite_1.webp</image:loc>
-      <image:title>Quarto Duplo com Suíte</image:title>
-      <image:caption>Quarto duplo espaçoso com camas de solteiro e mesas de estudo individuais</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/Casa/Suite/Foto_Quarto_Duplo_Suite_4.webp</image:loc>
-      <image:title>Banheiro da Suíte</image:title>
-      <image:caption>Banheiro privativo da suíte com acabamento moderno</image:caption>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/Casa/Quarto_Duplo_2/Foto_Quarto_Duplo_1.webp</image:loc>
-      <image:title>Quarto Compartilhado Duplo</image:title>
-      <image:caption>Quarto compartilhado mobiliado com guarda-roupas e janelas amplas</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/Casa/Quarto_Duplo_2/Foto_Quarto_Duplo_3.webp</image:loc>
-      <image:title>Área de Estudos</image:title>
-      <image:caption>Mesa de trabalho dupla equipada para notebooks e livros de engenharia</image:caption>
-    </image:image>
-
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/Casa/Sala/Foto_Sala_1.webp</image:loc>
-      <image:title>Interior da Sala de Estar</image:title>
-      <image:caption>Sala de estar mobiliada para lazer dos moradores</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.repsantograu.online/imagens/Casa/Copa/Foto_Copa.webp</image:loc>
-      <image:title>Copa e Jantar</image:title>
-      <image:caption>Área de refeições com mesa grande para almoços em grupo</image:caption>
-    </image:image>
-  </url>
-
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url>
+<loc>https://www.repsantograu.online/</loc>
+<lastmod>2026-01-28</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+<image:image>
+<image:loc>https://www.repsantograu.online/icons/logo_rep_transparente.webp</image:loc>
+<image:title>Logotipo Oficial República Santo Grau</image:title>
+<image:caption>Brasão da República Santo Grau - Moradia Estudantil em Itajubá perto da UNIFEI</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/fachada-republica-estudantil-itajuba.webp</image:loc>
+<image:title>Fachada República Santo Grau</image:title>
+<image:caption>Fachada da República Estudantil Santo Grau no bairro Pinheirinho em Itajubá</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/Casa/Sala/Foto_Sala_1.webp</image:loc>
+<image:title>Sala de Estar Mobiliada</image:title>
+<image:caption>Sala de estar com TV 4K e sofás confortáveis para lazer dos estudantes</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/Casa/Cozinha/Foto_Cozinha.webp</image:loc>
+<image:title>Cozinha Comunitária</image:title>
+<image:caption>Cozinha completa e equipada da moradia estudantil com eletrodomésticos</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/encontrao_2.webp</image:loc>
+<image:title>Encontrão da Santo Grau</image:title>
+<image:caption>Moradores e ex-alunos reunidos no Encontrão da República Santo Grau</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/churrasco_pais.webp</image:loc>
+<image:title>Churrasco dos Pais</image:title>
+<image:caption>Famílias reunidas no tradicional churrasco dos pais na república</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/masterbixo.webp</image:loc>
+<image:title>MasterBixo</image:title>
+<image:caption>Competição culinária MasterBixo promovida pelos moradores</image:caption>
+</image:image>
+</url>
+<url>
+<loc>https://www.repsantograu.online/fotos.html</loc>
+<lastmod>2026-01-27</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/Casa/Suite/Foto_Quarto_Duplo_Suite_1.webp</image:loc>
+<image:title>Quarto Duplo com Suíte</image:title>
+<image:caption>Quarto duplo espaçoso com camas de solteiro e mesas de estudo individuais</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/Casa/Suite/Foto_Quarto_Duplo_Suite_4.webp</image:loc>
+<image:title>Banheiro da Suíte</image:title>
+<image:caption>Banheiro privativo da suíte com acabamento moderno</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/Casa/Quarto_Duplo_2/Foto_Quarto_Duplo_1.webp</image:loc>
+<image:title>Quarto Compartilhado Duplo</image:title>
+<image:caption>Quarto compartilhado mobiliado com guarda-roupas e janelas amplas</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/Casa/Quarto_Duplo_2/Foto_Quarto_Duplo_3.webp</image:loc>
+<image:title>Área de Estudos</image:title>
+<image:caption>Mesa de trabalho dupla equipada para notebooks e livros de engenharia</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/Casa/Sala/Foto_Sala_1.webp</image:loc>
+<image:title>Interior da Sala de Estar</image:title>
+<image:caption>Sala de estar mobiliada para lazer dos moradores</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://www.repsantograu.online/imagens/Casa/Copa/Foto_Copa.webp</image:loc>
+<image:title>Copa e Jantar</image:title>
+<image:caption>Área de refeições com mesa grande para almoços em grupo</image:caption>
+</image:image>
+</url>
 </urlset>
