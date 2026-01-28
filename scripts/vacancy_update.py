@@ -2,7 +2,6 @@ import json
 import os
 from bs4 import BeautifulSoup
 
-# Arquivos de entrada e saída
 DATA_FILE = 'src/vagas.json'
 AMENITIES_FILE = 'src/amenities.json'
 TARGET_FILE = 'index.html'
@@ -32,27 +31,20 @@ def load_amenities_data():
         return None
 
 def generate_badge_html(soup, available, year):
-    """
-    Gera o novo elemento do badge usando BeautifulSoup.
-    Mantém as classes exatas do design original.
-    """
     new_div = soup.new_tag('div')
     new_div['id'] = 'vacancy-badge'
     new_div['class'] = ['inline-flex', 'items-center', 'gap-2', 'px-4', 'py-2', 'rounded-full', 'mb-6', 'animate-fadeIn']
     
-    # Span para o ícone (bolinha pulsante)
     icon_span_wrapper = soup.new_tag('span')
     icon_span_wrapper['class'] = ['relative', 'flex', 'h-3', 'w-3']
     
     ping_span = soup.new_tag('span')
     dot_span = soup.new_tag('span')
     
-    # Span para o texto
     text_span = soup.new_tag('span')
     text_span['class'] = ['text-white', 'font-sans', 'text-sm', 'md:text-base', 'font-medium', 'tracking-wide']
 
     if available > 0:
-        # Estilo VERDE (Disponível)
         new_div['class'].extend(['bg-white/10', 'backdrop-blur-md', 'border', 'border-white/20'])
         
         ping_span['class'] = ['animate-ping', 'absolute', 'inline-flex', 'h-full', 'w-full', 'rounded-full', 'bg-green-400', 'opacity-75']
@@ -60,15 +52,12 @@ def generate_badge_html(soup, available, year):
         
         text_span.string = f"{available} Vagas Disponíveis para {year}"
     else:
-        # Estilo VERMELHO (Esgotado)
         new_div['class'].extend(['bg-red-500/20', 'backdrop-blur-md', 'border', 'border-red-500/30'])
         
-        # Sem animação de ping no vermelho, apenas o ponto
         dot_span['class'] = ['relative', 'inline-flex', 'rounded-full', 'h-3', 'w-3', 'bg-red-500']
         
         text_span.string = f"Vagas Esgotadas para {year}"
 
-    # Montagem da estrutura
     if available > 0:
         icon_span_wrapper.append(ping_span)
     icon_span_wrapper.append(dot_span)
@@ -79,9 +68,6 @@ def generate_badge_html(soup, available, year):
     return new_div
 
 def update_json_ld_description(soup, available, year):
-    """
-    Atualiza a descrição dentro do JSON-LD.
-    """
     scripts = soup.find_all('script', type='application/ld+json')
     updated = False
     
@@ -94,11 +80,8 @@ def update_json_ld_description(soup, available, year):
             if 'description' in data:
                 current_desc = data['description']
                 
-                # Limpeza da string anterior (remove parenteses de vagas antigos)
-                # Divide pelo "(" e pega a primeira parte limpa
                 clean_desc = current_desc.split(' (Vagas')[0].split(' (vagas')[0].strip()
                 
-                # Cria novo sufixo
                 if available > 0:
                     new_suffix = f" (Vagas Disponíveis: {available} para {year})"
                 else:
@@ -108,7 +91,6 @@ def update_json_ld_description(soup, available, year):
                 
                 if current_desc != new_full_desc:
                     data['description'] = new_full_desc
-                    # Dump seguro com unicode
                     script.string = json.dumps(data, indent=2, ensure_ascii=False)
                     updated = True
                     print("[SEO] Descrição JSON-LD atualizada.")
@@ -119,28 +101,21 @@ def update_json_ld_description(soup, available, year):
     return updated
 
 def update_faq_text(soup, room_type):
-    """
-    Procura textos no HTML que falem sobre o tipo de vaga e atualiza.
-    """
     updated = False
-    # Procura strings que contenham o texto âncora
     targets = soup.find_all(string=lambda text: text and "Atualmente as vagas são para" in text)
     
     for text_node in targets:
-        # Lógica de string python pura
         content = str(text_node)
         prefix = "Atualmente as vagas são para "
         
         if prefix in content:
-            # Reconstrói a frase. Assume que a frase termina em ponto ou fim da string.
-            # Ex: "Atualmente as vagas são para quartos duplos."
             start_index = content.find(prefix)
             end_index = content.find(".", start_index)
             
             if end_index == -1:
                 end_index = len(content)
             else:
-                end_index += 1 # Inclui o ponto
+                end_index += 1
             
             old_sentence = content[start_index:end_index]
             new_sentence = f"{prefix}{room_type}."
@@ -154,33 +129,17 @@ def update_faq_text(soup, room_type):
     return updated
 
 def update_amenities_container(soup, amenities_data):
-    """
-    Atualiza o container de amenities com os dados do JSON.
-    """
     container = soup.find(id="amenities-container")
     if not container:
         print("[AVISO] Elemento id='amenities-container' não encontrado.")
         return False
 
-    # Limpa o conteúdo atual
     container.clear()
 
     if not amenities_data:
         return False
 
-    # Gera o HTML para cada item de amenity
-    # <div class="flex items-start gap-3">
-    #   <div class="mt-1 w-6 flex justify-center flex-shrink-0">
-    #     <svg ...><path ... /></svg>
-    #   </div>
-    #   <span class="text-gray-700">...</span>
-    # </div>
-
     updated = False
-    
-    # Processa os itens e cria as tags
-    # Nota: Vamos criar uma string de HTML e depois parsear para inserir, 
-    # ou criar elemento por elemento. Criar elemento por elemento é mais seguro com BS4.
     
     for item in amenities_data:
         icon_path = item.get("iconPath", "")
@@ -188,17 +147,13 @@ def update_amenities_container(soup, amenities_data):
 
         wrapper_div = soup.new_tag("div", **{"class": "flex items-start gap-3"})
         
-        # Icon wrapper
         icon_div = soup.new_tag("div", **{"class": "mt-1 w-6 flex justify-center flex-shrink-0"})
         svg_tag = soup.new_tag("svg", viewBox="0 0 640 640", **{"class": "w-5 h-5 text-repGold", "xmlns": "http://www.w3.org/2000/svg"})
         path_tag = soup.new_tag("path", d=icon_path, fill="currentColor")
         svg_tag.append(path_tag)
         icon_div.append(svg_tag)
         
-        # Content span
-        # Como o content pode ter HTML (<strong>, etc), precisamos parsear esse fragmento
         span_tag = soup.new_tag("span", **{"class": "text-gray-700"})
-        # Parseia o conteúdo HTML interno
         content_soup = BeautifulSoup(content_html, 'html.parser')
         span_tag.append(content_soup)
 
@@ -239,11 +194,9 @@ def main():
         
         changes_made = False
 
-        # 1. Atualizar Badge
         old_badge = soup.find(id="vacancy-badge")
         if old_badge:
             new_badge = generate_badge_html(soup, available, year)
-            # Compara a representação string para ver se mudou
             if str(old_badge) != str(new_badge):
                 old_badge.replace_with(new_badge)
                 changes_made = True
@@ -251,15 +204,12 @@ def main():
         else:
             print("[AVISO] Elemento id='vacancy-badge' não encontrado no HTML.")
 
-        # 2. Atualizar FAQ
         if update_faq_text(soup, room_type):
             changes_made = True
 
-        # 3. Atualizar JSON-LD
         if update_json_ld_description(soup, available, year):
             changes_made = True
 
-        # 4. Atualizar Amenities
         amenities_data = load_amenities_data()
         if amenities_data:
             if update_amenities_container(soup, amenities_data):

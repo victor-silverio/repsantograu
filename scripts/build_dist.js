@@ -4,13 +4,11 @@ const path = require('path');
 const distDir = path.join(__dirname, '..', 'dist');
 const rootDir = path.join(__dirname, '..');
 
-// Clean and create dist directory
 if (fs.existsSync(distDir)) {
   fs.rmSync(distDir, { recursive: true, force: true });
 }
 fs.mkdirSync(distDir);
 
-// Files to copy directly from root
 const rootFiles = [
   'index.html',
   'fotos.html',
@@ -28,10 +26,8 @@ const rootFiles = [
   'favicon-48x48.png',
 ];
 
-// Directories to copy
 const dirsToCopy = ['fonts', 'icons', 'imagens', '.well-known'];
 
-// Copy root files
 rootFiles.forEach((file) => {
   const srcPath = path.join(rootDir, file);
   if (fs.existsSync(srcPath)) {
@@ -42,7 +38,6 @@ rootFiles.forEach((file) => {
   }
 });
 
-// Copy directories
 dirsToCopy.forEach((dir) => {
   const srcPath = path.join(rootDir, dir);
   const destPath = path.join(distDir, dir);
@@ -54,7 +49,6 @@ dirsToCopy.forEach((dir) => {
   }
 });
 
-// Create legacy copy of security.txt in root (from .well-known)
 const securitySrc = path.join(distDir, '.well-known', 'security.txt');
 const securityDest = path.join(distDir, 'security.txt');
 if (fs.existsSync(securitySrc)) {
@@ -64,7 +58,6 @@ if (fs.existsSync(securitySrc)) {
   console.warn('Warning: .well-known/security.txt not found for legacy copy');
 }
 
-// Handle src/script.min.js specifically
 const srcDir = path.join(distDir, 'src');
 if (!fs.existsSync(srcDir)) {
   fs.mkdirSync(srcDir);
