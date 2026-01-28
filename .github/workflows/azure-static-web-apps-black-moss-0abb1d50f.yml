@@ -7,6 +7,7 @@ on:
     paths-ignore:
       - '.gitignore'
       - 'src/vagas.json'
+      - 'amenities.json'
       - 'LICENSE'
       - 'README.md'
       - 'divulgacao_rep/**'
@@ -21,6 +22,7 @@ on:
     paths-ignore:
       - '.gitignore'
       - 'src/vagas.json'
+      - 'amenities.json'
       - 'LICENSE'
       - 'README.md'
       - 'divulgacao_rep/**'
