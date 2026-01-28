@@ -5,7 +5,12 @@
   "main": "sw.js",
   "scripts": {
     "dev": "tailwindcss -i ./src/input.css -o ./styles.css --watch",
-    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify"
+    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify && npm run minify",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "minify": "terser src/script.js -o src/script.min.js -c -m"
   },
   "repository": {
     "type": "git",
@@ -21,6 +26,11 @@
   "homepage": "https://github.com/victor-silverio/repsantograu#readme",
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.18",
-    "tailwindcss": "^4.1.18"
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss": "^4.1.18",
+    "terser": "^5.46.0"
   }
 }

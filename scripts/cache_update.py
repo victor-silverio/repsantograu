@@ -6,6 +6,7 @@ TRACKED_FILES = [
     'fotos.html',
     'styles.css',
     'src/script.js',
+    'src/script.min.js',
     'src/input.css'
 ]
 

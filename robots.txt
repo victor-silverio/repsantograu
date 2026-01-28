@@ -7,6 +7,7 @@ Disallow: /.well-known/
 Disallow: /requirements.txt
 Disallow: /node_modules/
 Disallow: /src/input.css
+Disallow: /src/script.js
 Disallow: /src/vagas.json
 Disallow: /src/amenities.json
 Disallow: /package.json

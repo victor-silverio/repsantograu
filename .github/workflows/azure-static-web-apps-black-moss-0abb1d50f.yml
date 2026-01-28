@@ -39,7 +39,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -57,13 +57,24 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r scripts/requirements.txt
+          npm ci
+
+      - name: Auto-fix Linting and Formatting
+        run: |
+          npm run format
+          npm run lint:fix
+
+      - name: Check Linting and Formatting
+        run: |
+          npm run format:check
+          npm run lint
 
       - name: Run Cache_Update
         run: python scripts/cache_update.py
 
       - name: Commit Cache Update
         run: |
-          git config --global user.name 'cache BOT'
+          git config --global user.name 'cache / fix BOT'
           git config --global user.email 'seobot@repsantograu.online'
           git add sw.js
           git diff --quiet && git diff --staged --quiet || (git commit -m "auto update cache [skip ci]" && git push)
@@ -74,11 +85,11 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLACK_MOSS_0ABB1D50F }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: "upload"
-          app_location: "/"
-          api_location: ""
-          output_location: "/"
-          app_build_command: "npm run build"
+          action: 'upload'
+          app_location: '/'
+          api_location: ''
+          output_location: '/'
+          app_build_command: 'npm run build'
 
       - name: Purge Cloudflare Cache
         if: github.event_name == 'push' && success()
@@ -98,5 +109,5 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLACK_MOSS_0ABB1D50F }}
-          action: "close"
-          app_location: "/"
+          action: 'close'
+          app_location: '/'

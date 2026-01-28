@@ -37,15 +37,15 @@ O site é uma PWA (Progressive Web App) com recursos modernos:
 
 ## Stack Tecnológico
 
-| Camada | O que usei |
-| :--- | :--- |
+| Camada       | O que usei                                      |
+| :----------- | :---------------------------------------------- |
 | **Frontend** | HTML5, Tailwind CSS v4.1.18, JavaScript vanilla |
-| **Estilo** | Font Awesome, Google Fonts, WebP |
-| **PWA** | Service Worker (sw.js), Manifest.json |
-| **Scripts** | Python 3.9 (requests, regex, subprocess) |
-| **Build** | Node.js + Tailwind CLI |
-| **Deploy** | Azure Static Web Apps + Cloudflare |
-| **CI/CD** | GitHub Actions |
+| **Estilo**   | Font Awesome, Google Fonts, WebP                |
+| **PWA**      | Service Worker (sw.js), Manifest.json           |
+| **Scripts**  | Python 3.9 (requests, regex, subprocess)        |
+| **Build**    | Node.js + Tailwind CLI                          |
+| **Deploy**   | Azure Static Web Apps + Cloudflare              |
+| **CI/CD**    | GitHub Actions                                  |
 
 > **Para Agentes de IA:** Veja o arquivo `llms.txt` na raiz para um resumo técnico otimizado para LLMs.
 
@@ -54,16 +54,20 @@ O site é uma PWA (Progressive Web App) com recursos modernos:
 O destaque aqui é o script `update_script.py`, que roda **diariamente via GitHub Actions** (às 03:00 UTC) e mantém o site sempre atualizado. Ele também é acionado manualmente através da aba "Actions" no GitHub ou automaticamente quando há push no `index.html`.
 
 **1. Sincroniza com Google Maps**
+
 - Puxa a nota e número de avaliações da Google Places API.
 - Atualiza automaticamente o JSON-LD (structured data) no HTML.
 
 **2. Atualiza o Copyright**
+
 - Mantém o ano do footer sempre atual (atualmente 2026).
 
 **3. Gerencia o Sitemap e Humans.txt**
+
 - Atualiza `<lastmod>` no sitemap e data no `humans.txt` apenas quando há mudanças reais no HTML, evitando commits desnecessários.
 
 **4. Deploy Automático Inteligente**
+
 - Se o script fizer alguma mudança, ele commita automaticamente na branch main, acionando o deploy do Azure.
 
 ## Estrutura de Arquivos
@@ -104,12 +108,14 @@ repsantograu/
 ### Instalação
 
 1. Clone o repositório:
+
 ```bash
 git clone https://github.com/victor-silverio/repsantograu.git
 cd repsantograu
 ```
 
 2. Instale as dependências:
+
 ```bash
 npm install                  # Node.js
 pip install -r requirements.txt # Python
@@ -118,30 +124,34 @@ pip install -r requirements.txt # Python
 ### Rodando
 
 **Modo Desenvolvimento (Tailwind Watch):**
+
 ```bash
 npm run dev
 ```
+
 Abra o `index.html` no navegador.
 
 **Build de Produção:**
+
 ```bash
 npm run build
 ```
 
 **Testar Script de Automação:**
 Configure as variáveis `GCP_API_KEY` e `PLACE_ID`, depois rode:
+
 ```bash
 python update_script.py
 ```
 
 ## Contato
 
-| Canal | Link |
-| :--- | :--- |
-| **WhatsApp** | +55 (12) 99217-1061 |
-| **Instagram** | [@republicasantograuitajuba](https://instagram.com/republicasantograuitajuba) |
-| **Email** | [Victoraugusto4096@gmail.com](mailto:Victoraugusto4096@gmail.com) |
-| **GitHub** | [victor-silverio/repsantograu](https://github.com/victor-silverio/repsantograu) |
+| Canal         | Link                                                                            |
+| :------------ | :------------------------------------------------------------------------------ |
+| **WhatsApp**  | +55 (12) 99217-1061                                                             |
+| **Instagram** | [@republicasantograuitajuba](https://instagram.com/republicasantograuitajuba)   |
+| **Email**     | [Victoraugusto4096@gmail.com](mailto:Victoraugusto4096@gmail.com)               |
+| **GitHub**    | [victor-silverio/repsantograu](https://github.com/victor-silverio/repsantograu) |
 
 ---
 
