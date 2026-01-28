@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 # Arquivos de entrada e saída
 DATA_FILE = 'src/vagas.json'
+AMENITIES_FILE = 'src/amenities.json'
 TARGET_FILE = 'index.html'
 
 def load_vacancy_data():
@@ -16,6 +17,18 @@ def load_vacancy_data():
             return json.load(f)
     except Exception as e:
         print(f"[ERRO] Falha ao ler JSON de vagas: {e}")
+        return None
+
+def load_amenities_data():
+    if not os.path.exists(AMENITIES_FILE):
+        print(f"[ERRO] Arquivo de amenities {AMENITIES_FILE} não encontrado.")
+        return None
+    
+    try:
+        with open(AMENITIES_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"[ERRO] Falha ao ler JSON de amenities: {e}")
         return None
 
 def generate_badge_html(soup, available, year):
@@ -140,6 +153,67 @@ def update_faq_text(soup, room_type):
 
     return updated
 
+def update_amenities_container(soup, amenities_data):
+    """
+    Atualiza o container de amenities com os dados do JSON.
+    """
+    container = soup.find(id="amenities-container")
+    if not container:
+        print("[AVISO] Elemento id='amenities-container' não encontrado.")
+        return False
+
+    # Limpa o conteúdo atual
+    container.clear()
+
+    if not amenities_data:
+        return False
+
+    # Gera o HTML para cada item de amenity
+    # <div class="flex items-start gap-3">
+    #   <div class="mt-1 w-6 flex justify-center flex-shrink-0">
+    #     <svg ...><path ... /></svg>
+    #   </div>
+    #   <span class="text-gray-700">...</span>
+    # </div>
+
+    updated = False
+    
+    # Processa os itens e cria as tags
+    # Nota: Vamos criar uma string de HTML e depois parsear para inserir, 
+    # ou criar elemento por elemento. Criar elemento por elemento é mais seguro com BS4.
+    
+    for item in amenities_data:
+        icon_path = item.get("iconPath", "")
+        content_html = item.get("content", "")
+
+        wrapper_div = soup.new_tag("div", **{"class": "flex items-start gap-3"})
+        
+        # Icon wrapper
+        icon_div = soup.new_tag("div", **{"class": "mt-1 w-6 flex justify-center flex-shrink-0"})
+        svg_tag = soup.new_tag("svg", viewBox="0 0 640 640", **{"class": "w-5 h-5 text-repGold", "xmlns": "http://www.w3.org/2000/svg"})
+        path_tag = soup.new_tag("path", d=icon_path, fill="currentColor")
+        svg_tag.append(path_tag)
+        icon_div.append(svg_tag)
+        
+        # Content span
+        # Como o content pode ter HTML (<strong>, etc), precisamos parsear esse fragmento
+        span_tag = soup.new_tag("span", **{"class": "text-gray-700"})
+        # Parseia o conteúdo HTML interno
+        content_soup = BeautifulSoup(content_html, 'html.parser')
+        span_tag.append(content_soup)
+
+        wrapper_div.append(icon_div)
+        wrapper_div.append(span_tag)
+        
+        container.append(wrapper_div)
+        updated = True
+
+    if updated:
+        print("[UI] Amenities atualizados.")
+        return True
+    
+    return False
+
 def main():
     print("--- Iniciando Atualização de Vagas (BeautifulSoup) ---")
     
@@ -185,6 +259,12 @@ def main():
         if update_json_ld_description(soup, available, year):
             changes_made = True
 
+        # 4. Atualizar Amenities
+        amenities_data = load_amenities_data()
+        if amenities_data:
+            if update_amenities_container(soup, amenities_data):
+                changes_made = True
+        
         if changes_made:
             with open(TARGET_FILE, 'w', encoding='utf-8') as f:
                 f.write(str(soup))

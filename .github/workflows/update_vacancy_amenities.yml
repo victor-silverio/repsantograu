@@ -1,4 +1,4 @@
-name: Update Vacancy Info
+name: Update Vacancy & Amenities Info
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'src/vagas.json'
+      - 'src/amenities.json'
       - 'scripts/vacancy_update.py'
   workflow_dispatch:
 
@@ -31,12 +32,12 @@ jobs:
       run: |
         pip install -r scripts/requirements.txt
 
-    - name: Run Vacancy update
+    - name: Run Vacancy & Amenities update
       run: python scripts/vacancy_update.py
 
     - name: Commit and Push if changed
       run: |
-        git config --global user.name 'Vacancy BOT'
+        git config --global user.name 'Vacancy & Amenities BOT'
         git config --global user.email 'seobot@repsantograu.online'
         git add index.html
-        git diff --quiet && git diff --staged --quiet || (git commit -m "update vacancy" && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "update vacancy & amenities" && git push)
