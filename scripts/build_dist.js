@@ -21,7 +21,6 @@ const rootFiles = [
     'sitemap.xml',
     'staticwebapp.config.json',
     'humans.txt',
-    'security.txt',
     'llms.txt',
     'favicon.ico',
     'favicon-32x32.png',
@@ -58,6 +57,16 @@ dirsToCopy.forEach(dir => {
         console.warn(`Warning: Directory ${dir} not found`);
     }
 });
+
+// Create legacy copy of security.txt in root (from .well-known)
+const securitySrc = path.join(distDir, '.well-known', 'security.txt');
+const securityDest = path.join(distDir, 'security.txt');
+if (fs.existsSync(securitySrc)) {
+    fs.copyFileSync(securitySrc, securityDest);
+    console.log('Created legacy copy of security.txt in root');
+} else {
+    console.warn('Warning: .well-known/security.txt not found for legacy copy');
+}
 
 // Handle src/script.min.js specifically
 const srcDir = path.join(distDir, 'src');

@@ -1,4 +1,0 @@
-Contact: mailto:victor_augusto@repsantograu.online
-Expires: 2026-11-26T12:00:00Z
-Canonical: https://www.repsantograu.online/.well-known/security.txt
-Preferred-Languages: pt-BR, en
