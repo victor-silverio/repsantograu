@@ -1,12 +1,16 @@
-name: Update SEO Ratings
+name: Update Vacancy Info
 
 on:
-  schedule:
-    - cron: '0 3 * * *'
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/vagas.json'
+      - 'scripts/vacancy_update.py'
   workflow_dispatch:
 
 jobs:
-  update-ratings:
+  update-vacancy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -16,7 +20,6 @@ jobs:
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.PAT_TOKEN }}
-        fetch-depth: 0
 
     - name: Setup Python
       uses: actions/setup-python@v4
@@ -26,17 +29,14 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
+        pip install -r scripts/requirements.txt
 
-    - name: Run Update Script
-      env:
-        GCP_API_KEY: ${{ secrets.GCP_API_KEY }}
-        PLACE_ID: ${{ secrets.PLACE_ID }}
-      run: python update_script.py
+    - name: Run Vacancy update
+      run: python scripts/vacancy_update.py
 
     - name: Commit and Push if changed
       run: |
-        git config --global user.name 'SEO Bot'
+        git config --global user.name 'Vacancy BOT'
         git config --global user.email 'seobot@repsantograu.online'
-        git add .
-        git diff --quiet && git diff --staged --quiet || (git commit -m "chore(seo): update script" && git push)
+        git add index.html
+        git diff --quiet && git diff --staged --quiet || (git commit -m "update vacancy" && git push)

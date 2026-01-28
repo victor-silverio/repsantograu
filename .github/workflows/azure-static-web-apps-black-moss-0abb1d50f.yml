@@ -6,24 +6,28 @@ on:
       - main
     paths-ignore:
       - '.gitignore'
-      - 'explanations.txt'
+      - 'src/vagas.json'
       - 'LICENSE'
       - 'README.md'
-      - 'imagens/cache.txt'
       - 'divulgacao_rep/**'
-      - '.github/workflows/update_seo.yml'
+      - 'scripts/**'
+      - '.github/workflows/lastmod_update.yml'
+      - '.github/workflows/rating_update.yml'
+      - '.github/workflows/update_vacancy.yml'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
     paths-ignore:
       - '.gitignore'
-      - 'explanations.txt'
+      - 'src/vagas.json'
       - 'LICENSE'
       - 'README.md'
-      - 'imagens/cache.txt'
       - 'divulgacao_rep/**'
-      - '.github/workflows/update_seo.yml'
+      - 'scripts/**'
+      - '.github/workflows/lastmod_update.yml'
+      - '.github/workflows/rating_update.yml'
+      - '.github/workflows/update_vacancy.yml'
 
 jobs:
   build_and_deploy_job:
@@ -50,20 +54,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r scripts/requirements.txt
 
-      - name: Run Pre-Build Script (Cache & SEO)
-        env:
-          GCP_API_KEY: ${{ secrets.GCP_API_KEY }}
-          PLACE_ID: ${{ secrets.PLACE_ID }}
-        run: python update_script.py
+      - name: Run Cache_Update
+        run: python scripts/cache_update.py
 
       - name: Commit Cache Update
         run: |
-          git config --global user.name 'SEO Bot'
+          git config --global user.name 'cache BOT'
           git config --global user.email 'seobot@repsantograu.online'
-          git add sw.js sitemap.xml humans.txt index.html
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(build): auto update cache/seo [skip ci]" && git push)
+          git add sw.js
+          git diff --quiet && git diff --staged --quiet || (git commit -m "auto update cache [skip ci]" && git push)
 
       - name: Build And Deploy
         id: builddeploy

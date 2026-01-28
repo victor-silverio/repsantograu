@@ -44,7 +44,11 @@
       "statusCode": 404
     },
     {
-      "route": "/private/*",
+      "route": "/src/vagas.json",
+      "statusCode": 404
+    },
+    {
+      "route": "/scripts/*",
       "statusCode": 404
     },
     {
