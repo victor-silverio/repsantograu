@@ -16,4 +16,7 @@ Disallow: /staticwebapp.config.json
 Disallow: /.gitignore
 Disallow: /README.md
 Disallow: /LICENSE
+Disallow: /eslint.config.js
+Disallow: /.prettierignore
+Disallow: /.prettierrc
 Sitemap: https://www.repsantograu.online/sitemap.xml

@@ -60,6 +60,26 @@
       "statusCode": 404
     },
     {
+      "route": "/eslint.config.js",
+      "statusCode": 404
+    },
+    {
+      "route": "/.prettierignore",
+      "statusCode": 404
+    },
+    {
+      "route": "/.prettierrc",
+      "statusCode": 404
+    },
+    {
+      "route": "/src/input.css",
+      "statusCode": 404
+    },
+    {
+      "route": "/src/script.js",
+      "statusCode": 404
+    },
+    {
       "route": "/requirements.txt",
       "statusCode": 404
     },
