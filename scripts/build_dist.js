@@ -22,6 +22,7 @@ const rootFiles = [
     'staticwebapp.config.json',
     'humans.txt',
     'llms.txt',
+    'styles.css',
     'favicon.ico',
     'favicon-32x32.png',
     'favicon-48x48.png'
