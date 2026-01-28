@@ -6,30 +6,34 @@ on:
       - main
     paths-ignore:
       - '.gitignore'
-      - 'src/vagas.json'
-      - 'src/amenities.json'
-      - 'LICENSE'
+      - '.prettierignore'
+      - '.prettierrc'
+      - 'eslint.config.js'
+      - 'package-lock.json'
+      - 'package.json'
       - 'README.md'
+      - 'LICENSE'
+      - 'src/**/*.json'
+      - 'src/**/*.map'
       - 'divulgacao_rep/**'
-      - 'scripts/**'
-      - '.github/workflows/lastmod_update.yml'
-      - '.github/workflows/rating_update.yml'
-      - '.github/workflows/update_vacancy.yml'
+      - '.github/**'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
     paths-ignore:
       - '.gitignore'
-      - 'src/vagas.json'
-      - 'src/amenities.json'
-      - 'LICENSE'
+      - '.prettierignore'
+      - '.prettierrc'
+      - 'eslint.config.js'
+      - 'package-lock.json'
+      - 'package.json'
       - 'README.md'
+      - 'LICENSE'
+      - 'src/**/*.json'
+      - 'src/**/*.map'
       - 'divulgacao_rep/**'
-      - 'scripts/**'
-      - '.github/workflows/lastmod_update.yml'
-      - '.github/workflows/rating_update.yml'
-      - '.github/workflows/update_vacancy.yml'
+      - '.github/**'
 
 jobs:
   build_and_deploy_job:
@@ -88,8 +92,8 @@ jobs:
           action: 'upload'
           app_location: '/'
           api_location: ''
-          output_location: '/'
-          app_build_command: 'npm run build'
+          output_location: 'dist'
+          app_build_command: 'npm run build:dist'
 
       - name: Purge Cloudflare Cache
         if: github.event_name == 'push' && success()

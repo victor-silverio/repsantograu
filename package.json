@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tailwindcss -i ./src/input.css -o ./styles.css --watch",
     "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify && npm run minify",
+    "build:dist": "npm run build && node scripts/build_dist.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",

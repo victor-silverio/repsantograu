@@ -1,0 +1,71 @@
+# República Santo Grau
+
+> Moradia estudantil masculina em Itajubá-MG, localizada a apenas 2 minutos da UNIFEI. Tradição, estrutura completa e networking desde 2011.
+
+## Sobre a República
+A República Santo Grau é uma moradia estudantil focada em oferecer conforto e ambiente propício aos estudos para alunos da UNIFEI (Universidade Federal de Itajubá).
+- **Fundação:** 2011
+- **Localização:** R. Cel. Francisco Braz, 1270 - Pinheirinho, Itajubá - MG (Ao lado da Avenida BPS).
+- **Distância da faculdade:** 2 minutos a pé da portaria principal da UNIFEI.
+- **Perfil:** Masculina, aceita estudantes de todos os cursos.
+
+## Estrutura e Benefícios
+A casa é totalmente mobiliada e conta com:
+- **Acomodações:** 7 quartos (individuais e duplos) e 3 banheiros completos.
+- **Mobília:** Camas, colchões, guarda-roupas e mesas de estudo inclusos.
+- **Serviços Inclusos:**
+  - Limpeza e organização (com a "Mãezona Rê").
+  - Alimentação: Almoço e Jantar (Domingo a Sexta).
+  - Internet: 2 Links de Fibra Óptica de Alta Velocidade.
+- **Lazer:** TV 4K, Videogame, Mesa de Sinuca e Mascote (cadela Stella).
+- **Facilidades:** Garagem para carros e motos, lavanderia e cozinha equipada.
+
+## Custos (Estimativa 2026)
+Os valores incluem todas as contas (aluguel, internet, luz, água, limpeza e alimentação).
+- **Quarto Duplo:** ~R$ 1.050,00 mensais.
+- **Quarto Individual:** ~R$ 1.180,00 mensais.
+- **Transparência:** Custos registrados em planilha online de acesso aberto aos moradores.
+
+## FAQ - Perguntas Frequentes
+- **Aceitam calouros (bixos)?** Sim, vagas abertas semestralmente.
+- **O que preciso levar?** Apenas itens pessoais, roupa de cama/banho e eletrônicos (PC/Notebook). A casa já possui móveis e eletrodomésticos.
+- **Como é o networking?** Moradores e ex-moradores trabalham em grandes empresas como Embraer, MRS, BTG Pactual, Porsche, Google, entre outras.
+
+## Contato
+- **WhatsApp:** (19) 99252-1926 (Yuri/Groot), (21) 99525-8017 (Arthur/Beto), (12) 99682-5554 (Marcos/Menotti).
+- **Instagram:** @republicasantograuitajuba
+- **Site:** https://www.repsantograu.online
+
+## Sobre este Site (Tech Stack)
+Este site é uma PWA (Progressive Web App) moderna desenvolvida pelo morador Victor Augusto.
+
+### Tecnologias
+- **Frontend:** HTML5, Tailwind CSS v4.1.18, JavaScript vanilla.
+- **PWA:** Service Worker (offline-first), Manifest.json (instalável em Android/iOS/Desktop).
+- **Build:** Node.js + Tailwind CLI (local development com auto-reload).
+- **Infraestrutura:** Azure Static Web Apps (serverless), Cloudflare (CDN/Security/DDoS Protection).
+- **Segurança:** CSP, HTTPS obrigatório, cache inteligente (1 ano para assets, revalidação para HTML).
+- **SEO:** JSON-LD structured data, sitemap dinâmico, meta tags otimizadas.
+- **Automação:** Scripts Python (requests, regex, subprocess) para atualização diária de ratings do Google Maps via GitHub Actions.
+- **CI/CD:** GitHub Actions (deploy automático na Azure ao detectar mudanças).
+
+### Features
+- Instalável como app nativo (Progressive Web App).
+- Funciona offline graças ao Service Worker.
+- Animações com IntersectionObserver (lazy reveal effect).
+- Carrossel de timeline responsivo com touch support.
+- Imagens otimizadas em WebP.
+- Ratings sincronizados automaticamente com Google Places API 3x por dia.
+
+## Estrutura de Arquivos
+- `/src/`: Código fonte frontend (CSS input, JS scripts).
+- `/imagens/`: Imagens otimizadas em WebP.
+- `/icons/`: Ícones e logos.
+- `/fonts/`: Fontes locais (Montserrat).
+- `/private/`: Arquivos protegidos.
+- `/divulgacao_rep/`: Material de divulgação.
+- `index.html`: Página principal.
+- `fotos.html`: Galeria de fotos.
+- `styles.css`: CSS gerado pelo Tailwind.
+- `sw.js`: Service Worker.
+- `update_script.py`: Script de automação.
