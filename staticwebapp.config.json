@@ -48,6 +48,10 @@
       "statusCode": 404
     },
     {
+      "route": "/amenities.json",
+      "statusCode": 404
+    },
+    {
       "route": "/scripts/*",
       "statusCode": 404
     },
