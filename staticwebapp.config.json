@@ -48,7 +48,7 @@
       "statusCode": 404
     },
     {
-      "route": "/amenities.json",
+      "route": "/src/amenities.json",
       "statusCode": 404
     },
     {
