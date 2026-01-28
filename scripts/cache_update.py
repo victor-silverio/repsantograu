@@ -49,7 +49,7 @@ def increment_version_in_line(line):
     Espera formato: const CACHE_NAME = 'santo-grau-v56';
     """
     if "const CACHE_NAME =" not in line:
-        return line, False
+        return line, False, 0
 
     try:
         # Divide a linha: ["const CACHE_NAME = ", "'santo-grau-v56';", ...]
