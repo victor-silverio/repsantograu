@@ -5,8 +5,9 @@
   "main": "sw.js",
   "scripts": {
     "dev": "tailwindcss -i ./src/input.css -o ./styles.css --watch",
-    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify && npm run minify",
+    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify && npm run minify && npm run update-version",
     "build:dist": "npm run build && node scripts/build_dist.js",
+    "update-version": "node scripts/update_cache_version.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
