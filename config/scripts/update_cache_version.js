@@ -39,7 +39,7 @@ filesToUpdate.forEach((htmlFile) => {
       let fsPath;
 
       // Resolve paths based on new structure
-      if (filePathStr === '/favicon.ico') {
+      if (filePathStr === '/favicon.ico' || filePathStr === 'favicon.ico') {
         // Special mapping for favicon
         fsPath = path.join(rootDir, 'src/assets/favicons/favicon.ico');
       } else if (filePathStr.startsWith('/assets/')) {
@@ -73,18 +73,20 @@ filesToUpdate.forEach((htmlFile) => {
             fsPath = path.join(rootDir, filePathStr.substring(1));
           }
         }
-      } else if (filePathStr.startsWith('src/')) {
-        // Handle explicit src/ reference (e.g. src/script.min.js)
-        // This is relative to root, but index.html is in src.
-        // If index.html is moved to root in dist, src/script.min.js is correct relative path.
-        // File exists at rootDir/src/... so rootDir + filePathStr
-        fsPath = path.join(rootDir, filePathStr);
       } else if (filePathStr.startsWith('./')) {
         // Relative to HTML file (which is in src/)
         fsPath = path.join(rootDir, 'src', filePathStr.substring(2));
       } else {
         // Relative to HTML file
         fsPath = path.join(rootDir, 'src', filePathStr);
+
+        // If not found in src, try public (e.g. manifest.json, favicon.ico)
+        if (!fs.existsSync(fsPath)) {
+          const publicPath = path.join(rootDir, 'public', filePathStr);
+          if (fs.existsSync(publicPath)) {
+            fsPath = publicPath;
+          }
+        }
       }
 
       const newHash = getFileHash(fsPath);

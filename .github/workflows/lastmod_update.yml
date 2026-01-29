@@ -26,14 +26,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r scripts/requirements.txt
+          pip install -r config/scripts/requirements.txt
 
       - name: Run Metadata update
-        run: python scripts/lastmod_update.py
+        run: python config/scripts/lastmod_update.py
 
       - name: Commit and Push if changed
         run: |
           git config --global user.name 'Metadata BOT'
           git config --global user.email 'seobot@repsantograu.online'
-          git add sitemap.xml humans.txt
+          git add public/sitemap.xml public/humans.txt
           git diff --quiet && git diff --staged --quiet || (git commit -m "update lastmod" && git push)

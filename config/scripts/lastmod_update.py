@@ -3,13 +3,15 @@ import subprocess
 from datetime import datetime
 from bs4 import BeautifulSoup
 
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
+
 URL_FILE_MAP = {
-    'https://www.repsantograu.online/': 'index.html',
-    'https://www.repsantograu.online/fotos.html': 'fotos.html'
+    'https://www.repsantograu.online/': os.path.join(PROJECT_ROOT, 'src', 'index.html'),
+    'https://www.repsantograu.online/fotos.html': os.path.join(PROJECT_ROOT, 'src', 'fotos.html')
 }
 
-HUMANS_FILE = 'humans.txt'
-SITEMAP_FILE = 'sitemap.xml'
+HUMANS_FILE = os.path.join(PROJECT_ROOT, 'public', 'humans.txt')
+SITEMAP_FILE = os.path.join(PROJECT_ROOT, 'public', 'sitemap.xml')
 
 def get_git_last_commit_date(filename):
     try:

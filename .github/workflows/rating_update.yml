@@ -25,17 +25,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r scripts/requirements.txt
+          pip install -r config/scripts/requirements.txt
 
       - name: Run Ratings update
         env:
           GCP_API_KEY: ${{ secrets.GCP_API_KEY }}
           PLACE_ID: ${{ secrets.PLACE_ID }}
-        run: python scripts/rating_update.py
+        run: python config/scripts/rating_update.py
 
       - name: Commit and Push if changed
         run: |
           git config --global user.name 'Ratings BOT'
           git config --global user.email 'seobot@repsantograu.online'
-          git add index.html 
+          git add src/index.html 
           git diff --quiet && git diff --staged --quiet || (git commit -m "update ratings" && git push)

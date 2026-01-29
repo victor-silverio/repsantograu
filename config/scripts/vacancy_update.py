@@ -2,9 +2,11 @@ import json
 import os
 from bs4 import BeautifulSoup
 
-DATA_FILE = 'src/vagas.json'
-AMENITIES_FILE = 'src/amenities.json'
-TARGET_FILE = 'index.html'
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
+
+DATA_FILE = os.path.join(PROJECT_ROOT, 'src', 'vagas.json')
+AMENITIES_FILE = os.path.join(PROJECT_ROOT, 'src', 'amenities.json')
+TARGET_FILE = os.path.join(PROJECT_ROOT, 'src', 'index.html')
 
 def load_vacancy_data():
     if not os.path.exists(DATA_FILE):

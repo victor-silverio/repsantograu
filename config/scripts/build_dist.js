@@ -8,10 +8,24 @@ const distDir = path.join(rootDir, 'dist');
 const srcDir = path.join(rootDir, 'src');
 const publicDir = path.join(rootDir, 'public');
 
+// Robust cleanup of dist directory
 if (fs.existsSync(distDir)) {
-  fs.rmSync(distDir, { recursive: true, force: true });
+  try {
+    fs.rmSync(distDir, { recursive: true, force: true });
+    fs.mkdirSync(distDir);
+  } catch (err) {
+    console.warn(
+      'Warning: Could not remove dist directory. It might be in use (e.g., by a web server or open terminal).'
+    );
+    console.warn('Attempting to proceed by overwriting files...');
+    // If directory exists depending on failure point, ensure it exists
+    if (!fs.existsSync(distDir)) {
+      fs.mkdirSync(distDir);
+    }
+  }
+} else {
+  fs.mkdirSync(distDir);
 }
-fs.mkdirSync(distDir);
 
 // Files to copy from public/ to dist/ (Root level)
 const publicFiles = [
@@ -76,16 +90,11 @@ if (fs.existsSync(faviconSrc)) {
   console.log('Copied favicon.ico to root');
 }
 
-// Copy script.min.js
-const srcDistDir = path.join(distDir, 'src');
-if (!fs.existsSync(srcDistDir)) {
-  fs.mkdirSync(srcDistDir);
-}
-
+// Copy script.min.js (to root of dist)
 const scriptMinPath = path.join(srcDir, 'script.min.js');
 if (fs.existsSync(scriptMinPath)) {
-  fs.copyFileSync(scriptMinPath, path.join(srcDistDir, 'script.min.js'));
-  console.log('Copied src/script.min.js');
+  fs.copyFileSync(scriptMinPath, path.join(distDir, 'script.min.js'));
+  console.log('Copied script.min.js to root');
 } else {
   console.warn(
     'Warning: src/script.min.js not found. Make sure to run minify first.'
