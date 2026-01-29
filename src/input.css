@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import '../config/node_modules/tailwindcss';
 
 @font-face {
   font-family: 'Montserrat';

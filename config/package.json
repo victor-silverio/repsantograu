@@ -4,15 +4,15 @@
   "description": "![Azure Static Web Apps CI/CD](https://github.com/victor-silverio/repsantograu/actions/workflows/azure-static-web-apps-black-moss-0abb1d50f.yml/badge.svg) ![SEO Automation](https://github.com/victor-silverio/repsantograu/actions/workflows/update_seo.yml/badge.svg) ![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.online&label=Online&color=success)",
   "main": "sw.js",
   "scripts": {
-    "dev": "tailwindcss -i ./src/input.css -o ./styles.css --watch",
-    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify && npm run minify && npm run update-version",
+    "dev": "tailwindcss -i ../src/input.css -o ../src/styles.css --watch",
+    "build": "tailwindcss -i ../src/input.css -o ../src/styles.css --minify && npm run minify && npm run update-version",
     "build:dist": "npm run build && node scripts/build_dist.js",
     "update-version": "node scripts/update_cache_version.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "minify": "terser src/script.js -o src/script.min.js -c -m"
+    "lint": "cd ../src && node ../config/node_modules/eslint/bin/eslint.js .",
+    "lint:fix": "cd ../src && node ../config/node_modules/eslint/bin/eslint.js . --fix",
+    "format": "prettier --write ../src ../public --config .prettierrc",
+    "format:check": "prettier --check ../src ../public --config .prettierrc",
+    "minify": "terser ../src/script.js -o ../src/script.min.js -c -m"
   },
   "repository": {
     "type": "git",

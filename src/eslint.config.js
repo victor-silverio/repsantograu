@@ -1,16 +1,10 @@
-const prettier = require('eslint-config-prettier');
-const js = require('@eslint/js');
-const globals = require('globals');
+const prettier = require('../config/node_modules/eslint-config-prettier');
+const js = require('../config/node_modules/@eslint/js');
+const globals = require('../config/node_modules/globals');
 
 module.exports = [
   {
-    ignores: [
-      'src/script.min.js',
-      'sw.js',
-      'src/input.css',
-      'styles.css',
-      'dist/',
-    ],
+    ignores: ['script.min.js', 'input.css'],
   },
   js.configs.recommended,
   {

@@ -27,13 +27,13 @@
       }
     },
     {
-      "route": "/icons/*",
+      "route": "/assets/icons/*",
       "headers": {
         "Cache-Control": "public, max-age=31536000, must-revalidate"
       }
     },
     {
-      "route": "/fonts/*",
+      "route": "/assets/fonts/*",
       "headers": {
         "Cache-Control": "public, max-age=31536000, must-revalidate"
       }
@@ -67,9 +67,9 @@
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": [
-      "/imagens/*",
-      "/icons/*",
-      "/fonts/*",
+      "/assets/imagens/*",
+      "/assets/icons/*",
+      "/assets/fonts/*",
       "/styles.css",
       "/src/*",
       "/sw.js",
