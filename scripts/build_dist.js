@@ -77,10 +77,10 @@ console.log('Copy complete. Generating Service Worker...');
 
 generateSW({
   globDirectory: distDir,
-  globPatterns: [
-    '**/*.{html,json,js,css,woff2,png,webp,ico,txt,xml}'
-  ],
+  globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml}'],
   swDest: path.join(distDir, 'sw.js'),
+  sourcemap: false,
+  mode: 'production',
   cleanupOutdatedCaches: true,
   clientsClaim: true,
   skipWaiting: true,
@@ -112,10 +112,14 @@ generateSW({
       },
     },
   ],
-}).then(({ count, size }) => {
-  console.log(`Generated sw.js, which will precache ${count} files, totaling ${size} bytes.`);
-  console.log('Build complete! Output in /dist');
-}).catch((err) => {
-  console.error(`Unable to generate sw.js: ${err}`);
-  process.exit(1);
-});
+})
+  .then(({ count, size }) => {
+    console.log(
+      `Generated sw.js, which will precache ${count} files, totaling ${size} bytes.`
+    );
+    console.log('Build complete! Output in /dist');
+  })
+  .catch((err) => {
+    console.error(`Unable to generate sw.js: ${err}`);
+    process.exit(1);
+  });
