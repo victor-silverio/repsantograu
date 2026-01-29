@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { generateSW } = require('workbox-build');
 
 const distDir = path.join(__dirname, '..', 'dist');
 const rootDir = path.join(__dirname, '..');
@@ -13,7 +14,6 @@ const rootFiles = [
   'index.html',
   'fotos.html',
   '404.html',
-  'sw.js',
   'manifest.json',
   'robots.txt',
   'sitemap.xml',
@@ -73,4 +73,49 @@ if (fs.existsSync(scriptMinPath)) {
   );
 }
 
-console.log('Build complete! Output in /dist');
+console.log('Copy complete. Generating Service Worker...');
+
+generateSW({
+  globDirectory: distDir,
+  globPatterns: [
+    '**/*.{html,json,js,css,woff2,png,webp,ico,txt,xml}'
+  ],
+  swDest: path.join(distDir, 'sw.js'),
+  cleanupOutdatedCaches: true,
+  clientsClaim: true,
+  skipWaiting: true,
+  runtimeCaching: [
+    {
+      urlPattern: ({ request }) => request.destination === 'document',
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'documents',
+      },
+    },
+    {
+      urlPattern: ({ request }) =>
+        ['style', 'script', 'worker', 'font'].includes(request.destination),
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'assets',
+      },
+    },
+    {
+      urlPattern: ({ request }) => request.destination === 'image',
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'images',
+        expiration: {
+          maxEntries: 50,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+        },
+      },
+    },
+  ],
+}).then(({ count, size }) => {
+  console.log(`Generated sw.js, which will precache ${count} files, totaling ${size} bytes.`);
+  console.log('Build complete! Output in /dist');
+}).catch((err) => {
+  console.error(`Unable to generate sw.js: ${err}`);
+  process.exit(1);
+});

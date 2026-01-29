@@ -73,15 +73,7 @@ jobs:
           npm run format:check
           npm run lint
 
-      - name: Run Cache_Update
-        run: python scripts/cache_update.py
 
-      - name: Commit Cache Update
-        run: |
-          git config --global user.name 'cache / fix BOT'
-          git config --global user.email 'seobot@repsantograu.online'
-          git add sw.js
-          git diff --quiet && git diff --staged --quiet || (git commit -m "auto update cache [skip ci]" && git push)
 
       - name: Build And Deploy
         id: builddeploy
