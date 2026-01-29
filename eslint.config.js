@@ -4,7 +4,7 @@ const globals = require('globals');
 
 module.exports = [
   {
-    ignores: ['src/script.min.js', 'sw.js', 'src/input.css', 'styles.css'],
+    ignores: ['src/script.min.js', 'sw.js', 'src/input.css', 'styles.css', 'dist/'],
   },
   js.configs.recommended,
   {
