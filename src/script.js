@@ -156,20 +156,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker
-        .register('/sw.js')
-        .then((registration) => {
-          console.log(
-            'Service Worker registrado com sucesso:',
-            registration.scope
-          );
-          registration
-            .update()
-            .catch((err) => console.log('Falha ao atualizar SW:', err));
-        })
-        .catch((error) => {
-          console.log('Falha ao registrar Service Worker:', error);
-        });
+      setTimeout(() => {
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then((registration) => {
+            console.log(
+              'Service Worker registrado com sucesso:',
+              registration.scope
+            );
+            registration
+              .update()
+              .catch((err) => console.log('Falha ao atualizar SW:', err));
+          })
+          .catch((error) => {
+            console.log('Falha ao registrar Service Worker:', error);
+          });
+      }, 2500);
     });
   }
   const lightbox = document.getElementById('lightbox');
