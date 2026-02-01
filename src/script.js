@@ -31,129 +31,132 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     revealElements.forEach((element) => revealObserver.observe(element));
   }
-  const slider = document.getElementById('timeline-carousel');
-  const btnLeft = document.getElementById('scroll-left');
-  const btnRight = document.getElementById('scroll-right');
-  if (slider) {
-    const items = slider.querySelectorAll('.snap-center');
-    let ticking = false;
-    const updateUI = () => {
+  const initTimelineCarousel = () => {
+    const slider = document.getElementById('timeline-carousel');
+    const btnLeft = document.getElementById('scroll-left');
+    const btnRight = document.getElementById('scroll-right');
+    if (slider) {
+      const items = slider.querySelectorAll('.snap-center');
+      let ticking = false;
+      const updateUI = () => {
+        if (btnLeft && btnRight) {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const sl = slider.scrollLeft;
+              const max = slider.scrollWidth - slider.clientWidth - 20;
+              btnLeft.style.opacity = sl > 20 ? '1' : '0';
+              btnRight.style.opacity = sl < max ? '1' : '0';
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }
+      };
+      slider.addEventListener('scroll', updateUI);
+      window.addEventListener('resize', updateUI);
+      updateUI();
       if (btnLeft && btnRight) {
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            const sl = slider.scrollLeft;
-            const max = slider.scrollWidth - slider.clientWidth - 20;
-            btnLeft.style.opacity = sl > 20 ? '1' : '0';
-            btnRight.style.opacity = sl < max ? '1' : '0';
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }
-    };
-    slider.addEventListener('scroll', updateUI);
-    window.addEventListener('resize', updateUI);
-    updateUI();
-    if (btnLeft && btnRight) {
-      btnLeft.addEventListener('click', () => {
-        const itemWidth = items[0].offsetWidth + 24;
-        slider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
-      });
-      btnRight.addEventListener('click', () => {
-        const itemWidth = items[0].offsetWidth + 24;
-        slider.scrollBy({ left: itemWidth, behavior: 'smooth' });
-      });
-    }
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    slider
-      .querySelectorAll('img')
-      .forEach((img) => img.setAttribute('draggable', 'false'));
-    slider.addEventListener('pointerdown', (e) => {
-      if (e.pointerType !== 'mouse') return;
-      isDown = true;
-      e.preventDefault();
-      slider.setPointerCapture(e.pointerId);
-      slider.classList.add('cursor-grabbing');
-      slider.classList.remove(
-        'cursor-grab',
-        'snap-x',
-        'snap-mandatory',
-        'scroll-smooth'
-      );
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-    const stopDrag = (e) => {
-      if (!isDown) return;
-      if (e.pointerType !== 'mouse') return;
-      isDown = false;
-      slider.releasePointerCapture(e.pointerId);
-      slider.classList.remove('cursor-grabbing');
-      const center = slider.scrollLeft + slider.clientWidth / 2;
-      let closestItem = null;
-      let minDistance = Infinity;
-      items.forEach((item) => {
-        const itemCenter = item.offsetLeft + item.offsetWidth / 2;
-        const distance = Math.abs(center - itemCenter);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestItem = item;
-        }
-      });
-      if (closestItem) {
-        closestItem.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center',
+        btnLeft.addEventListener('click', () => {
+          const itemWidth = items[0].offsetWidth + 24;
+          slider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+        });
+        btnRight.addEventListener('click', () => {
+          const itemWidth = items[0].offsetWidth + 24;
+          slider.scrollBy({ left: itemWidth, behavior: 'smooth' });
         });
       }
-      setTimeout(() => {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      slider
+        .querySelectorAll('img')
+        .forEach((img) => img.setAttribute('draggable', 'false'));
+      slider.addEventListener('pointerdown', (e) => {
+        if (e.pointerType !== 'mouse') return;
+        isDown = true;
+        e.preventDefault();
+        slider.setPointerCapture(e.pointerId);
+        slider.classList.add('cursor-grabbing');
+        slider.classList.remove(
+          'cursor-grab',
+          'snap-x',
+          'snap-mandatory',
+          'scroll-smooth'
+        );
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+      const stopDrag = (e) => {
+        if (!isDown) return;
+        if (e.pointerType !== 'mouse') return;
+        isDown = false;
+        slider.releasePointerCapture(e.pointerId);
+        slider.classList.remove('cursor-grabbing');
+        const center = slider.scrollLeft + slider.clientWidth / 2;
+        let closestItem = null;
+        let minDistance = Infinity;
+        items.forEach((item) => {
+          const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+          const distance = Math.abs(center - itemCenter);
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestItem = item;
+          }
+        });
+        if (closestItem) {
+          closestItem.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center',
+          });
+        }
+        setTimeout(() => {
+          slider.classList.add(
+            'cursor-grab',
+            'snap-x',
+            'snap-mandatory',
+            'scroll-smooth'
+          );
+        }, 600);
+      };
+      slider.addEventListener('pointerleave', stopDrag);
+      slider.addEventListener('pointerup', stopDrag);
+      slider.addEventListener('pointercancel', stopDrag);
+      slider.addEventListener('pointermove', (e) => {
+        if (!isDown) return;
+        if (e.pointerType !== 'mouse') return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        slider.scrollLeft = scrollLeft - walk;
+      });
+      let animationId;
+      slider.addEventListener('touchend', () => {
+        isDown = false;
+        slider.classList.remove('cursor-grabbing');
         slider.classList.add(
           'cursor-grab',
           'snap-x',
           'snap-mandatory',
           'scroll-smooth'
         );
-      }, 600);
-    };
-    slider.addEventListener('pointerleave', stopDrag);
-    slider.addEventListener('pointerup', stopDrag);
-    slider.addEventListener('pointercancel', stopDrag);
-    slider.addEventListener('pointermove', (e) => {
-      if (!isDown) return;
-      if (e.pointerType !== 'mouse') return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      slider.scrollLeft = scrollLeft - walk;
-    });
-    let animationId;
-    slider.addEventListener('touchend', () => {
-      isDown = false;
-      slider.classList.remove('cursor-grabbing');
-      slider.classList.add(
-        'cursor-grab',
-        'snap-x',
-        'snap-mandatory',
-        'scroll-smooth'
+      });
+      slider.addEventListener(
+        'touchmove',
+        (e) => {
+          if (!isDown) return;
+          if (animationId) cancelAnimationFrame(animationId);
+          animationId = requestAnimationFrame(() => {
+            const x = e.touches[0].pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+          });
+        },
+        { passive: true }
       );
-    });
-    slider.addEventListener(
-      'touchmove',
-      (e) => {
-        if (!isDown) return;
-        if (animationId) cancelAnimationFrame(animationId);
-        animationId = requestAnimationFrame(() => {
-          const x = e.touches[0].pageX - slider.offsetLeft;
-          const walk = (x - startX) * 2;
-          slider.scrollLeft = scrollLeft - walk;
-        });
-      },
-      { passive: true }
-    );
-  }
+    }
+  };
+  initTimelineCarousel();
   if ('serviceWorker' in navigator) {
     const registerSW = () => {
       navigator.serviceWorker
