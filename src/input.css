@@ -198,3 +198,10 @@ details > summary::-webkit-details-marker {
   width: 0.8rem;
   height: 0.8rem;
 }
+
+@media print {
+  body { background: white; color: black; }
+  nav, footer, .fixed, #timeline, #galeria { display: none !important; }
+  #sobre, #tour { display: block !important; page-break-inside: avoid; }
+  a[href^="http"]:after { content: " (" attr(href) ")"; }
+}
