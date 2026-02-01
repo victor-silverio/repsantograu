@@ -157,6 +157,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
   initTimelineCarousel();
+
+  const backToTopButton = document.getElementById('back-to-top');
+  if (backToTopButton) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTopButton.classList.remove('opacity-0');
+        backToTopButton.classList.add('opacity-100');
+        backToTopButton.style.pointerEvents = 'auto';
+      } else {
+        backToTopButton.classList.remove('opacity-100');
+        backToTopButton.classList.add('opacity-0');
+        backToTopButton.style.pointerEvents = 'none';
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
   if ('serviceWorker' in navigator) {
     const registerSW = () => {
       navigator.serviceWorker
