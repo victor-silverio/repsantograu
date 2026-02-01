@@ -195,10 +195,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('load', () => {
+      // Delay SW registration to prioritize initial page load (Facebook pixels, etc.)
+      const register = () => {
+        setTimeout(() => {
+          registerSW();
+        }, 2000);
+      };
+
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(registerSW);
+        requestIdleCallback(register);
       } else {
-        registerSW();
+        register();
       }
     });
   }
