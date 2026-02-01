@@ -58,24 +58,30 @@
       href="/icons/apple-touch-icon.png?v=8cf0d018"
     />
 
-    <link href="/styles.css?v=342c8476" rel="stylesheet" />
+    <link href="/styles.css?v=ce8b646c" rel="stylesheet" />
 
     <script src="/src/script.min.js?v=874da874" defer></script>
   </head>
 
   <body class="overflow-x-hidden bg-black font-sans text-white antialiased">
+    <a
+      href="#main-content"
+      class="border-repGold text-repGold focus:bg-repWhite focus:ring-repGold absolute top-0 left-0 z-[100] m-4 hidden -translate-y-full border-2 bg-black px-4 py-2 font-bold transition-transform focus:translate-y-0 md:inline-block"
+    >
+      Pular para o conteúdo principal
+    </a>
     <nav
       class="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-md transition-all duration-300"
     >
       <div class="container mx-auto px-6 py-3">
         <div class="flex flex-wrap items-center justify-between">
-          <a class="group flex items-center gap-3" href="/">
+          <a class="group flex items-center gap-3" href="index.html">
             <img
-              alt="Logotipo oficial da República Santo Grau - Moradia Estudantil Masculina"
+              alt="Logotipo oficial da República Santo Grau"
               class="h-10 w-10 object-contain transition duration-300"
-              height="1350"
               src="/icons/logo_rep_transparente.webp?v=1622cbb4"
               width="1080"
+              height="1350"
             />
             <span
               class="text-repGold self-center font-serif text-lg font-bold tracking-wide whitespace-nowrap"
@@ -92,14 +98,14 @@
             <span class="sr-only">Abrir menu principal</span>
             <svg
               aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 640 640"
               class="h-5 w-5"
+              viewbox="0 0 640 640"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill="currentColor"
                 d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"
-              />
+                fill="currentColor"
+              ></path>
             </svg>
           </button>
           <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
