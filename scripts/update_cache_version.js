@@ -3,7 +3,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const rootDir = path.join(__dirname, '..');
-const filesToUpdate = ['index.html', 'fotos.html', '404.html'];
+const filesToUpdate = ['index.html', 'fotos.html', '404.html', 'offline.html'];
 
 function getFileHash(filePath) {
   try {

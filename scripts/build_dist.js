@@ -14,6 +14,8 @@ fs.mkdirSync(distDir);
 
 const rootFiles = [
   'index.html',
+  'offline.html',
+  'fotos.html',
   'fotos.html',
   '404.html',
   'manifest.json',
@@ -125,8 +127,9 @@ minifyRecursive(distDir)
     console.log('Minification complete. Generating Service Worker...');
     return generateSW({
       globDirectory: distDir,
-      globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml}'],
+      globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml,png,webp}'],
       swDest: path.join(distDir, 'sw.js'),
+      navigateFallback: '/offline.html',
       sourcemap: false,
       mode: 'production',
       cleanupOutdatedCaches: true,
