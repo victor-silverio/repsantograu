@@ -48,12 +48,14 @@
     transform: none;
     opacity: 1;
   }
-  
+
   html {
     scroll-behavior: auto;
   }
-  
-  *, ::before, ::after {
+
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -67,6 +69,7 @@
 }
 
 #timeline-carousel {
+  touch-action: pan-y;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -170,11 +173,11 @@ html {
   animation: fadeIn 0.3s ease-out forwards;
 }
 
-details > summary {
+details>summary {
   list-style: none;
 }
 
-details > summary::-webkit-details-marker {
+details>summary::-webkit-details-marker {
   display: none;
 }
 
@@ -200,8 +203,26 @@ details > summary::-webkit-details-marker {
 }
 
 @media print {
-  body { background: white; color: black; }
-  nav, footer, .fixed, #timeline, #galeria { display: none !important; }
-  #sobre, #tour { display: block !important; page-break-inside: avoid; }
-  a[href^="http"]:after { content: " (" attr(href) ")"; }
+  body {
+    background: white;
+    color: black;
+  }
+
+  nav,
+  footer,
+  .fixed,
+  #timeline,
+  #galeria {
+    display: none !important;
+  }
+
+  #sobre,
+  #tour {
+    display: block !important;
+    page-break-inside: avoid;
+  }
+
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+  }
 }
