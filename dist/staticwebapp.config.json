@@ -1,22 +1,41 @@
 {
   "routes": [
     {
+      "route": "/home/",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/fotos/",
+      "rewrite": "/fotos.html"
+    },
+    {
+      "route": "/404/",
+      "rewrite": "/404.html"
+    },
+    {
+      "route": "/offline/",
+      "rewrite": "/offline.html"
+    },
+    {
+      "route": "/",
+      "redirect": "/home/",
+      "statusCode": 301
+    },
+    {
+      "route": "/index.html",
+      "redirect": "/home/",
+      "statusCode": 301
+    },
+    {
+      "route": "/fotos.html",
+      "redirect": "/fotos/",
+      "statusCode": 301
+    },
+    {
       "route": "/sw.js",
       "headers": {
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Content-Type": "application/javascript"
-      }
-    },
-    {
-      "route": "/index.html",
-      "headers": {
-        "Cache-Control": "no-cache"
-      }
-    },
-    {
-      "route": "/fotos.html",
-      "headers": {
-        "Cache-Control": "no-cache"
       }
     },
     {
@@ -65,7 +84,7 @@
     "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
   },
   "navigationFallback": {
-    "rewrite": "/index.html",
+    "rewrite": "/home/",
     "exclude": [
       "/imagens/*",
       "/icons/*",
