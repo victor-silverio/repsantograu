@@ -1,150 +1,147 @@
 # República Santo Grau — Site Oficial
 
-![Azure Static Web Apps CI/CD](https://github.com/victor-silverio/repsantograu/actions/workflows/azure-static-web-apps-black-moss-0abb1d50f.yml/badge.svg) ![SEO Automation](https://github.com/victor-silverio/repsantograu/actions/workflows/update_seo.yml/badge.svg) ![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.online&label=Online&color=success)
+![Azure Static Web Apps CI/CD](https://github.com/victor-silverio/repsantograu/actions/workflows/azure-static-web-apps-black-moss-0abb1d50f.yml/badge.svg) ![SEO Automation](https://github.com/victor-silverio/repsantograu/actions/workflows/lastmod_update.yml/badge.svg) ![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.online&label=Online&color=success)
 
-Repositório com o código do site da República Santo Grau (Itajubá, MG). É uma Single Page Application que cuida de performance, SEO automático e segurança.
+Repositório oficial do site da **República Santo Grau** (Itajubá, MG). Uma Single Page Application (SPA) moderna, foca em alta performance, acessibilidade, SEO automatizado e funcionamento offline (PWA).
 
-**Site:** [www.repsantograu.online](https://www.repsantograu.online/)
+**🌐 Site:** [www.repsantograu.online](https://www.repsantograu.online/)
 
-## Segurança e Infraestrutura
+---
 
-O site roda em cima de uma arquitetura bem pensada pra segurança e performance:
+## 🚀 Tecnologias e Stack
+
+Frontend construído sem frameworks pesados, priorizando velocidade e controle total.
+
+| Camada              | Tecnologias                                                                 |
+| :------------------ | :-------------------------------------------------------------------------- |
+| **Frontend**        | HTML5 Semântico, **Tailwind CSS v4.1**, JavaScript (ES6+)                   |
+| **Estilização**     | Tailwind CLI, Font Awesome, Google Fonts (Montserrat)                       |
+| **PWA**             | Service Worker (Workbox), Manifest.json, Offline Fallback                   |
+| **Build System**    | Node.js, Terser (Minificação JS), HTML-Minifier-Terser, Workbox Build       |
+| **Automação (SEO)** | Python 3.9 (GitHub Actions para updates de ratings, vagas e sitemap)        |
+| **Infraestrutura**  | **Azure Static Web Apps** (Hospedagem), **Cloudflare** (DNS, CDN, Segurança)|
+
+---
+
+## 🛡️ Segurança e Performance
+
+A arquitetura foi desenhada para ser segura e extremamente rápida.
 
 ### Infraestrutura
+- **Cloudflare:** Atua como proxy reverso, gerenciando DNS, protegendo contra DDoS e servindo assets via CDN global.
+- **Azure Static Web Apps:** Hospedagem serverless com CI/CD integrado ao GitHub. Gerencia automaticamente certificados SSL/TLS.
 
-- **Cloudflare:** Protege contra DDoS, gerencia o DNS global e acelera a entrega dos assets usando CDN. Todos os acessos passam por lá primeiro.
-- **Azure Static Web Apps:** Hospedagem serverless com HTTPS nativo. Deployment automático em segundos via GitHub Actions. Suporta API backend sem custo extra.
-- **SSL/TLS:** Conexão criptografada de ponta a ponta (HTTPS obrigatório, HTTP redireciona).
+### Configurações de Segurança (`staticwebapp.config.json`)
+- **Rotas Protegidas:** Acesso negado (`404`) a arquivos de infraestrutura (`/node_modules`, `/src`, `package.json`, scripts Python).
+- **Headers de Segurança:**
+  - `Content-Security-Policy`: Restringe fontes de scripts/estilos.
+  - `X-Frame-Options`: Bloqueia clickjacking.
+  - `HSTS`: Força HTTPS por padrão.
+  - `Permissions-Policy`: Desativa recursos sensíveis (câmera, mic).
 
-### Configurações de Segurança (staticwebapp.config.json)
+### Otimizações Web Vitals
+- **Imagens:** Formato WebP com decoding assimétrico e lazy loading.
+- **Cache:** Estratégias de cache via Service Worker (Stale-While-Revalidate para assets, NetworkFirst para docs).
+- **Minificação:** HTML e JS comprimidos no build de produção.
+- **Fonts:** Carregamento otimizado de fontes.
 
-- **Rotas Privadas (404):** Arquivos sensíveis como `/node_modules/`, `/package.json`, `/src/`, e scripts de configuração retornam **404 Not Found** para evitar acesso ou scanning externo.
-- **CSP (Content Security Policy):** Bloqueia scripts de terceiros não-autorizados.
-- **X-Frame-Options:** Impede clickjacking.
-- **X-Content-Type-Options:** Previne MIME sniffing.
-- **Strict-Transport-Security:** Força HTTPS por 1 ano.
-- **Permissions-Policy:** Desabilita acesso a câmera, microfone, geolocalização e pagamentos.
+---
 
-### Funcionalidades
+## 🤖 Automação e CI/CD
 
-O site é uma PWA (Progressive Web App) com recursos modernos:
+O site se mantém atualizado automaticamente através de workflows do GitHub Actions, eliminando manutenção manual repetitiva.
 
-- **Instalável:** Usuários podem instalar como um app nativo (Android/iOS/Desktop). Configuração em `manifest.json`. Funciona offline graças ao Service Worker.
-- **Offline First:** O `sw.js` usa cache-first strategy para assets estáticos. Página principal é acessível sem internet.
-- **Animações:** Usa `IntersectionObserver` para revelar elementos conforme a página é rolada (lazy reveal effect). Carrossel de timeline com scroll smooth e suporte touch.
-- **SEO Otimizado:** Dados estruturados em JSON-LD para rich snippets no Google (Organization, Place, Review schema). Sitemap dinâmico. Meta tags otimizadas.
-- **Performance:** Imagens em WebP. Fontes otimizadas. Tailwind CSS v4 com tree-shaking.
+### 1. Atualização de Avaliações (`rating_update.yml`)
+- **Quando:** Semanalmente (Segunda-feira, 01:00 UTC).
+- **O que faz:** Consulta a Google Places API para atualizar a nota e número de avaliações da república.
+- **Script:** `scripts/rating_update.py`
 
-## Stack Tecnológico
+### 2. Metadados e Sitemap (`lastmod_update.yml`)
+- **Quando:** Diariamente (01:30 UTC).
+- **O que faz:** Atualiza a data de modificação no `sitemap.xml` e `humans.txt` para manter bots de busca informados sobre o frescor do conteúdo.
+- **Script:** `scripts/lastmod_update.py`
 
-| Camada       | O que usei                                      |
-| :----------- | :---------------------------------------------- |
-| **Frontend** | HTML5, Tailwind CSS v4.1.18, JavaScript vanilla |
-| **Estilo**   | Font Awesome, Google Fonts, WebP                |
-| **PWA**      | Service Worker (sw.js), Manifest.json           |
-| **Scripts**  | Python 3.9 (requests, regex, subprocess)        |
-| **Build**    | Node.js + Tailwind CLI                          |
-| **Deploy**   | Azure Static Web Apps + Cloudflare              |
-| **CI/CD**    | GitHub Actions                                  |
+### 3. Vagas e Comodidades (`update_vacancy_amenities.yml`)
+- **Quando:** Ao fazer push em `src/vagas.json` ou `src/amenities.json`.
+- **O que faz:** Regenera o HTML principal injetando as novas informações de vagas disponíveis e comodidades, garantindo que o site reflita o estado atual da casa.
+- **Script:** `scripts/vacancy_update.py`
 
-> **Para Agentes de IA:** Veja o arquivo `llms.txt` na raiz para um resumo técnico otimizado para LLMs.
+---
 
-## Automação (Script Python)
-
-O destaque aqui é o script `update_script.py`, que roda **diariamente via GitHub Actions** (às 03:00 UTC) e mantém o site sempre atualizado. Ele também é acionado manualmente através da aba "Actions" no GitHub ou automaticamente quando há push no `index.html`.
-
-**1. Sincroniza com Google Maps**
-
-- Puxa a nota e número de avaliações da Google Places API.
-- Atualiza automaticamente o JSON-LD (structured data) no HTML.
-
-**2. Atualiza o Copyright**
-
-- Mantém o ano do footer sempre atual (atualmente 2026).
-
-**3. Gerencia o Sitemap e Humans.txt**
-
-- Atualiza `<lastmod>` no sitemap e data no `humans.txt` apenas quando há mudanças reais no HTML, evitando commits desnecessários.
-
-**4. Deploy Automático Inteligente**
-
-- Se o script fizer alguma mudança, ele commita automaticamente na branch main, acionando o deploy do Azure.
-
-## Estrutura de Arquivos
+## 📂 Estrutura de Arquivos
 
 ```
 repsantograu/
-├── .github/workflows/          # Automação: deploy e SEO
-├── .well-known/                # Security.txt
-├── divulgao_rep/               # Material de divulgação (Private/404)
-├── fonts/                      # Fontes locais (Montserrat)
+├── .github/workflows/          # Workflows de CI/CD e automação
+├── .well-known/                # Arquivos de verificação e segurança
+├── dist/                       # (Gerado) Versão de produção otimizada
+├── fonts/                      # Fontes locais
 ├── icons/                      # Ícones e favicons
-├── imagens/                    # Fotos otimizadas em WebP
-├── node_modules/               # Dependências JS (Private/404)
-├── private/                    # Arquivos protegidos (Private/404)
-├── src/                        # Código fonte frontend (Private/404)
-│   ├── input.css
-│   └── script.js
+├── imagens/                    # Fotos otimizadas (WebP)
+├── scripts/                    # Scripts de build (JS) e automação (Python)
+├── src/                        # Código fonte não minificado
+│   ├── amenities.json          # Dados das comodidades
+│   ├── input.css               # Entrada do Tailwind
+│   ├── script.js               # Lógica principal
+│   └── vagas.json              # Status das vagas
 ├── 404.html                    # Página de erro customizada
 ├── fotos.html                  # Galeria de fotos
-├── humans.txt                  # Créditos (Human readable)
-├── index.html                  # Página principal (SPA)
-├── llms.txt                    # Resumo para IA (Machine readable)
-├── manifest.json               # Configuração da PWA
-├── package.json                # Dependências Node.js (Private/404)
-├── requirements.txt            # Dependências Python (Private/404)
-├── robots.txt                  # Diretrizes para bots
-├── security.txt                # Política de segurança
-├── sitemap.xml                 # Mapa do site
-├── staticwebapp.config.json    # Segurança e cache Azure (Private/404)
-├── styles.css                  # CSS compilado
-├── sw.js                       # Service Worker (PWA)
-├── update_script.py            # Script de automação SEO (Private/404)
-└── README.md                   # Este arquivo
+├── humans.txt                  # Créditos do time
+├── index.html                  # Página principal
+├── llms.txt                    # Contexto técnico para IAs
+├── manifest.json               # Configuração PWA
+├── offline.html                # Fallback para falta de conexão
+├── package.json                # Dependências e Scripts NPM
+├── robots.txt                  # Diretrizes para crawlers
+├── sitemap.xml                 # Mapa do site para SEO
+├── staticwebapp.config.json    # Configuração Azure SWA
+└── sw.js                       # Service Worker (Gerado no build)
 ```
 
-## Como Usar Localmente
+---
 
-### Instalação
+## 💻 Desenvolvimento Local
 
-1. Clone o repositório:
+### Pré-requisitos
+- **Node.js** (v18+)
+- **Python 3.9+** (opcional, para rodar scripts de automação)
+
+### 1. Instalação
 
 ```bash
+# Clone o repositório
 git clone https://github.com/victor-silverio/repsantograu.git
 cd repsantograu
+
+# Instale as dependências
+npm install
+pip install -r scripts/requirements.txt  # Opcional
 ```
 
-2. Instale as dependências:
+### 2. Rodando o Projeto
 
-```bash
-npm install                  # Node.js
-pip install -r requirements.txt # Python
-```
-
-### Rodando
-
-**Modo Desenvolvimento (Tailwind Watch):**
-
+**Modo Desenvolvimento (com Hot Reload do CSS):**
+Este comando observa mudanças no CSS e recompila automaticamente.
 ```bash
 npm run dev
 ```
+Abra `index.html` no seu navegador (ou use uma extensão como Live Server).
 
-Abra o `index.html` no navegador.
-
-**Build de Produção:**
-
+**Gerar Build de Produção:**
+Cria a pasta `dist/` com arquivos minificados, assets copiados e gera o Service Worker.
 ```bash
-npm run build
+npm run build:dist
 ```
 
-**Testar Script de Automação:**
-Configure as variáveis `GCP_API_KEY` e `PLACE_ID`, depois rode:
-
+**Verificar Versão de Cache:**
+Atualiza manualmente as query strings de versão (`?v=HASH`) nos arquivos HTML.
 ```bash
-python update_script.py
+npm run update-version
 ```
 
-## Contato
+---
+
+## 📞 Contato
 
 | Canal         | Link                                                                            |
 | :------------ | :------------------------------------------------------------------------------ |
@@ -155,4 +152,4 @@ python update_script.py
 
 ---
 
-© 2026 República Santo Grau. Desenvolvido por [Victor Augusto](https://github.com/victor-silverio).
+© 2026 República Santo Grau. Desenvolvido por **Victor Augusto**.
