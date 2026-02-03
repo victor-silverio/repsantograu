@@ -12,14 +12,14 @@ Repositório oficial do site da **República Santo Grau** (Itajubá, MG). Uma Si
 
 Frontend construído sem frameworks pesados, priorizando velocidade e controle total.
 
-| Camada              | Tecnologias                                                                 |
-| :------------------ | :-------------------------------------------------------------------------- |
-| **Frontend**        | HTML5 Semântico, **Tailwind CSS v4.1**, JavaScript (ES6+)                   |
-| **Estilização**     | Tailwind CLI, Font Awesome, Google Fonts (Montserrat)                       |
-| **PWA**             | Service Worker (Workbox), Manifest.json, Offline Fallback                   |
-| **Build System**    | Node.js, Terser (Minificação JS), HTML-Minifier-Terser, Workbox Build       |
-| **Automação (SEO)** | Python 3.9 (GitHub Actions para updates de ratings, vagas e sitemap)        |
-| **Infraestrutura**  | **Azure Static Web Apps** (Hospedagem), **Cloudflare** (DNS, CDN, Segurança)|
+| Camada              | Tecnologias                                                                  |
+| :------------------ | :--------------------------------------------------------------------------- |
+| **Frontend**        | HTML5 Semântico, **Tailwind CSS v4.1**, JavaScript (ES6+)                    |
+| **Estilização**     | Tailwind CLI, Font Awesome, Google Fonts (Montserrat)                        |
+| **PWA**             | Service Worker (Workbox), Manifest.json, Offline Fallback                    |
+| **Build System**    | Node.js, Terser (Minificação JS), HTML-Minifier-Terser, Workbox Build        |
+| **Automação (SEO)** | Python 3.9 (GitHub Actions para updates de ratings, vagas e sitemap)         |
+| **Infraestrutura**  | **Azure Static Web Apps** (Hospedagem), **Cloudflare** (DNS, CDN, Segurança) |
 
 ---
 
@@ -28,10 +28,12 @@ Frontend construído sem frameworks pesados, priorizando velocidade e controle t
 A arquitetura foi desenhada para ser segura e extremamente rápida.
 
 ### Infraestrutura
+
 - **Cloudflare:** Atua como proxy reverso, gerenciando DNS, protegendo contra DDoS e servindo assets via CDN global.
 - **Azure Static Web Apps:** Hospedagem serverless com CI/CD integrado ao GitHub. Gerencia automaticamente certificados SSL/TLS.
 
 ### Configurações de Segurança (`staticwebapp.config.json`)
+
 - **Rotas Protegidas:** Acesso negado (`404`) a arquivos de infraestrutura (`/node_modules`, `/src`, `package.json`, scripts Python).
 - **Headers de Segurança:**
   - `Content-Security-Policy`: Restringe fontes de scripts/estilos.
@@ -40,6 +42,7 @@ A arquitetura foi desenhada para ser segura e extremamente rápida.
   - `Permissions-Policy`: Desativa recursos sensíveis (câmera, mic).
 
 ### Otimizações Web Vitals
+
 - **Imagens:** Formato WebP com decoding assimétrico e lazy loading.
 - **Cache:** Estratégias de cache via Service Worker (Stale-While-Revalidate para assets, NetworkFirst para docs).
 - **Minificação:** HTML e JS comprimidos no build de produção.
@@ -52,16 +55,19 @@ A arquitetura foi desenhada para ser segura e extremamente rápida.
 O site se mantém atualizado automaticamente através de workflows do GitHub Actions, eliminando manutenção manual repetitiva.
 
 ### 1. Atualização de Avaliações (`rating_update.yml`)
+
 - **Quando:** Semanalmente (Segunda-feira, 01:00 UTC).
 - **O que faz:** Consulta a Google Places API para atualizar a nota e número de avaliações da república.
 - **Script:** `scripts/rating_update.py`
 
 ### 2. Metadados e Sitemap (`lastmod_update.yml`)
+
 - **Quando:** Diariamente (01:30 UTC).
 - **O que faz:** Atualiza a data de modificação no `sitemap.xml` e `humans.txt` para manter bots de busca informados sobre o frescor do conteúdo.
 - **Script:** `scripts/lastmod_update.py`
 
 ### 3. Vagas e Comodidades (`update_vacancy_amenities.yml`)
+
 - **Quando:** Ao fazer push em `src/vagas.json` ou `src/amenities.json`.
 - **O que faz:** Regenera o HTML principal injetando as novas informações de vagas disponíveis e comodidades, garantindo que o site reflita o estado atual da casa.
 - **Script:** `scripts/vacancy_update.py`
@@ -103,6 +109,7 @@ repsantograu/
 ## 💻 Desenvolvimento Local
 
 ### Pré-requisitos
+
 - **Node.js** (v18+)
 - **Python 3.9+** (opcional, para rodar scripts de automação)
 
@@ -122,19 +129,23 @@ pip install -r scripts/requirements.txt  # Opcional
 
 **Modo Desenvolvimento (com Hot Reload do CSS):**
 Este comando observa mudanças no CSS e recompila automaticamente.
+
 ```bash
 npm run dev
 ```
+
 Abra `index.html` no seu navegador (ou use uma extensão como Live Server).
 
 **Gerar Build de Produção:**
 Cria a pasta `dist/` com arquivos minificados, assets copiados e gera o Service Worker.
+
 ```bash
 npm run build:dist
 ```
 
 **Verificar Versão de Cache:**
 Atualiza manualmente as query strings de versão (`?v=HASH`) nos arquivos HTML.
+
 ```bash
 npm run update-version
 ```
