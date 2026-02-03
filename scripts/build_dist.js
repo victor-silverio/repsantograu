@@ -127,7 +127,7 @@ minifyRecursive(distDir)
     console.log('Minification complete. Generating Service Worker...');
     return generateSW({
       globDirectory: distDir,
-      globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml,png,webp}'],
+      globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml}'],
       swDest: path.join(distDir, 'sw.js'),
       navigateFallback: '/offline.html',
       sourcemap: false,
