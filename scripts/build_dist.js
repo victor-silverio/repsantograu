@@ -16,7 +16,7 @@ const rootFiles = [
   'index.html',
   'offline.html',
   'fotos.html',
-  'fotos.html',
+
   '404.html',
   'manifest.json',
   'robots.txt',
@@ -129,7 +129,7 @@ minifyRecursive(distDir)
       globDirectory: distDir,
       globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml}'],
       swDest: path.join(distDir, 'sw.js'),
-      navigateFallback: '/offline.html',
+      navigateFallback: '/offline/',
       sourcemap: false,
       mode: 'production',
       cleanupOutdatedCaches: true,

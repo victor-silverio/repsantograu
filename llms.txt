@@ -64,8 +64,8 @@ Este site é uma PWA (Progressive Web App) moderna desenvolvida pelo morador Vic
 - `/fonts/`: Fontes locais (Montserrat).
 - `/private/`: Arquivos protegidos.
 - `/divulgacao_rep/`: Material de divulgação.
-- `index.html`: Página principal.
-- `fotos.html`: Galeria de fotos.
+- `/home/` (index.html): Página principal (Rota: /home/).
+- `/fotos/` (fotos.html): Galeria de fotos (Rota: /fotos/).
 - `styles.css`: CSS gerado pelo Tailwind.
 - `sw.js`: Service Worker.
 - `update_script.py`: Script de automação.
