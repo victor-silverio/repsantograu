@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const { generateSW } = require('workbox-build');
+const { minify: minifyHtml } = require('html-minifier-terser');
+const { minify: minifyJs } = require('terser');
 
 const distDir = path.join(__dirname, '..', 'dist');
 const rootDir = path.join(__dirname, '..');
@@ -73,46 +75,93 @@ if (fs.existsSync(scriptMinPath)) {
   );
 }
 
-console.log('Copy complete. Generating Service Worker...');
+async function minifyRecursive(dir) {
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    const filePath = path.join(dir, file);
+    const stat = fs.statSync(filePath);
+    if (stat.isDirectory()) {
+      await minifyRecursive(filePath);
+    } else {
+      if (file.endsWith('.html')) {
+        try {
+          const content = fs.readFileSync(filePath, 'utf8');
+          const minified = await minifyHtml(content, {
+            collapseWhitespace: true,
+            removeComments: true,
+            removeAttributeQuotes: true,
+            minifyCSS: true,
+            minifyJS: true,
+          });
+          fs.writeFileSync(filePath, minified);
+          console.log(`Minified HTML: ${file}`);
+        } catch (err) {
+          console.error(`Error minifying HTML ${file}:`, err);
+        }
+      } else if (
+        file.endsWith('.js') &&
+        !file.endsWith('.min.js') &&
+        file !== 'sw.js'
+      ) {
+        try {
+          const content = fs.readFileSync(filePath, 'utf8');
+          const minified = await minifyJs(content, { toplevel: true });
+          if (minified.code) {
+            fs.writeFileSync(filePath, minified.code);
+            console.log(`Minified JS: ${file}`);
+          }
+        } catch (err) {
+          console.error(`Error minifying JS ${file}:`, err);
+        }
+      }
+    }
+  }
+}
 
-generateSW({
-  globDirectory: distDir,
-  globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml}'],
-  swDest: path.join(distDir, 'sw.js'),
-  sourcemap: false,
-  mode: 'production',
-  cleanupOutdatedCaches: true,
-  clientsClaim: true,
-  skipWaiting: true,
-  runtimeCaching: [
-    {
-      urlPattern: ({ request }) => request.destination === 'document',
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'documents',
-      },
-    },
-    {
-      urlPattern: ({ request }) =>
-        ['style', 'script', 'worker', 'font'].includes(request.destination),
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'assets',
-      },
-    },
-    {
-      urlPattern: ({ request }) => request.destination === 'image',
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'images',
-        expiration: {
-          maxEntries: 50,
-          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+console.log('Copy complete. Starting minification...');
+
+minifyRecursive(distDir)
+  .then(() => {
+    console.log('Minification complete. Generating Service Worker...');
+    return generateSW({
+      globDirectory: distDir,
+      globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml}'],
+      swDest: path.join(distDir, 'sw.js'),
+      sourcemap: false,
+      mode: 'production',
+      cleanupOutdatedCaches: true,
+      clientsClaim: true,
+      skipWaiting: true,
+      runtimeCaching: [
+        {
+          urlPattern: ({ request }) => request.destination === 'document',
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'documents',
+          },
         },
-      },
-    },
-  ],
-})
+        {
+          urlPattern: ({ request }) =>
+            ['style', 'script', 'worker', 'font'].includes(request.destination),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'assets',
+          },
+        },
+        {
+          urlPattern: ({ request }) => request.destination === 'image',
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'images',
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+            },
+          },
+        },
+      ],
+    });
+  })
   .then(({ count, size }) => {
     console.log(
       `Generated sw.js, which will precache ${count} files, totaling ${size} bytes.`
@@ -120,6 +169,6 @@ generateSW({
     console.log('Build complete! Output in /dist');
   })
   .catch((err) => {
-    console.error(`Unable to generate sw.js: ${err}`);
+    console.error(`Build failed: ${err}`);
     process.exit(1);
   });
