@@ -131,6 +131,22 @@ document.addEventListener('DOMContentLoaded', () => {
         slider.scrollLeft = scrollLeft - walk;
       });
       let animationId;
+      slider.addEventListener(
+        'touchstart',
+        (e) => {
+          isDown = true;
+          slider.classList.add('cursor-grabbing');
+          slider.classList.remove(
+            'cursor-grab',
+            'snap-x',
+            'snap-mandatory',
+            'scroll-smooth'
+          );
+          startX = e.touches[0].pageX - slider.offsetLeft;
+          scrollLeft = slider.scrollLeft;
+        },
+        { passive: true }
+      );
       slider.addEventListener('touchend', () => {
         isDown = false;
         slider.classList.remove('cursor-grabbing');
