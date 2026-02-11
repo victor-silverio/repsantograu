@@ -67,6 +67,18 @@ if (!fs.existsSync(srcDir)) {
   fs.mkdirSync(srcDir);
 }
 
+// Copy JSON data files to src/
+const dataFiles = ['vagas.json', 'amenities.json'];
+dataFiles.forEach((file) => {
+  const srcPath = path.join(rootDir, 'src', file);
+  if (fs.existsSync(srcPath)) {
+    fs.copyFileSync(srcPath, path.join(srcDir, file));
+    console.log(`Copied src/${file}`);
+  } else {
+    console.warn(`Warning: src/${file} not found`);
+  }
+});
+
 const scriptMinPath = path.join(rootDir, 'src', 'script.min.js');
 if (fs.existsSync(scriptMinPath)) {
   fs.copyFileSync(scriptMinPath, path.join(srcDir, 'script.min.js'));
@@ -115,6 +127,15 @@ async function minifyRecursive(dir) {
         } catch (err) {
           console.error(`Error minifying JS ${file}:`, err);
         }
+      } else if (file.endsWith('.json')) {
+        try {
+          const content = fs.readFileSync(filePath, 'utf8');
+          const minified = JSON.stringify(JSON.parse(content));
+          fs.writeFileSync(filePath, minified);
+          console.log(`Minified JSON: ${file}`);
+        } catch (err) {
+          console.error(`Error minifying JSON ${file}:`, err);
+        }
       }
     }
   }
@@ -127,7 +148,7 @@ minifyRecursive(distDir)
     console.log('Minification complete. Generating Service Worker...');
     return generateSW({
       globDirectory: distDir,
-      globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml}'],
+      globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml´,json}'],
       swDest: path.join(distDir, 'sw.js'),
       navigateFallback: '/offline.html',
       sourcemap: false,

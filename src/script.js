@@ -1,4 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const updateVacancy = async () => {
+    try {
+      const response = await fetch('src/vagas.json');
+      if (!response.ok) throw new Error('Falha ao carregar vagas.json');
+      const data = await response.json();
+
+      const { year, total_slots, occupied_slots, room_type } = data;
+      const available = total_slots - occupied_slots;
+
+      const badge = document.getElementById('vacancy-badge');
+      if (badge) {
+        if (available > 0) {
+          badge.className =
+            'animate-fadeIn mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md';
+          badge.innerHTML = `
+              <span class="relative flex h-3 w-3">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+                <span class="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
+              </span>
+              <span class="font-sans text-sm font-medium tracking-wide text-white md:text-base">${available} Vagas Disponíveis para ${year}</span>
+            `;
+        } else {
+          badge.className =
+            'animate-fadeIn mb-6 inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/20 px-4 py-2 backdrop-blur-md';
+          badge.innerHTML = `
+              <span class="relative flex h-3 w-3">
+                <span class="relative inline-flex h-3 w-3 rounded-full bg-red-500"></span>
+              </span>
+              <span class="font-sans text-sm font-medium tracking-wide text-white md:text-base">Vagas Esgotadas para ${year}</span>
+            `;
+        }
+      }
+
+      const walk = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+      );
+      let node;
+      while ((node = walk.nextNode())) {
+        if (node.nodeValue.includes('Atualmente as vagas são para')) {
+          const regex = /Atualmente as vagas são para.*?\./;
+          node.nodeValue = node.nodeValue.replace(
+            regex,
+            `Atualmente as vagas são para ${room_type}.`
+          );
+        }
+      }
+    } catch (error) {
+      console.error('Erro ao atualizar vagas:', error);
+    }
+  };
+  updateVacancy();
+
   const mobileMenuButton = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   if (mobileMenuButton && mobileMenu) {
@@ -220,13 +275,11 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error(
             'Falha crítica no registro do Service Worker após múltiplas tentativas. O site pode não funcionar offline.'
           );
-          // Optional: Add user notification here if critical
         }
       }
     };
 
     window.addEventListener('load', () => {
-      // Delay SW registration to prioritize initial page load (Facebook pixels, etc.)
       const register = () => {
         setTimeout(() => {
           registerSW();
