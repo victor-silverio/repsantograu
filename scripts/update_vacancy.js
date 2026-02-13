@@ -153,15 +153,65 @@ try {
   }
 
   // 3. Update Amenities
-  const amenitiesContainerRegex =
-    /(<div[^>]*id="amenities-container"[^>]*>)([\s\S]*?)(<\/div>)/;
-  if (amenitiesContainerRegex.test(indexHtml) && amenitiesData.length > 0) {
-    const newAmenitiesContent = generateAmenitiesHtml(amenitiesData);
-    indexHtml = indexHtml.replace(
-      amenitiesContainerRegex,
-      `$1\n${newAmenitiesContent}\n$3`
-    );
-    console.log('Amenities updated.');
+  const startTagRegex = /<div[^>]*id="amenities-container"[^>]*>/i;
+  const match = indexHtml.match(startTagRegex);
+
+  if (match && amenitiesData.length > 0) {
+    const startTag = match[0];
+    const startIndex = match.index;
+    const contentStartIndex = startIndex + startTag.length;
+
+    let depth = 0;
+    let traverseIndex = contentStartIndex;
+    let closingIndex = -1;
+    let foundClosing = false;
+
+    // Helper to finding tag positions
+    while (traverseIndex < indexHtml.length) {
+      const remaining = indexHtml.substring(traverseIndex);
+      // Find next <div or </div
+      const nextDiv = remaining.search(/<\/?div/i);
+
+      if (nextDiv === -1) break;
+
+      const tagStart = traverseIndex + nextDiv;
+
+      // Update traverseIndex to check this tag
+      if (indexHtml.startsWith('<!--', tagStart)) {
+        // This is a comment check, simplified, assuming no dive inside comments for now or low risk
+        const commentEnd = indexHtml.indexOf('-->', tagStart);
+        traverseIndex = commentEnd === -1 ? indexHtml.length : commentEnd + 3;
+        continue;
+      }
+
+      if (indexHtml.substr(tagStart, 4).toLowerCase() === '<div') {
+        depth++;
+        traverseIndex = tagStart + 4;
+      } else if (indexHtml.substr(tagStart, 5).toLowerCase() === '</div') {
+        if (depth === 0) {
+          closingIndex = tagStart;
+          foundClosing = true;
+          break;
+        }
+        depth--;
+        traverseIndex = tagStart + 5;
+      } else {
+        traverseIndex = tagStart + 1;
+      }
+    }
+
+    if (foundClosing) {
+      const newAmenitiesContent = generateAmenitiesHtml(amenitiesData);
+      const preContent = indexHtml.substring(0, contentStartIndex);
+      const postContent = indexHtml.substring(closingIndex);
+
+      indexHtml = preContent + '\n' + newAmenitiesContent + '\n' + postContent;
+      console.log('Amenities updated correctly using tag counting.');
+    } else {
+      console.warn(
+        'Warning: Could not find closing div for #amenities-container'
+      );
+    }
   } else {
     console.warn(
       'Warning: Could not find #amenities-container or no amenities data.'
@@ -173,7 +223,9 @@ try {
 
   // Write back to index.html
   fs.writeFileSync(indexPath, indexHtml, 'utf8');
-  console.log('Successfully updated index.html with vacancy and amenities info.');
+  console.log(
+    'Successfully updated index.html with vacancy and amenities info.'
+  );
 } catch (error) {
   console.error('Error updating info:', error);
   process.exit(1);
