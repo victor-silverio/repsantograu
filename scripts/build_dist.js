@@ -67,18 +67,6 @@ if (!fs.existsSync(srcDir)) {
   fs.mkdirSync(srcDir);
 }
 
-// Copy JSON data files to src/
-const dataFiles = ['vagas.json', 'amenities.json'];
-dataFiles.forEach((file) => {
-  const srcPath = path.join(rootDir, 'src', file);
-  if (fs.existsSync(srcPath)) {
-    fs.copyFileSync(srcPath, path.join(srcDir, file));
-    console.log(`Copied src/${file}`);
-  } else {
-    console.warn(`Warning: src/${file} not found`);
-  }
-});
-
 const scriptMinPath = path.join(rootDir, 'src', 'script.min.js');
 if (fs.existsSync(scriptMinPath)) {
   fs.copyFileSync(scriptMinPath, path.join(srcDir, 'script.min.js'));

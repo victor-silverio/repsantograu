@@ -13,7 +13,6 @@ on:
       - 'package.json'
       - 'README.md'
       - 'LICENSE'
-      - 'src/**/*.json'
       - 'src/**/*.map'
       - 'divulgacao_rep/**'
 
@@ -30,7 +29,6 @@ on:
       - 'package.json'
       - 'README.md'
       - 'LICENSE'
-      - 'src/**/*.json'
       - 'src/**/*.map'
       - 'divulgacao_rep/**'
 
