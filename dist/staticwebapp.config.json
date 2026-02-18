@@ -1,1 +1,96 @@
-{"routes":[{"route":"/index.html","redirect":"/","statusCode":301},{"route":"/sw.js","headers":{"Cache-Control":"no-cache, no-store, must-revalidate","Content-Type":"application/javascript"}},{"route":"/index.html","headers":{"Cache-Control":"no-cache"}},{"route":"/fotos.html","headers":{"Cache-Control":"no-cache"}},{"route":"/.well-known/*","headers":{"Cache-Control":"public, max-age=31536000, must-revalidate","Content-Type":"text/plain"}},{"route":"/icons/*","headers":{"Cache-Control":"public, max-age=31536000, must-revalidate"}},{"route":"/fonts/*","headers":{"Cache-Control":"public, max-age=31536000, must-revalidate"}},{"route":"/*.{png,jpg,gif,webp,ico,xml,txt}","headers":{"Cache-Control":"public, max-age=31536000, must-revalidate"}},{"route":"/styles.css","headers":{"Cache-Control":"no-cache, must-revalidate"}},{"route":"/src/*","headers":{"Cache-Control":"no-cache, must-revalidate"}}],"globalHeaders":{"content-security-policy":"default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; connect-src 'self' https://cloudflareinsights.com https://www.repsantograu.online; style-src 'self'; font-src 'self'; img-src 'self' data: https://www.repsantograu.online; frame-ancestors 'self' https://facebook.com https://www.facebook.com; object-src 'none';","X-Content-Type-Options":"nosniff","Referrer-Policy":"strict-origin-when-cross-origin","Permissions-Policy":"camera=(), microphone=(), geolocation=(), payment=(), usb=()","Strict-Transport-Security":"max-age=31536000; includeSubDomains"},"navigationFallback":{"rewrite":"/index.html","exclude":["/imagens/*","/icons/*","/fonts/*","/styles.css","/src/*","/sw.js","/manifest.json","/*.txt","/*.xml"]},"responseOverrides":{"404":{"rewrite":"/404.html","statusCode":404}},"mimeTypes":{".webp":"image/webp",".json":"application/json"}}
+{
+  "routes": [
+    {
+      "route": "/index.html",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/sw.js",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Content-Type": "application/javascript"
+      }
+    },
+    {
+      "route": "/",
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
+    },
+    {
+      "route": "/fotos.html",
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
+    },
+    {
+      "route": "/.well-known/*",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, must-revalidate",
+        "Content-Type": "text/plain"
+      }
+    },
+    {
+      "route": "/icons/*",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, must-revalidate"
+      }
+    },
+    {
+      "route": "/fonts/*",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, must-revalidate"
+      }
+    },
+    {
+      "route": "/*.{png,jpg,gif,webp,ico,xml,txt}",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, must-revalidate"
+      }
+    },
+    {
+      "route": "/styles.css",
+      "headers": {
+        "Cache-Control": "no-cache, must-revalidate"
+      }
+    },
+    {
+      "route": "/src/*",
+      "headers": {
+        "Cache-Control": "no-cache, must-revalidate"
+      }
+    }
+  ],
+  "globalHeaders": {
+    "content-security-policy": "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; connect-src 'self' https://cloudflareinsights.com https://www.repsantograu.online; style-src 'self'; font-src 'self'; img-src 'self' data: https://www.repsantograu.online; frame-ancestors 'self' https://facebook.com https://www.facebook.com; object-src 'none';",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/imagens/*",
+      "/icons/*",
+      "/fonts/*",
+      "/styles.css",
+      "/src/*",
+      "/sw.js",
+      "/manifest.json",
+      "/*.txt",
+      "/*.xml"
+    ]
+  },
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html",
+      "statusCode": 404
+    }
+  },
+  "mimeTypes": {
+    ".webp": "image/webp",
+    ".json": "application/json"
+  }
+}

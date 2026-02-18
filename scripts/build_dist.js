@@ -8,7 +8,18 @@ const distDir = path.join(__dirname, '..', 'dist');
 const rootDir = path.join(__dirname, '..');
 
 if (fs.existsSync(distDir)) {
-  fs.rmSync(distDir, { recursive: true, force: true });
+  try {
+    fs.rmSync(distDir, {
+      recursive: true,
+      force: true,
+      maxRetries: 5,
+      retryDelay: 1000,
+    });
+  } catch (err) {
+    console.warn(
+      `Warning: Could not remove dist directory. It might be in use. Error: ${err.message}`
+    );
+  }
 }
 fs.mkdirSync(distDir);
 
@@ -115,7 +126,10 @@ async function minifyRecursive(dir) {
         } catch (err) {
           console.error(`Error minifying JS ${file}:`, err);
         }
-      } else if (file.endsWith('.json')) {
+      } else if (
+        file.endsWith('.json') &&
+        file !== 'staticwebapp.config.json'
+      ) {
         try {
           const content = fs.readFileSync(filePath, 'utf8');
           const minified = JSON.stringify(JSON.parse(content));
