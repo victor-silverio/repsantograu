@@ -152,7 +152,7 @@ minifyRecursive(distDir)
       globDirectory: distDir,
       globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml´,json}'],
       swDest: path.join(distDir, 'sw.js'),
-      navigateFallback: '/offline.html',
+      navigateFallback: '/offline/',
       sourcemap: false,
       mode: 'production',
       cleanupOutdatedCaches: true,

@@ -6,6 +6,33 @@
       "statusCode": 301
     },
     {
+      "route": "/fotos.html",
+      "redirect": "/fotos/",
+      "statusCode": 301
+    },
+    {
+      "route": "/offline.html",
+      "redirect": "/offline/",
+      "statusCode": 301
+    },
+    {
+      "route": "/404.html",
+      "redirect": "/404/",
+      "statusCode": 301
+    },
+    {
+      "route": "/fotos/",
+      "rewrite": "/fotos.html"
+    },
+    {
+      "route": "/offline/",
+      "rewrite": "/offline.html"
+    },
+    {
+      "route": "/404/",
+      "rewrite": "/404.html"
+    },
+    {
       "route": "/sw.js",
       "headers": {
         "Cache-Control": "no-cache, no-store, must-revalidate",
@@ -19,7 +46,7 @@
       }
     },
     {
-      "route": "/fotos.html",
+      "route": "/fotos/",
       "headers": {
         "Cache-Control": "no-cache"
       }
