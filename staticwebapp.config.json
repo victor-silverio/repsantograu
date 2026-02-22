@@ -22,7 +22,10 @@
     },
     {
       "route": "/fotos/",
-      "rewrite": "/fotos.html"
+      "rewrite": "/fotos.html",
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
     },
     {
       "route": "/offline/",
@@ -41,12 +44,6 @@
     },
     {
       "route": "/",
-      "headers": {
-        "Cache-Control": "no-cache"
-      }
-    },
-    {
-      "route": "/fotos/",
       "headers": {
         "Cache-Control": "no-cache"
       }
