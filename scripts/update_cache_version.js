@@ -30,7 +30,7 @@ filesToUpdate.forEach((htmlFile) => {
   let updated = false;
 
   const regex =
-    /((?:href|src)=["'])([^"']+\.[a-z0-9]+)(?:([?&]v=)([^"']+))?(["'])/gi;
+    /((?:href|src|data-full)=["'])([^"']+\.[a-z0-9]+)(?:([?&]v=)([^"']+))?(["'])/gi;
 
   content = content.replace(
     regex,
