@@ -30,11 +30,18 @@ filesToUpdate.forEach((htmlFile) => {
   let updated = false;
 
   const regex =
-    /((?:href|src)=["'])([^"']+\.[a-z0-9]+)([?&]v=)([^"']+)(["'])/gi;
+    /((?:href|src)=["'])([^"']+\.[a-z0-9]+)(?:([?&]v=)([^"']+))?(["'])/gi;
 
   content = content.replace(
     regex,
     (match, prefix, filePathStr, queryPrefix, oldVersion, suffix) => {
+      if (
+        filePathStr.startsWith('http://') ||
+        filePathStr.startsWith('https://') ||
+        filePathStr.startsWith('//')
+      ) {
+        return match;
+      }
       let fsPath;
       if (filePathStr.startsWith('/')) {
         fsPath = path.join(rootDir, filePathStr.substring(1));
@@ -48,10 +55,11 @@ filesToUpdate.forEach((htmlFile) => {
 
       if (newHash && newHash !== oldVersion) {
         console.log(
-          `[${htmlFile}] Updating ${filePathStr}: ${oldVersion} -> ${newHash}`
+          `[${htmlFile}] Updating ${filePathStr}: ${oldVersion || 'none'} -> ${newHash}`
         );
         updated = true;
-        return `${prefix}${filePathStr}${queryPrefix}${newHash}${suffix}`;
+        const qp = queryPrefix || '?v=';
+        return `${prefix}${filePathStr}${qp}${newHash}${suffix}`;
       } else if (newHash) {
         return match;
       } else {
