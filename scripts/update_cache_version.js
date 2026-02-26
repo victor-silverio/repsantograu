@@ -35,20 +35,22 @@ filesToUpdate.forEach((htmlFile) => {
   content = content.replace(
     regex,
     (match, prefix, filePathStr, queryPrefix, oldVersion, suffix) => {
+      let cleanPath = filePathStr.trim();
       if (
-        filePathStr.startsWith('http://') ||
-        filePathStr.startsWith('https://') ||
-        filePathStr.startsWith('//')
+        cleanPath.startsWith('http://') ||
+        cleanPath.startsWith('https://') ||
+        cleanPath.startsWith('//') ||
+        cleanPath.startsWith('data:')
       ) {
         return match;
       }
       let fsPath;
-      if (filePathStr.startsWith('/')) {
-        fsPath = path.join(rootDir, filePathStr.substring(1));
-      } else if (filePathStr.startsWith('./')) {
-        fsPath = path.join(rootDir, filePathStr.substring(2));
+      if (cleanPath.startsWith('/')) {
+        fsPath = path.join(rootDir, cleanPath.substring(1));
+      } else if (cleanPath.startsWith('./')) {
+        fsPath = path.join(rootDir, cleanPath.substring(2));
       } else {
-        fsPath = path.join(rootDir, filePathStr);
+        fsPath = path.join(rootDir, cleanPath);
       }
 
       const newHash = getFileHash(fsPath);
