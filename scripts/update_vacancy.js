@@ -107,15 +107,21 @@ try {
 
   if (available > 0) {
     const usageRatio = available / total_slots;
+    const isVeryLowAvailability = usageRatio <= 0.25;
     const isLowAvailability = usageRatio <= 0.5;
 
     // Green badge (default)
     let badgeColorClass = 'bg-green-500';
     let pingColorClass = 'bg-green-400';
-    let containerBorderClass = 'border-white/20 bg-white/10'; // Default frostrlass for green
+    let containerBorderClass = 'border-white/20 bg-white/10';
 
-    // Orange badge (<= 50%)
-    if (isLowAvailability) {
+    if (isVeryLowAvailability) {
+      // Red badge (<= 25%)
+      badgeColorClass = 'bg-red-500';
+      pingColorClass = 'bg-red-400';
+      containerBorderClass = 'border-red-500/30 bg-red-500/20';
+    } else if (isLowAvailability) {
+      // Orange badge (<= 50%)
       badgeColorClass = 'bg-orange-500';
       pingColorClass = 'bg-orange-400';
       containerBorderClass = 'border-orange-500/30 bg-orange-500/20';
@@ -138,12 +144,13 @@ try {
             >
           </div>`;
   } else {
+    // Gray/Zinc badge (0%)
     newBadgeHtml = `<div
-            class="animate-fadeIn mb-6 inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/20 px-4 py-2 backdrop-blur-md"
+            class="animate-fadeIn mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-500/30 bg-zinc-500/20 px-4 py-2 backdrop-blur-md"
             id="vacancy-badge"
           >
             <span class="relative flex h-3 w-3">
-              <span class="relative inline-flex h-3 w-3 rounded-full bg-red-500"></span>
+              <span class="relative inline-flex h-3 w-3 rounded-full bg-zinc-500"></span>
             </span>
             <span class="font-sans text-sm font-medium tracking-wide text-white md:text-base">Vagas Esgotadas para ${year}</span>
           </div>`;
