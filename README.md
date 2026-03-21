@@ -17,8 +17,8 @@ Frontend construído sem frameworks pesados, priorizando velocidade e controle t
 | **Frontend**        | HTML5 Semântico, **Tailwind CSS v4.1**, JavaScript (ES6+)                    |
 | **Estilização**     | Tailwind CLI, Font Awesome, Google Fonts (Montserrat)                        |
 | **PWA**             | Service Worker (Workbox), Manifest.json, Offline Fallback                    |
-| **Build System**    | Node.js, Terser (Minificação JS), HTML-Minifier-Terser, Workbox Build        |
-| **Automação (SEO)** | Python 3.9 (GitHub Actions para updates de ratings, vagas e sitemap)         |
+| **Build System**    | Node.js, NPM Scripts, Terser, HTML-Minifier-Terser, Workbox Build            |
+| **Automação (SEO)** | Python 3.9 (GitHub Actions para updates de ratings e sitemap)                |
 | **Infraestrutura**  | **Azure Static Web Apps** (Hospedagem), **Cloudflare** (DNS, CDN, Segurança) |
 
 ---
@@ -66,11 +66,11 @@ O site se mantém atualizado automaticamente através de workflows do GitHub Act
 - **O que faz:** Atualiza a data de modificação no `sitemap.xml` e `humans.txt` para manter bots de busca informados sobre o frescor do conteúdo.
 - **Script:** `scripts/lastmod_update.py`
 
-### 3. Vagas e Comodidades (`update_vacancy_amenities.yml`)
+### 3. Vagas e Comodidades (Build Step)
 
-- **Quando:** Ao fazer push em `src/vagas.json` ou `src/amenities.json`.
-- **O que faz:** Regenera o HTML principal injetando as novas informações de vagas disponíveis e comodidades, garantindo que o site reflita o estado atual da casa.
-- **Script:** `scripts/vacancy_update.py`
+- **Quando:** Durante o processo de build (`npm run build`).
+- **O que faz:** Função Node.js que regenera o HTML principal atualizando as informações de vagas disponíveis, comodidades e metadados SEO (JSON-LD), com base no conteúdo de `src/vagas.json` e `src/amenities.json`.
+- **Script:** `scripts/update_vacancy.js`
 
 ---
 
