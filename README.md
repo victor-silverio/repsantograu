@@ -58,19 +58,19 @@ O site se mantém atualizado automaticamente através de workflows do GitHub Act
 
 - **Quando:** Semanalmente (Segunda-feira, 01:00 UTC).
 - **O que faz:** Consulta a Google Places API para atualizar a nota e número de avaliações da república.
-- **Script:** `scripts/rating_update.py`
+- **Script:** `scripts/automation/rating_update.py`
 
 ### 2. Metadados e Sitemap (`lastmod_update.yml`)
 
 - **Quando:** Diariamente (01:30 UTC).
 - **O que faz:** Atualiza a data de modificação no `sitemap.xml` e `humans.txt` para manter bots de busca informados sobre o frescor do conteúdo.
-- **Script:** `scripts/lastmod_update.py`
+- **Script:** `scripts/automation/lastmod_update.py`
 
 ### 3. Vagas e Comodidades (Build Step)
 
 - **Quando:** Durante o processo de build (`npm run build`).
-- **O que faz:** Função Node.js que regenera o HTML principal atualizando as informações de vagas disponíveis, comodidades e metadados SEO (JSON-LD), com base no conteúdo de `src/vagas.json` e `src/amenities.json`.
-- **Script:** `scripts/update_vacancy.js`
+- **O que faz:** Função Node.js que regenera o HTML principal atualizando as informações de vagas disponíveis, comodidades e metadados SEO (JSON-LD), com base no conteúdo de `src/data/vagas.json` e `src/data/amenities.json`.
+- **Script:** `scripts/build/update_vacancy.js`
 
 ---
 
@@ -79,29 +79,26 @@ O site se mantém atualizado automaticamente através de workflows do GitHub Act
 ```
 repsantograu/
 ├── .github/workflows/          # Workflows de CI/CD e automação
-├── .well-known/                # Arquivos de verificação e segurança
+├── docs/                       # Documentação interna e materiais extras
+├── public/                     # Arquivos estáticos (Copiados direto pro dist)
+│   ├── fonts/                  # Fontes locais
+│   ├── icons/                  # Ícones e favicons
+│   ├── imagens/                # Fotos otimizadas (WebP)
+│   ├── manifest.json           # Configuração PWA
+│   ├── robots.txt              # Diretrizes para crawlers
+│   ├── sitemap.xml             # Mapa do site para SEO
+│   └── llms.txt                # Contexto técnico para IAs
+├── scripts/                    # Scripts do projeto
+│   ├── automation/             # Automações em Python (SEO e API)
+│   └── build/                  # Scripts de build em Node.js
+├── src/                        # Código fonte
+│   ├── data/                   # vagas.json e amenities.json
+│   ├── js/                     # Lógica principal (script.js)
+│   ├── pages/                  # index.html, fotos.html, 404.html
+│   └── styles/                 # input.css (Tailwind)
 ├── dist/                       # (Gerado) Versão de produção otimizada
-├── fonts/                      # Fontes locais
-├── icons/                      # Ícones e favicons
-├── imagens/                    # Fotos otimizadas (WebP)
-├── scripts/                    # Scripts de build (JS) e automação (Python)
-├── src/                        # Código fonte não minificado
-│   ├── amenities.json          # Dados das comodidades
-│   ├── input.css               # Entrada do Tailwind
-│   ├── script.js               # Lógica principal
-│   └── vagas.json              # Status das vagas
-├── 404.html                    # Página de erro customizada
-├── fotos.html                  # Galeria de fotos
-├── humans.txt                  # Créditos do time
-├── index.html                  # Página principal
-├── llms.txt                    # Contexto técnico para IAs
-├── manifest.json               # Configuração PWA
-├── offline.html                # Fallback para falta de conexão
 ├── package.json                # Dependências e Scripts NPM
-├── robots.txt                  # Diretrizes para crawlers
-├── sitemap.xml                 # Mapa do site para SEO
-├── staticwebapp.config.json    # Configuração Azure SWA
-└── sw.js                       # Service Worker (Gerado no build)
+└── staticwebapp.config.json    # Configuração Azure SWA
 ```
 
 ---
@@ -122,7 +119,7 @@ cd repsantograu
 
 # Instale as dependências
 npm install
-pip install -r scripts/requirements.txt  # Opcional
+pip install -r scripts/automation/requirements.txt  # Opcional
 ```
 
 ### 2. Rodando o Projeto
@@ -134,7 +131,7 @@ Este comando observa mudanças no CSS e recompila automaticamente.
 npm run dev
 ```
 
-Abra `index.html` no seu navegador (ou use uma extensão como Live Server).
+Abra `src/pages/index.html` no seu navegador (ou use uma extensão como Live Server).
 
 **Gerar Build de Produção:**
 Cria a pasta `dist/` com arquivos minificados, assets copiados, aplica versionamento de cache automático e gera o Service Worker.

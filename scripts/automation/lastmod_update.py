@@ -4,12 +4,12 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 
 URL_FILE_MAP = {
-    'https://www.repsantograu.online/': 'index.html',
-    'https://www.repsantograu.online/fotos.html': 'fotos.html'
+    'https://www.repsantograu.online/': 'src/pages/index.html',
+    'https://www.repsantograu.online/fotos.html': 'src/pages/fotos.html'
 }
 
-HUMANS_FILE = 'humans.txt'
-SITEMAP_FILE = 'sitemap.xml'
+HUMANS_FILE = 'public/humans.txt'
+SITEMAP_FILE = 'public/sitemap.xml'
 
 def get_git_last_commit_date(filename):
     try:

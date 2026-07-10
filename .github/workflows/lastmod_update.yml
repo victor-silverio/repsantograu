@@ -31,11 +31,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r scripts/requirements.txt
+          pip install -r scripts/automation/requirements.txt
           npm ci
 
       - name: Run Metadata update
-        run: python scripts/lastmod_update.py
+        run: python scripts/automation/lastmod_update.py
 
       - name: Format code
         run: npm run format
@@ -44,5 +44,5 @@ jobs:
         run: |
           git config --global user.name 'Metadata BOT'
           git config --global user.email 'seobot@repsantograu.online'
-          git add sitemap.xml humans.txt
+          git add public/sitemap.xml public/humans.txt
           git diff --quiet && git diff --staged --quiet || (git commit -m "update lastmod" && git push)

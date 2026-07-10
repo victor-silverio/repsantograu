@@ -15,11 +15,10 @@ on:
       - 'README.md'
       - 'LICENSE'
       - 'src/**/*.map'
-      - 'divulgacao_rep/**'
-      - 'ai_developer_guide.md'
-      - 'scripts/rating_update.py'
-      - 'scripts/lastmod_update.py'
-      - 'scripts/requirements.txt'
+      - 'docs/**'
+      - 'scripts/automation/rating_update.py'
+      - 'scripts/automation/lastmod_update.py'
+      - 'scripts/automation/requirements.txt'
       - '.github/workflows/rating_update.yml'
       - '.github/workflows/lastmod_update.yml'
 
@@ -35,11 +34,10 @@ on:
       - 'README.md'
       - 'LICENSE'
       - 'src/**/*.map'
-      - 'divulgacao_rep/**'
-      - 'ai_developer_guide.md'
-      - 'scripts/rating_update.py'
-      - 'scripts/lastmod_update.py'
-      - 'scripts/requirements.txt'
+      - 'docs/**'
+      - 'scripts/automation/rating_update.py'
+      - 'scripts/automation/lastmod_update.py'
+      - 'scripts/automation/requirements.txt'
       - '.github/workflows/rating_update.yml'
       - '.github/workflows/lastmod_update.yml'
 
@@ -68,7 +66,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r scripts/requirements.txt
+          pip install -r scripts/automation/requirements.txt
           npm ci
 
       - name: Auto-fix Linting and Formatting
@@ -92,6 +90,7 @@ jobs:
           api_location: ''
           output_location: 'dist'
           app_build_command: 'npm run build:dist'
+          skip_app_build: false
 
       - name: Purge Cloudflare Cache
         if: github.event_name == 'push' && success()

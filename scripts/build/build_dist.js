@@ -6,25 +6,23 @@ const { generateSW } = require('workbox-build');
 const { minify: minifyHtml } = require('html-minifier-terser');
 const { minify: minifyJs } = require('terser');
 
-const rootDir = path.join(__dirname, '..');
+const rootDir = path.join(__dirname, '..', '..');
 const distDir = path.join(rootDir, 'dist');
+const publicDir = path.join(rootDir, 'public');
+const pagesDir = path.join(rootDir, 'src', 'pages');
 
-const rootFiles = [
-  'index.html',
-  'offline.html',
-  'fotos.html',
-  '404.html',
+const publicFiles = [
   'manifest.json',
   'robots.txt',
   'sitemap.xml',
-  'staticwebapp.config.json',
   'humans.txt',
   'llms.txt',
-  'styles.css',
   'favicon.ico',
   'favicon-32x32.png',
   'favicon-48x48.png',
 ];
+
+const pageFiles = ['index.html', 'offline.html', 'fotos.html', '404.html'];
 
 const dirsToCopy = ['fonts', 'icons', 'imagens', '.well-known'];
 
@@ -188,14 +186,25 @@ async function build() {
       .catch(() => {});
     await fs.mkdir(distDir, { recursive: true });
 
-    // 2. Copy root files and directories concurrently
+    // 2. Copy files and directories concurrently
     console.log('Copying files and directories...');
     const copyTasks = [
-      ...rootFiles.map((file) =>
-        copyItem(path.join(rootDir, file), path.join(distDir, file))
+      ...publicFiles.map((file) =>
+        copyItem(path.join(publicDir, file), path.join(distDir, file))
+      ),
+      ...pageFiles.map((file) =>
+        copyItem(path.join(pagesDir, file), path.join(distDir, file))
       ),
       ...dirsToCopy.map((dir) =>
-        copyItem(path.join(rootDir, dir), path.join(distDir, dir))
+        copyItem(path.join(publicDir, dir), path.join(distDir, dir))
+      ),
+      copyItem(
+        path.join(rootDir, 'staticwebapp.config.json'),
+        path.join(distDir, 'staticwebapp.config.json')
+      ),
+      copyItem(
+        path.join(rootDir, 'styles.css'),
+        path.join(distDir, 'styles.css')
       ),
     ];
     await Promise.all(copyTasks);
@@ -211,7 +220,7 @@ async function build() {
     // 4. Copy minified JS to src directory in dist
     const srcDir = path.join(distDir, 'src');
     await fs.mkdir(srcDir, { recursive: true });
-    const scriptMinPath = path.join(rootDir, 'src', 'script.min.js');
+    const scriptMinPath = path.join(rootDir, 'src', 'js', 'script.min.js');
     if (fsSync.existsSync(scriptMinPath)) {
       await fs.copyFile(scriptMinPath, path.join(srcDir, 'script.min.js'));
       console.log('Copied src/script.min.js');

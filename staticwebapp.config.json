@@ -80,10 +80,34 @@
       }
     },
     {
-      "route": "/src/*",
+      "route": "/src/js/*",
       "headers": {
         "Cache-Control": "no-cache, must-revalidate"
       }
+    },
+    {
+      "route": "/src/data/*",
+      "statusCode": 404
+    },
+    {
+      "route": "/src/pages/*",
+      "statusCode": 404
+    },
+    {
+      "route": "/src/styles/*",
+      "statusCode": 404
+    },
+    {
+      "route": "/scripts/*",
+      "statusCode": 404
+    },
+    {
+      "route": "/docs/*",
+      "statusCode": 404
+    },
+    {
+      "route": "/package.json",
+      "statusCode": 404
     }
   ],
   "globalHeaders": {
@@ -100,7 +124,7 @@
       "/icons/*",
       "/fonts/*",
       "/styles.css",
-      "/src/*",
+      "/src/js/*",
       "/sw.js",
       "/manifest.json",
       "/*.txt",

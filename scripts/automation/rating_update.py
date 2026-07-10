@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 API_KEY = os.environ.get("GCP_API_KEY")
 PLACE_ID = os.environ.get("PLACE_ID")
-TARGET_FILE = 'index.html'
+TARGET_FILE = 'src/pages/index.html'
 
 def get_google_ratings():
     if not API_KEY or not PLACE_ID:

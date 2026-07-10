@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@source "../";
+@source '../';
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;
@@ -193,11 +193,11 @@ html {
   animation: fadeIn 0.3s ease-out forwards;
 }
 
-details>summary {
+details > summary {
   list-style: none;
 }
 
-details>summary::-webkit-details-marker {
+details > summary::-webkit-details-marker {
   display: none;
 }
 
@@ -242,7 +242,7 @@ details>summary::-webkit-details-marker {
     page-break-inside: avoid;
   }
 
-  a[href^="http"]:after {
-    content: " (" attr(href) ")";
+  a[href^='http']:after {
+    content: ' (' attr(href) ')';
   }
 }

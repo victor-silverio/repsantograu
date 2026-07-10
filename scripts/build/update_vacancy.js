@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const rootDir = path.join(__dirname, '..');
-const vagasPath = path.join(rootDir, 'src', 'vagas.json');
-const amenitiesPath = path.join(rootDir, 'src', 'amenities.json');
-const indexPath = path.join(rootDir, 'index.html');
+const rootDir = path.join(__dirname, '..', '..');
+const vagasPath = path.join(rootDir, 'src', 'data', 'vagas.json');
+const amenitiesPath = path.join(rootDir, 'src', 'data', 'amenities.json');
+const indexPath = path.join(rootDir, 'src', 'pages', 'index.html');
 
 function generateAmenitiesHtml(amenitiesData) {
   if (!amenitiesData || !Array.isArray(amenitiesData)) {
