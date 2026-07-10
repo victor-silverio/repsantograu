@@ -217,13 +217,13 @@ async function build() {
       console.log('Created legacy copy of security.txt in root');
     }
 
-    // 4. Copy minified JS to src directory in dist
-    const srcDir = path.join(distDir, 'src');
-    await fs.mkdir(srcDir, { recursive: true });
+    // 4. Copy minified JS to src/js directory in dist
+    const srcJsDir = path.join(distDir, 'src', 'js');
+    await fs.mkdir(srcJsDir, { recursive: true });
     const scriptMinPath = path.join(rootDir, 'src', 'js', 'script.min.js');
     if (fsSync.existsSync(scriptMinPath)) {
-      await fs.copyFile(scriptMinPath, path.join(srcDir, 'script.min.js'));
-      console.log('Copied src/script.min.js');
+      await fs.copyFile(scriptMinPath, path.join(srcJsDir, 'script.min.js'));
+      console.log('Copied src/js/script.min.js');
     }
 
     // 5. Cache bust HTML files inside dist (instead of dirtying root)
