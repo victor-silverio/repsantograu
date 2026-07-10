@@ -14,7 +14,7 @@ Frontend construído sem frameworks pesados, priorizando velocidade e controle t
 
 | Camada              | Tecnologias                                                                  |
 | :------------------ | :--------------------------------------------------------------------------- |
-| **Frontend**        | HTML5 Semântico, **Tailwind CSS v4.1**, JavaScript (ES6+)                    |
+| **Frontend**        | HTML5 Semântico, **Tailwind CSS v4.3**, JavaScript (ES6+)                    |
 | **Estilização**     | Tailwind CLI, Font Awesome, Google Fonts (Montserrat)                        |
 | **PWA**             | Service Worker (Workbox), Manifest.json, Offline Fallback                    |
 | **Build System**    | Node.js, NPM Scripts, Terser, HTML-Minifier-Terser, Workbox Build            |
@@ -110,7 +110,7 @@ repsantograu/
 
 ### Pré-requisitos
 
-- **Node.js** (v18+)
+- **Node.js** (v24+)
 - **Python 3.9+** (opcional, para rodar scripts de automação)
 
 ### 1. Instalação

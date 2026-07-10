@@ -40,7 +40,7 @@ Os valores incluem todas as contas (aluguel, internet, luz, água, limpeza e ali
 Este site é uma PWA (Progressive Web App) moderna desenvolvida pelo morador Victor Augusto.
 
 ### Tecnologias
-- **Frontend:** HTML5, Tailwind CSS v4.1.18, JavaScript vanilla.
+- **Frontend:** HTML5, Tailwind CSS v4.3.0, JavaScript vanilla.
 - **PWA:** Service Worker (offline-first), Manifest.json (instalável em Android/iOS/Desktop).
 - **Build:** Node.js + Tailwind CLI (local development com auto-reload).
 - **Infraestrutura:** Azure Static Web Apps (serverless), Cloudflare (CDN/Security/DDoS Protection).
