@@ -16,6 +16,12 @@ on:
       - 'LICENSE'
       - 'src/**/*.map'
       - 'divulgacao_rep/**'
+      - 'ai_developer_guide.md'
+      - 'scripts/rating_update.py'
+      - 'scripts/lastmod_update.py'
+      - 'scripts/requirements.txt'
+      - '.github/workflows/rating_update.yml'
+      - '.github/workflows/lastmod_update.yml'
 
   pull_request:
     types: [opened, synchronize, reopened, closed]
@@ -30,6 +36,12 @@ on:
       - 'LICENSE'
       - 'src/**/*.map'
       - 'divulgacao_rep/**'
+      - 'ai_developer_guide.md'
+      - 'scripts/rating_update.py'
+      - 'scripts/lastmod_update.py'
+      - 'scripts/requirements.txt'
+      - '.github/workflows/rating_update.yml'
+      - '.github/workflows/lastmod_update.yml'
 
 jobs:
   build_and_deploy_job:

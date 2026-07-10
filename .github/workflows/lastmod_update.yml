@@ -24,12 +24,21 @@ jobs:
           python-version: '3.12'
           cache: 'pip'
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: Install dependencies
         run: |
           pip install -r scripts/requirements.txt
+          npm ci
 
       - name: Run Metadata update
         run: python scripts/lastmod_update.py
+
+      - name: Format code
+        run: npm run format
 
       - name: Commit and Push if changed
         run: |

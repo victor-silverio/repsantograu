@@ -137,17 +137,10 @@ npm run dev
 Abra `index.html` no seu navegador (ou use uma extensão como Live Server).
 
 **Gerar Build de Produção:**
-Cria a pasta `dist/` com arquivos minificados, assets copiados e gera o Service Worker.
+Cria a pasta `dist/` com arquivos minificados, assets copiados, aplica versionamento de cache automático e gera o Service Worker.
 
 ```bash
 npm run build:dist
-```
-
-**Verificar Versão de Cache:**
-Atualiza manualmente as query strings de versão (`?v=HASH`) nos arquivos HTML.
-
-```bash
-npm run update-version
 ```
 
 ---

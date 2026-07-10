@@ -1,5 +1,8 @@
 src/input.css
 styles.css
 src/script.min.js
+sw.js
 dist/
 dist
+venv/
+node_modules/
