@@ -159,83 +159,37 @@
     </script>
   </head>
 
-  <body class="bg-repWhite text-repGrey antialiased">
-    <nav
-      class="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-md transition-all duration-300"
-    >
-      <div class="container mx-auto px-6 py-3">
-        <div class="flex flex-wrap items-center justify-between">
-          <a class="group flex items-center gap-3" href="/">
-            <img
-              alt="Logotipo oficial da República Santo Grau"
-              class="h-10 w-10 object-contain transition duration-300"
-              src="/icons/logo_rep_transparente.webp?v=1622cbb4"
-              width="1080"
-              height="1350"
-            />
-            <span
-              class="text-repGold self-center font-serif text-lg font-bold tracking-wide whitespace-nowrap"
-              >SANTO GRAU</span
-            >
-          </a>
-          <button
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-            class="focus:ring-repGold ml-3 inline-flex items-center rounded-lg p-2 text-sm text-gray-200 hover:bg-white/10 focus:ring-2 focus:outline-none md:hidden"
-            id="mobile-menu-btn"
-            type="button"
-          >
-            <span class="sr-only">Abrir menu principal</span>
-            <svg
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
-          <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
-            <ul
-              class="mt-4 flex flex-col rounded-lg border border-gray-700 bg-black/50 p-4 font-sans font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:p-0"
-            >
-              <li>
-                <a
-                  href="/"
-                  class="hover:text-repGold block rounded py-2 pr-4 pl-3 text-white transition-colors md:p-0"
-                  >Início</a
-                >
-              </li>
-              <li>
-                <a
-                  href="/#sobre"
-                  class="hover:text-repGold block rounded py-2 pr-4 pl-3 text-white transition-colors md:p-0"
-                  >A República</a
-                >
-              </li>
-              <li>
-                <a
-                  href="/#tour"
-                  class="hover:text-repGold block rounded py-2 pr-4 pl-3 text-white transition-colors md:p-0"
-                  >Estrutura</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://wa.me/5519992521926"
-                  target="_blank"
-                  class="hover:text-repGold block rounded py-2 pr-4 pl-3 text-white transition-colors md:p-0"
-                  >Contato</a
-                >
-              </li>
-            </ul>
-          </div>
+  <body class="bg-[#050505] text-gray-300 overflow-x-hidden antialiased selection:bg-[#d4af37] selection:text-black font-sans">
+    <nav class="glass-nav fixed top-0 left-0 z-50 w-full transition-all duration-500" id="navbar">
+      <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a class="group flex items-center gap-4" href="index.html">
+          <img
+            alt="Logotipo oficial da República Santo Grau"
+            class="h-12 w-12 object-contain transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
+            src="/icons/logo_rep_transparente.webp?v=1622cbb4"
+          />
+          <span class="text-[#d4af37] self-center font-serif text-xl font-bold tracking-widest uppercase hidden sm:block">Santo Grau</span>
+        </a>
+        
+        <div class="hidden md:flex space-x-8 items-center font-medium tracking-wide text-sm">
+          <a class="hover:text-[#d4af37] text-gray-300 transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#d4af37] hover:after:w-full after:transition-all after:duration-300" href="index.html">Início</a>
+          <a class="hover:text-[#d4af37] text-gray-300 transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#d4af37] hover:after:w-full after:transition-all after:duration-300" href="index.html#sobre">A República</a>
+          <a class="hover:text-[#d4af37] text-gray-300 transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#d4af37] hover:after:w-full after:transition-all after:duration-300" href="index.html#tour">Estrutura</a>
         </div>
+
+        <button aria-controls="mobile-menu" aria-expanded="false" class="md:hidden text-gray-300 hover:text-white focus:outline-none" id="mobile-menu-btn">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="hidden md:hidden glass-panel border-t border-white/10" id="mobile-menu">
+        <ul class="flex flex-col p-4 space-y-4">
+          <li><a class="block text-gray-300 hover:text-[#d4af37] transition-colors" href="index.html">Início</a></li>
+          <li><a class="block text-gray-300 hover:text-[#d4af37] transition-colors" href="index.html#sobre">A República</a></li>
+          <li><a class="block text-gray-300 hover:text-[#d4af37] transition-colors" href="index.html#tour">Estrutura</a></li>
+        </ul>
       </div>
     </nav>
 
@@ -243,7 +197,7 @@
       <h1
         class="font-serif text-4xl leading-tight font-bold text-white md:text-6xl"
       >
-        NOSSA <span class="text-repGold">CASA</span>
+        NOSSA <span class="text-[#d4af37]">CASA</span>
       </h1>
       <p
         class="mt-4 font-sans text-xs tracking-widest text-gray-400 uppercase md:text-sm"
@@ -254,9 +208,9 @@
 
     <main id="main-content" class="container mx-auto space-y-24 px-6 py-12">
       <section class="reveal">
-        <h2 class="gallery-title">Fachada e Entrada</h2>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-10 text-center drop-shadow-lg">Fachada e Entrada</h2>
         <div class="flex flex-wrap justify-center gap-6">
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -274,11 +228,11 @@
                 alt="Fachada da República Santo Grau em Itajubá, moradia estudantil próxima à UNIFEI com portão seguro"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -296,7 +250,7 @@
                 alt="Entrada principal e varanda da República Santo Grau, opção de moradia universitária"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
@@ -304,9 +258,9 @@
       </section>
 
       <section class="reveal">
-        <h2 class="gallery-title">Quintal</h2>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-10 text-center drop-shadow-lg">Quintal</h2>
         <div class="flex flex-wrap justify-center gap-6">
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -324,11 +278,11 @@
                 alt="Visão geral do amplo quintal e área externa da República Santo Grau"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -346,12 +300,12 @@
                 alt="Área externa da república, ideal para convivência e eventos"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
 
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -369,7 +323,7 @@
                 alt="Espaço aberto no quintal com clima aconchegante para os moradores"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
@@ -377,9 +331,9 @@
       </section>
 
       <section class="reveal">
-        <h2 class="gallery-title">Sala de Estar</h2>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-10 text-center drop-shadow-lg">Sala de Estar</h2>
         <div class="flex flex-wrap justify-center gap-6">
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -395,11 +349,11 @@
                 alt="Visão geral da sala de estar da república com TV, pufes confortáveis e iluminação natural"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -415,12 +369,12 @@
                 alt="Outro ângulo da sala de estar destacando a decoração temática universitária e área de convivência"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
 
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -436,11 +390,11 @@
                 alt="Detalhe dos sofás e espaço aconchegante na sala de TV"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -456,7 +410,7 @@
                 alt="Ambiente da sala de estar focado na integração e conforto"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
@@ -464,9 +418,9 @@
       </section>
 
       <section class="reveal">
-        <h2 class="gallery-title">Cozinha e Copa</h2>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-10 text-center drop-shadow-lg">Cozinha e Copa</h2>
         <div class="flex flex-wrap justify-center gap-6">
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -484,11 +438,11 @@
                 alt="Cozinha completa da república com fogões, geladeiras, air fryer, micro-ondas e armários organizados"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -504,11 +458,11 @@
                 alt="Copa ampla com mesa grande, ideal para refeições em conjunto e estudos"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
-          <div class="gallery-container">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -524,7 +478,7 @@
                 alt="Detalhe da área da copa com cadeiras e espaço organizado"
                 width="713"
                 height="535"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
@@ -532,9 +486,9 @@
       </section>
 
       <section class="reveal">
-        <h2 class="gallery-title">Quarto Duplo c/ Suíte</h2>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-10 text-center drop-shadow-lg">Quarto Duplo c/ Suíte</h2>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div class="gallery-container h-72 md:h-96">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel h-72 md:h-96 hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -552,12 +506,12 @@
                 decoding="async"
                 width="344"
                 height="258"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
 
-          <div class="gallery-container h-72 md:h-96">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel h-72 md:h-96 hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -575,12 +529,12 @@
                 decoding="async"
                 width="344"
                 height="258"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
 
-          <div class="gallery-container h-72 md:h-96">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel h-72 md:h-96 hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -598,7 +552,7 @@
                 decoding="async"
                 width="344"
                 height="258"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
@@ -606,9 +560,9 @@
       </section>
 
       <section class="reveal">
-        <h2 class="gallery-title">Quarto Duplo 2</h2>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-10 text-center drop-shadow-lg">Quarto Duplo 2</h2>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div class="gallery-container h-72 md:h-96">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel h-72 md:h-96 hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -626,11 +580,11 @@
                 loading="lazy"
                 width="1600"
                 height="1200"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
-          <div class="gallery-container h-72 md:h-96">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel h-72 md:h-96 hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -648,11 +602,11 @@
                 loading="lazy"
                 width="1600"
                 height="1200"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
-          <div class="gallery-container h-72 md:h-96">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel h-72 md:h-96 hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -670,7 +624,7 @@
                 loading="lazy"
                 width="1600"
                 height="1200"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
@@ -678,9 +632,9 @@
       </section>
 
       <section class="reveal">
-        <h2 class="gallery-title">Quarto Duplo 3</h2>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-10 text-center drop-shadow-lg">Quarto Duplo 3</h2>
         <div class="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
-          <div class="gallery-container h-72 md:h-96">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel h-72 md:h-96 hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -698,12 +652,12 @@
                 loading="lazy"
                 width="1600"
                 height="1200"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
 
-          <div class="gallery-container h-72 md:h-96">
+          <div class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel h-72 md:h-96 hover:-translate-y-2 transition-transform duration-500">
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -721,13 +675,13 @@
                 loading="lazy"
                 width="1600"
                 height="1200"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
 
           <div
-            class="gallery-container h-72 w-full md:col-span-2 md:h-96 md:w-[calc(50%-0.75rem)] md:justify-self-center"
+            class="reveal relative group rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.8)] glass-panel h-72 w-full md:col-span-2 md:h-96 md:w-[calc(50%-0.75rem)] md:justify-self-center hover:-translate-y-2 transition-transform duration-500"
           >
             <picture>
               <source
@@ -746,21 +700,21 @@
                 loading="lazy"
                 width="1600"
                 height="1200"
-                class="gallery-img"
+                class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               />
             </picture>
           </div>
         </div>
       </section>
 
-      <section class="reveal border-t border-gray-200 bg-gray-50 py-12">
+      <section class="reveal border-t border-white/10 bg-[#020202] py-12">
         <div class="container mx-auto px-6 text-center">
           <h2
-            class="text-repRed mb-4 font-serif text-3xl font-bold md:text-4xl"
+            class="text-[#8b0000] mb-4 font-serif text-3xl font-bold md:text-4xl"
           >
             Gostou?
           </h2>
-          <p class="mb-8 text-base text-gray-600 md:text-lg">
+          <p class="mb-8 text-base text-gray-400 md:text-lg">
             Entre em contato conosco e marque uma visita ou vídeo chamada!
           </p>
 
@@ -769,10 +723,10 @@
               href="https://wa.me/5519992521926?text=Olá,%20estou%20interessado%20na%20república%20Santo%20Grau!"
               target="_blank"
               rel="noopener noreferrer"
-              class="hover:border-repGold group flex flex-col items-center rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-md"
+              class="hover:border-repGold group flex flex-col items-center rounded-xl glass-panel border-white/10 p-4 transition-all hover:shadow-md"
             >
-              <span class="font-bold text-gray-800">Yuri (Groot)</span>
-              <span class="text-sm text-gray-500">(19) 99252-1926</span>
+              <span class="font-bold text-white">Yuri (Groot)</span>
+              <span class="text-sm text-gray-400">(19) 99252-1926</span>
               <span
                 class="mt-2 flex items-center gap-1 text-sm font-semibold text-green-600"
               >
@@ -795,10 +749,10 @@
               href="https://wa.me/5521995258017?text=Olá,%20estou%20interessado%20na%20república%20Santo%20Grau!"
               target="_blank"
               rel="noopener noreferrer"
-              class="hover:border-repGold group flex flex-col items-center rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-md"
+              class="hover:border-repGold group flex flex-col items-center rounded-xl glass-panel border-white/10 p-4 transition-all hover:shadow-md"
             >
-              <span class="font-bold text-gray-800">Arthur (Beto)</span>
-              <span class="text-sm text-gray-500">(21) 99525-8017</span>
+              <span class="font-bold text-white">Arthur (Beto)</span>
+              <span class="text-sm text-gray-400">(21) 99525-8017</span>
               <span
                 class="mt-2 flex items-center gap-1 text-sm font-semibold text-green-600"
               >
@@ -821,10 +775,10 @@
               href="https://wa.me/5512996825554?text=Olá,%20estou%20interessado%20na%20república%20Santo%20Grau!"
               target="_blank"
               rel="noopener noreferrer"
-              class="hover:border-repGold group flex flex-col items-center rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-md"
+              class="hover:border-repGold group flex flex-col items-center rounded-xl glass-panel border-white/10 p-4 transition-all hover:shadow-md"
             >
-              <span class="font-bold text-gray-800">Marcos (Menotti)</span>
-              <span class="text-sm text-gray-500">(12) 99682-5554</span>
+              <span class="font-bold text-white">Marcos (Menotti)</span>
+              <span class="text-sm text-gray-400">(12) 99682-5554</span>
               <span
                 class="mt-2 flex items-center gap-1 text-sm font-semibold text-green-600"
               >
@@ -858,7 +812,7 @@
           height="64"
           alt="Logotipo República Santo Grau - Moradia Estudantil"
         />
-        <p class="text-sm text-gray-500">
+        <p class="text-sm text-gray-400">
           © 2026 República Santo Grau | Itajubá - MG
         </p>
       </div>
@@ -891,7 +845,7 @@
 
       <button
         id="lightbox-prev"
-        class="hover:text-repGold absolute left-2 z-[110] hidden rounded-full p-2 text-white/50 transition-colors hover:bg-white/10 md:left-8 md:block"
+        class="hover:text-[#d4af37] absolute left-2 z-[110] hidden rounded-full p-2 text-white/50 transition-colors hover:bg-white/10 md:left-8 md:block"
       >
         <svg
           aria-hidden="true"
@@ -912,7 +866,7 @@
 
       <button
         id="lightbox-next"
-        class="hover:text-repGold absolute right-2 z-[110] hidden rounded-full p-2 text-white/50 transition-colors hover:bg-white/10 md:right-8 md:block"
+        class="hover:text-[#d4af37] absolute right-2 z-[110] hidden rounded-full p-2 text-white/50 transition-colors hover:bg-white/10 md:right-8 md:block"
       >
         <svg
           aria-hidden="true"

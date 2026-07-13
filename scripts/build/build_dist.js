@@ -192,9 +192,14 @@ async function build() {
       ...publicFiles.map((file) =>
         copyItem(path.join(publicDir, file), path.join(distDir, file))
       ),
-      ...pageFiles.map((file) =>
-        copyItem(path.join(pagesDir, file), path.join(distDir, file))
-      ),
+      copyItem(path.join(pagesDir, 'index.html'), path.join(distDir, 'index.html')),
+      copyItem(path.join(pagesDir, 'offline.html'), path.join(distDir, 'offline.html')),
+      copyItem(path.join(pagesDir, '404.html'), path.join(distDir, '404.html')),
+      copyItem(path.join(pagesDir, 'fotos.html'), path.join(distDir, 'fotos.html')).then(async () => {
+        // Also copy it to fotos/index.html for clean URLs
+        await fs.mkdir(path.join(distDir, 'fotos'), { recursive: true });
+        await copyItem(path.join(distDir, 'fotos.html'), path.join(distDir, 'fotos', 'index.html'));
+      }),
       ...dirsToCopy.map((dir) =>
         copyItem(path.join(publicDir, dir), path.join(distDir, dir))
       ),
@@ -242,6 +247,7 @@ async function build() {
       globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml}'],
       swDest: path.join(distDir, 'sw.js'),
       navigateFallback: '/offline.html',
+      ignoreURLParametersMatching: [/.*/],
       sourcemap: false,
       mode: 'production',
       cleanupOutdatedCaches: true,
