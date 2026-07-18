@@ -1,7 +1,10 @@
 /* TEAM */
   Developer: Victor Augusto de Aquino Silvério
-  Contact: victoraugusto4096 [at] gmail.com
-  Instagram: @victor_augusto1209
+  Role: Control & Automation Engineering Student (UNIFEI) | Cloud & Embedded Systems Developer
+  Portfolio: https://victorsilverio.eng.br
+  GitHub: https://github.com/victor-silverio
+  LinkedIn: https://www.linkedin.com/in/victor-augusto-silverio/
+  Contact: Victor@victorsilverio.eng.br
   Location: Itajubá, MG, Brazil
 
 /* THANKS */
@@ -11,7 +14,7 @@
   ETEC 077
 
 /* SITE */
-  Last update: 2026/07/10
+  Last update: 2026/07/18
   Standards: HTML5, CSS3, JS
-  Components: TailwindCSS, FontAwesome
+  Components: TailwindCSS
   Software: VSCode
