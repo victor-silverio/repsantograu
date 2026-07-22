@@ -1,6 +1,6 @@
 src/input.css
 styles.css
-src/script.min.js
+src/js/script.min.js
 sw.js
 dist/
 dist
