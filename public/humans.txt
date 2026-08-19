@@ -14,7 +14,7 @@
   ETEC 077
 
 /* SITE */
-  Last update: 2026/07/20
+  Last update: 2026/08/19
   Standards: HTML5, CSS3, JS
   Components: TailwindCSS
   Software: VSCode
