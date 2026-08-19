@@ -2,7 +2,7 @@
   "name": "repsantograu",
   "version": "1.0.0",
   "description": "![SEO Automation](https://github.com/victor-silverio/repsantograu/actions/workflows/lastmod_update.yml/badge.svg) ![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.online&label=Online&color=success)",
-  "main": "sw.js",
+  "main": "src/js/script.js",
   "scripts": {
     "dev": "tailwindcss -i ./src/styles/input.css -o ./styles.css --watch",
     "build:css": "tailwindcss -i ./src/styles/input.css -o ./styles.css --minify",

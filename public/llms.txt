@@ -37,35 +37,30 @@ Os valores incluem todas as contas (aluguel, internet, luz, água, limpeza e ali
 - **Site:** https://www.repsantograu.online
 
 ## Sobre este Site (Tech Stack)
-Este site é uma PWA (Progressive Web App) moderna desenvolvida por [Victor Augusto de Aquino Silvério](https://victorsilverio.eng.br) (Engenharia de Controle & Automação - UNIFEI).
+Este site é uma plataforma web estática moderna desenvolvida por [Victor Augusto de Aquino Silvério](https://victorsilverio.eng.br) (Engenharia de Controle & Automação - UNIFEI).
 
 ### Tecnologias
-- **Frontend:** HTML5, Tailwind CSS v4.3.0, JavaScript vanilla.
-- **PWA:** Service Worker (offline-first), Manifest.json (instalável em Android/iOS/Desktop).
-- **Build:** Node.js + Tailwind CLI (local development com auto-reload).
-- **Infraestrutura:** Azure Static Web Apps (serverless), Cloudflare (CDN/Security/DDoS Protection).
-- **Segurança:** CSP, HTTPS obrigatório, cache inteligente (1 ano para assets, revalidação para HTML).
-- **SEO:** JSON-LD structured data, sitemap dinâmico, meta tags otimizadas.
-- **Automação:** Scripts Python (requests, regex, subprocess) para atualização diária de ratings do Google Maps via GitHub Actions.
-- **CI/CD:** GitHub Actions (deploy automático na Azure ao detectar mudanças).
+- **Frontend:** HTML5, Tailwind CSS v4, JavaScript vanilla.
+- **PWA:** Manifest.json (instalável em Android/iOS/Desktop).
+- **Build:** Node.js + Tailwind CLI + HTML Minifier + Terser.
+- **Infraestrutura:** Cloudflare Pages (serverless/edge hosting) + Cloudflare CDN (DDoS Protection & Caching).
+- **Segurança:** CSP rigorosa, HSTS, Permissions-Policy, cache inteligente (1 ano para assets versionados, revalidação para HTML).
+- **SEO:** JSON-LD structured data (LocalBusiness, FAQPage, ImageGallery), Open Graph, Twitter Cards, Sitemap XML dinâmico.
+- **Automação:** Scripts Python para sincronização de ratings do Google Places API e lastmod do sitemap via GitHub Actions.
 
 ### Features
-- Instalável como app nativo (Progressive Web App).
-- Funciona offline graças ao Service Worker.
+- Totalmente responsivo (Mobile First).
 - Animações com IntersectionObserver (lazy reveal effect).
-- Carrossel de timeline responsivo com touch support.
-- Imagens otimizadas em WebP.
-- Ratings sincronizados automaticamente com Google Places API 3x por dia.
+- Carrossel de timeline com touch/drag support e snap scroll.
+- Galeria lightbox com zoom de alta resolução e navegação por teclado/swipe.
+- Imagens otimizadas em WebP com thumbnails responsivas.
+- Ratings sincronizados automaticamente com Google Places API.
 
 ## Estrutura de Arquivos
-- `/src/`: Código fonte frontend (CSS input, JS scripts).
-- `/imagens/`: Imagens otimizadas em WebP.
-- `/icons/`: Ícones e logos.
-- `/fonts/`: Fontes locais (Montserrat).
-- `/private/`: Arquivos protegidos.
-- `/divulgacao_rep/`: Material de divulgação.
-- `index.html`: Página principal.
-- `fotos.html`: Galeria de fotos.
-- `styles.css`: CSS gerado pelo Tailwind.
-- `sw.js`: Service Worker.
-- `update_script.py`: Script de automação.
+- `/src/pages/`: Páginas HTML fonte (index.html, fotos.html, 404.html, offline.html).
+- `/src/js/`: Código JavaScript fonte.
+- `/src/styles/`: Arquivos CSS de entrada (Tailwind).
+- `/src/data/`: Dados dinâmicos em JSON (vagas, comodidades).
+- `/public/`: Arquivos estáticos (imagens, ícones, fontes, sitemap, manifest, _headers, _redirects).
+- `/scripts/`: Scripts de build e automação (Node.js e Python).
+- `/dist/`: Artefato compilado e minificado para deploy no Cloudflare Pages.

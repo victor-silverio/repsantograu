@@ -127,6 +127,11 @@ try {
       containerBorderClass = 'border-orange-500/30 bg-orange-500/20';
     }
 
+    const vacancyText =
+      available === 1
+        ? `1 Vaga Disponível para ${year}`
+        : `${available} Vagas Disponíveis para ${year}`;
+
     newBadgeHtml = `<div
             class="animate-fadeIn mb-6 inline-flex items-center gap-2 rounded-full border ${containerBorderClass} px-4 py-2 backdrop-blur-md"
             id="vacancy-badge"
@@ -140,7 +145,7 @@ try {
               ></span></span
             ><span
               class="font-sans text-sm font-medium tracking-wide text-white md:text-base"
-              >${available} Vagas Disponíveis para ${year}</span
+              >${vacancyText}</span
             >
           </div>`;
   } else {

@@ -1,7 +1,7 @@
 {
   "name": "República Santo Grau",
   "short_name": "Santo Grau",
-  "start_url": "/index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#FAFAFA",
   "theme_color": "#8B0000",

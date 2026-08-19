@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 URL_FILE_MAP = {
     'https://www.repsantograu.online/': 'src/pages/index.html',
-    'https://www.repsantograu.online/fotos.html': 'src/pages/fotos.html'
+    'https://www.repsantograu.online/fotos/': 'src/pages/fotos.html'
 }
 
 HUMANS_FILE = 'public/humans.txt'
