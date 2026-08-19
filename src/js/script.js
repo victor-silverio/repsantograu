@@ -193,48 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   if ('serviceWorker' in navigator) {
-    const registerSW = async (retryCount = 0) => {
-      const MAX_RETRIES = 2;
-      try {
-        const registration = await navigator.serviceWorker.register('/sw.js');
-        console.log(
-          'Service Worker registrado com sucesso:',
-          registration.scope
-        );
-
-        try {
-          await registration.update();
-        } catch (err) {
-          console.log('Falha ao atualizar SW:', err);
-        }
-      } catch (error) {
-        console.warn(
-          `Falha ao registrar Service Worker (tentativa ${retryCount + 1}):`,
-          error
-        );
-
-        if (retryCount < MAX_RETRIES) {
-          console.log(`Tentando novamente em 2 segundos...`);
-          setTimeout(() => registerSW(retryCount + 1), 2000);
-        } else {
-          console.error(
-            'Falha crítica no registro do Service Worker após múltiplas tentativas. O site pode não funcionar offline.'
-          );
-        }
-      }
-    };
-
-    window.addEventListener('load', () => {
-      const register = () => {
-        setTimeout(() => {
-          registerSW();
-        }, 2000);
-      };
-
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(register);
-      } else {
-        register();
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (const registration of registrations) {
+        registration.unregister();
       }
     });
   }

@@ -2,7 +2,6 @@ const fs = require('fs/promises');
 const fsSync = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { generateSW } = require('workbox-build');
 const { minify: minifyHtml } = require('html-minifier-terser');
 const { minify: minifyJs } = require('terser');
 
@@ -234,49 +233,6 @@ async function build() {
     await minifyRecursive(distDir);
     console.log('Minification complete.');
 
-    // 7. Generate Service Worker
-    console.log('Generating Service Worker...');
-    const { count, size } = await generateSW({
-      globDirectory: distDir,
-      globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml}'],
-      swDest: path.join(distDir, 'sw.js'),
-      navigateFallback: '/offline.html',
-      navigateFallbackDenylist: [
-        /^\/fotos\/?$/,
-        /^\/404\/?$/,
-        /^\/offline\/?$/,
-      ],
-      sourcemap: false,
-      mode: 'production',
-      cleanupOutdatedCaches: true,
-      clientsClaim: true,
-      skipWaiting: true,
-      runtimeCaching: [
-        {
-          urlPattern: ({ request }) => request.destination === 'document',
-          handler: 'NetworkFirst',
-          options: { cacheName: 'documents' },
-        },
-        {
-          urlPattern: ({ request }) =>
-            ['style', 'script', 'worker', 'font'].includes(request.destination),
-          handler: 'StaleWhileRevalidate',
-          options: { cacheName: 'assets' },
-        },
-        {
-          urlPattern: ({ request }) => request.destination === 'image',
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'images',
-            expiration: { maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }, // 30 Days
-          },
-        },
-      ],
-    });
-
-    console.log(
-      `Generated sw.js, precaching ${count} files, totaling ${size} bytes.`
-    );
     console.log('Build complete! Output in /dist');
   } catch (err) {
     console.error(`Build failed:`, err);
