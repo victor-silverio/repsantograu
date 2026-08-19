@@ -1,25 +1,24 @@
 # República Santo Grau — Site Oficial
 
-![Azure Static Web Apps CI/CD](https://github.com/victor-silverio/repsantograu/actions/workflows/azure-static-web-apps-black-moss-0abb1d50f.yml/badge.svg) ![SEO Automation](https://github.com/victor-silverio/repsantograu/actions/workflows/lastmod_update.yml/badge.svg) ![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.online&label=Online&color=success)
+![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.com.br&label=Online&color=success)
 
-Repositório oficial do site da **República Santo Grau** (Itajubá, MG). Uma Single Page Application (SPA) moderna, foca em alta performance, acessibilidade, SEO automatizado e funcionamento offline (PWA).
+Repositório oficial do site da **República Santo Grau** (Itajubá, MG). Uma plataforma web estática moderna, focada em ultra-alta performance, acessibilidade, SEO automatizado e arquitetura edge-native.
 
-**🌐 Site:** [www.repsantograu.online](https://www.repsantograu.online/)
+**🌐 Site:** [www.repsantograu.com.br](https://www.repsantograu.com.br/)
 
 ---
 
 ## 🚀 Tecnologias e Stack
 
-Frontend construído sem frameworks pesados, priorizando velocidade e controle total.
+Frontend construído sem frameworks pesados, priorizando velocidade, simplicidade e controle total.
 
-| Camada              | Tecnologias                                                                  |
-| :------------------ | :--------------------------------------------------------------------------- |
-| **Frontend**        | HTML5 Semântico, **Tailwind CSS v4.3**, JavaScript (ES6+)                    |
-| **Estilização**     | Tailwind CLI, Font Awesome, Google Fonts (Montserrat)                        |
-| **PWA**             | Service Worker (Workbox), Manifest.json, Offline Fallback                    |
-| **Build System**    | Node.js, NPM Scripts, Terser, HTML-Minifier-Terser, Workbox Build            |
-| **Automação (SEO)** | Python 3.9 (GitHub Actions para updates de ratings e sitemap)                |
-| **Infraestrutura**  | **Azure Static Web Apps** (Hospedagem), **Cloudflare** (DNS, CDN, Segurança) |
+| Camada              | Tecnologias                                                            |
+| :------------------ | :--------------------------------------------------------------------- |
+| **Frontend**        | HTML5 Semântico, **Tailwind CSS v4**, JavaScript (ES2022+)             |
+| **Estilização**     | Tailwind CLI, Fontes locais (Montserrat & Playfair Display WOFF2)      |
+| **Build System**    | Node.js, `esbuild`, `html-minifier-terser`                             |
+| **Automação (SEO)** | Node.js nativo (Sitemap & humans.txt) + Python (Google Places API)     |
+| **Infraestrutura**  | **Cloudflare Pages** (Hospedagem Edge & Functions), **Cloudflare CDN** |
 
 ---
 

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /.well-known/
 Disallow: /offline.html
-Sitemap: https://www.repsantograu.online/sitemap.xml
+Sitemap: https://www.repsantograu.com.br/sitemap.xml

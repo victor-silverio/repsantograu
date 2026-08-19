@@ -167,7 +167,7 @@ flowchart TD
 
 O arquivo `functions/_middleware.js` é executado na borda da Cloudflare a cada requisição:
 
-- **Redirecionamento Canônico (301)**: Qualquer acesso vindo de `*.pages.dev` é imediatamente redirecionado para `www.repsantograu.online`.
+- **Redirecionamento Canônico (301)**: Qualquer acesso vindo de `*.pages.dev` ou `repsantograu.online` é imediatamente redirecionado para `www.repsantograu.com.br`.
 - **Early Hints (HTTP 103)**: Em respostas `text/html`, injeta cabeçalhos `Link` com `rel=preload` para as fontes críticas (`Montserrat` e `Playfair Display`), acelerando o carregamento antes do download do HTML completo.
 
 ### 2. Cabeçalhos HTTP (`public/_headers`)

@@ -45,6 +45,6 @@ jobs:
       - name: Commit and Push if changed
         run: |
           git config --global user.name 'Ratings BOT'
-          git config --global user.email 'seobot@repsantograu.online'
+          git config --global user.email 'seobot@repsantograu.com.br'
           git add src/pages/index.html 
           git diff --quiet && git diff --staged --quiet || (git commit -m "update ratings" && git push)

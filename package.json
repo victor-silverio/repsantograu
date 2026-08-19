@@ -1,7 +1,7 @@
 {
   "name": "repsantograu",
   "version": "1.0.0",
-  "description": "![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.online&label=Online&color=success)",
+  "description": "![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.com.br&label=Online&color=success)",
   "main": "src/js/script.js",
   "scripts": {
     "start": "http-server dist -p 3000 -c-1",

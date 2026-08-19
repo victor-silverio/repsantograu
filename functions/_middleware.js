@@ -3,8 +3,12 @@ export async function onRequest(context) {
   const url = new URL(request.url);
 
   // 1. Redirecionamentos Canônicos no Edge
-  if (url.hostname.endsWith('.pages.dev')) {
-    url.hostname = 'www.repsantograu.online';
+  if (
+    url.hostname.endsWith('.pages.dev') ||
+    url.hostname.endsWith('repsantograu.online') ||
+    url.hostname === 'repsantograu.com.br'
+  ) {
+    url.hostname = 'www.repsantograu.com.br';
     return Response.redirect(url.toString(), 301);
   }
 

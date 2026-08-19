@@ -8,7 +8,7 @@ const rootDir = path.join(__dirname, '..', '..');
 const SITEMAP_FILE = path.join(rootDir, 'public', 'sitemap.xml');
 const HUMANS_FILE = path.join(rootDir, 'public', 'humans.txt');
 
-const DEFAULT_SITE_URL = 'https://www.repsantograu.online';
+const DEFAULT_SITE_URL = 'https://www.repsantograu.com.br';
 const SITE_URL = (process.env.SITE_URL || DEFAULT_SITE_URL).replace(/\/$/, '');
 
 const URL_FILE_MAP = {
