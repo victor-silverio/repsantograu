@@ -86,7 +86,11 @@ async function cacheBustHtmlFiles() {
         ] = match;
         let cleanPath = filePathStr.trim();
 
-        if (/^(https?:|\/\/|data:)/.test(cleanPath)) continue;
+        if (
+          /^(https?:|\/\/|data:)/.test(cleanPath) ||
+          cleanPath.endsWith('.woff2')
+        )
+          continue;
 
         let fsPath = path.join(distDir, cleanPath.replace(/^(\.\/|\/)/, ''));
         const newHash = await getFileHash(fsPath);
