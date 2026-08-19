@@ -2,7 +2,7 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; connect-src 'self' https://cloudflareinsights.com https://www.repsantograu.online https://www.repsantograu.com.br; style-src 'self'; font-src 'self'; img-src 'self' data: https://www.repsantograu.online https://www.repsantograu.com.br; frame-ancestors 'self' https://facebook.com https://www.facebook.com; object-src 'none';
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.repsantograu.online https://www.repsantograu.com.br; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com https://www.repsantograu.online https://www.repsantograu.com.br https://connect.facebook.net https://www.facebook.com; frame-src https://www.facebook.com; worker-src 'self'; manifest-src 'self'; frame-ancestors 'self' https://facebook.com https://www.facebook.com; object-src 'none';
   Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()
 
 /*.css
