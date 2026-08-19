@@ -241,6 +241,11 @@ async function build() {
       globPatterns: ['**/*.{html,json,js,css,woff2,ico,txt,xml}'],
       swDest: path.join(distDir, 'sw.js'),
       navigateFallback: '/offline.html',
+      navigateFallbackDenylist: [
+        /^\/fotos\/?$/,
+        /^\/404\/?$/,
+        /^\/offline\/?$/,
+      ],
       sourcemap: false,
       mode: 'production',
       cleanupOutdatedCaches: true,
