@@ -12,6 +12,8 @@ const publicDir = path.join(rootDir, 'public');
 const pagesDir = path.join(rootDir, 'src', 'pages');
 
 const publicFiles = [
+  '_headers',
+  '_redirects',
   'manifest.json',
   'robots.txt',
   'sitemap.xml',
@@ -152,10 +154,7 @@ async function minifyRecursive(dir) {
           } catch (err) {
             console.error(`Error minifying JS ${file}:`, err);
           }
-        } else if (
-          file.endsWith('.json') &&
-          file !== 'staticwebapp.config.json'
-        ) {
+        } else if (file.endsWith('.json')) {
           try {
             const content = await fs.readFile(filePath, 'utf8');
             const minified = JSON.stringify(JSON.parse(content));
@@ -197,10 +196,6 @@ async function build() {
       ),
       ...dirsToCopy.map((dir) =>
         copyItem(path.join(publicDir, dir), path.join(distDir, dir))
-      ),
-      copyItem(
-        path.join(rootDir, 'staticwebapp.config.json'),
-        path.join(distDir, 'staticwebapp.config.json')
       ),
       copyItem(
         path.join(rootDir, 'styles.css'),

@@ -37,7 +37,7 @@ Os valores incluem todas as contas (aluguel, internet, luz, água, limpeza e ali
 - **Site:** https://www.repsantograu.online
 
 ## Sobre este Site (Tech Stack)
-Este site é uma PWA (Progressive Web App) moderna desenvolvida pelo morador Victor Augusto.
+Este site é uma PWA (Progressive Web App) moderna desenvolvida por [Victor Augusto de Aquino Silvério](https://victorsilverio.eng.br) (Engenharia de Controle & Automação - UNIFEI).
 
 ### Tecnologias
 - **Frontend:** HTML5, Tailwind CSS v4.3.0, JavaScript vanilla.

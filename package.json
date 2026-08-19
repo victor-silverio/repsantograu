@@ -1,7 +1,7 @@
 {
   "name": "repsantograu",
   "version": "1.0.0",
-  "description": "![Azure Static Web Apps CI/CD](https://github.com/victor-silverio/repsantograu/actions/workflows/azure-static-web-apps-black-moss-0abb1d50f.yml/badge.svg) ![SEO Automation](https://github.com/victor-silverio/repsantograu/actions/workflows/update_seo.yml/badge.svg) ![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.online&label=Online&color=success)",
+  "description": "![SEO Automation](https://github.com/victor-silverio/repsantograu/actions/workflows/lastmod_update.yml/badge.svg) ![Cloudflare Protection](https://img.shields.io/badge/Protected%20by-Cloudflare-orange?logo=cloudflare) ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fwww.repsantograu.online&label=Online&color=success)",
   "main": "sw.js",
   "scripts": {
     "dev": "tailwindcss -i ./src/styles/input.css -o ./styles.css --watch",
@@ -9,7 +9,8 @@
     "build:js": "terser src/js/script.js -o src/js/script.min.js -c -m",
     "build:data": "node scripts/build/update_vacancy.js",
     "build": "npm run build:data && npm run build:css && npm run build:js",
-    "build:dist": "npm run build && node scripts/build/build_dist.js",
+    "build:dist": "npm run build && node scripts/build/build_dist.js && node scripts/build/purge_cache.js",
+    "purge:cache": "node scripts/build/purge_cache.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
