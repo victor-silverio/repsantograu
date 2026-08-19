@@ -207,6 +207,24 @@ async function build() {
     ];
     await Promise.all(copyTasks);
 
+    // 2b. Copy sub-pages as index.html inside their slug directories
+    // This makes /fotos/, /offline/, /404/ work natively on Cloudflare Pages
+    const slugPages = [
+      { file: 'fotos.html', slug: 'fotos' },
+      { file: 'offline.html', slug: 'offline' },
+      { file: '404.html', slug: '404' },
+    ];
+    await Promise.all(
+      slugPages.map(async ({ file, slug }) => {
+        const slugDir = path.join(distDir, slug);
+        await fs.mkdir(slugDir, { recursive: true });
+        await fs.copyFile(
+          path.join(distDir, file),
+          path.join(slugDir, 'index.html')
+        );
+      })
+    );
+
     // 3. Security.txt logic
     const securitySrc = path.join(distDir, '.well-known', 'security.txt');
     const securityDest = path.join(distDir, 'security.txt');
