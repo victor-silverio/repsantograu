@@ -11,7 +11,6 @@ const REQUIRED_FILES = [
   'index.html',
   'fotos/index.html',
   '404/index.html',
-  'offline/index.html',
   'styles.css',
   'src/js/script.min.js',
   'robots.txt',

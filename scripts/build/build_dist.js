@@ -23,7 +23,7 @@ const publicFiles = [
   'favicon-48x48.png',
 ];
 
-const pageFiles = ['index.html', 'offline.html', 'fotos.html', '404.html'];
+const pageFiles = ['index.html', 'fotos.html', '404.html'];
 
 const dirsToCopy = ['fonts', 'icons', 'imagens', '.well-known'];
 
@@ -58,7 +58,7 @@ async function getFileHash(filePath) {
 }
 
 async function cacheBustHtmlFiles() {
-  const htmlFiles = ['index.html', 'fotos.html', '404.html', 'offline.html'];
+  const htmlFiles = ['index.html', 'fotos.html', '404.html'];
   const regex =
     /((?:href|src|data-full|srcset)=["'])([^"']+\.[a-z0-9]+)(?:([?&]v=)([^"']+))?(["'])/gi;
 
@@ -234,10 +234,9 @@ async function build() {
 
     // 7. Copy already-minified sub-pages into slug directories
     // Done AFTER minification so each file is only processed once.
-    // This makes /fotos/, /offline/, /404/ work natively on Cloudflare Pages.
+    // This makes /fotos/ and /404/ work natively on Cloudflare Pages.
     const slugPages = [
       { file: 'fotos.html', slug: 'fotos' },
-      { file: 'offline.html', slug: 'offline' },
       { file: '404.html', slug: '404' },
     ];
     await Promise.all(
@@ -250,7 +249,7 @@ async function build() {
         );
       })
     );
-    console.log('Slug directories created (fotos/, offline/, 404/).');
+    console.log('Slug directories created (fotos/, 404/).');
 
     console.log('Build complete! Output in /dist');
   } catch (err) {

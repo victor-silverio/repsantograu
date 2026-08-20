@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const rootDir = path.join(__dirname, '..', '..');
 const vagasPath = path.join(rootDir, 'src', 'data', 'vagas.json');
@@ -265,6 +266,17 @@ try {
   console.log(
     'Successfully updated index.html with vacancy and amenities info.'
   );
+
+  // Format the file so format:check always passes on subsequent builds
+  try {
+    execSync(`npx prettier --write "${indexPath}"`, {
+      cwd: rootDir,
+      stdio: 'pipe',
+    });
+    console.log('index.html formatted by prettier.');
+  } catch (err) {
+    console.warn('Warning: prettier formatting failed:', err.message);
+  }
 } catch (error) {
   console.error('Error updating info:', error);
   process.exit(1);
