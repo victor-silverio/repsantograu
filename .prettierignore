@@ -6,3 +6,17 @@ dist/
 dist
 venv/
 node_modules/
+logs/
+.lighthouseci/
+src/config/lh_counter.json
+public/imagens/
+public/fonts/
+public/icons/
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.avif
+*.ico
+*.woff2
+*.woff

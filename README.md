@@ -83,10 +83,10 @@ repsantograu/
 │   ├── fonts/                  # Fontes locais
 │   ├── icons/                  # Ícones e favicons
 │   ├── imagens/                # Fotos otimizadas (WebP)
-│   ├── manifest.json           # Configuração PWA
-│   ├── robots.txt              # Diretrizes para crawlers
+│   ├── robots.txt              # Diretrizes para crawlers e bots de IA
 │   ├── sitemap.xml             # Mapa do site para SEO
-│   └── llms.txt                # Contexto técnico para IAs
+│   ├── llms.txt                # Resumo executivo para IAs
+│   └── llms-full.txt           # Dossiê completo para IAs
 ├── scripts/                    # Scripts do projeto
 │   ├── automation/             # Automações em Python (SEO e API)
 │   └── build/                  # Scripts de build em Node.js

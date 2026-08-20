@@ -1,9 +1,17 @@
 /*
   X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
-  Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; script-src-elem 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; script-src-attr 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline'; style-src-attr 'self' 'unsafe-inline'; img-src 'self' data: https://www.repsantograu.online https://www.repsantograu.com.br; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com https://www.repsantograu.online https://www.repsantograu.com.br https://connect.facebook.net https://www.facebook.com; frame-src https://www.facebook.com; worker-src 'self'; manifest-src 'self'; frame-ancestors 'self' https://facebook.com https://www.facebook.com; object-src 'none';
-  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Signal: ai-train=yes, search=yes, ai-input=yes
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; script-src-elem 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; script-src-attr 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline'; style-src-attr 'self' 'unsafe-inline'; img-src 'self' data: https://www.repsantograu.com.br; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com https://www.repsantograu.com.br https://connect.facebook.net https://www.facebook.com; frame-src https://www.facebook.com; worker-src 'self'; frame-ancestors 'none'; object-src 'none';
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), clipboard-write=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), interest-cohort=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), xr-spatial-tracking=()
+  Link: <https://www.repsantograu.com.br/.well-known/security.txt>; rel="security"
+  Link: <https://www.repsantograu.com.br/humans.txt>; rel="author"
+  Link: </llms.txt>; rel="service-doc"
+  Link: </llms-full.txt>; rel="describedby"
 
 /*.css
   Cache-Control: public, max-age=31536000, immutable
@@ -17,9 +25,17 @@
   Cache-Control: public, max-age=31536000, immutable
 /*.webp
   Cache-Control: public, max-age=31536000, immutable
+/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
 /*.ico
   Cache-Control: public, max-age=31536000, immutable
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
 /*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+/*.mp4
   Cache-Control: public, max-age=31536000, immutable
 
 /*.html

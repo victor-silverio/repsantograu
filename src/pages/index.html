@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; script-src-elem 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; script-src-attr 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline'; style-src-attr 'self' 'unsafe-inline'; img-src 'self' data: https://www.repsantograu.com.br https://www.repsantograu.com.br; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com https://www.repsantograu.com.br https://www.repsantograu.com.br https://connect.facebook.net https://www.facebook.com; frame-src https://www.facebook.com; worker-src 'self'; manifest-src 'self'; object-src 'none';"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; script-src-elem 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://connect.facebook.net https://www.facebook.com; script-src-attr 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline'; style-src-attr 'self' 'unsafe-inline'; img-src 'self' data: https://www.repsantograu.com.br; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com https://www.repsantograu.com.br https://connect.facebook.net https://www.facebook.com; frame-src https://www.facebook.com; worker-src 'self'; object-src 'none';"
       http-equiv="Content-Security-Policy"
     />
     <meta content="#8B0000" name="theme-color" />
@@ -40,7 +40,7 @@
     <link
       as="image"
       fetchpriority="high"
-      href="/imagens/fundo_mobile.webp?v=be3dcf56"
+      href="/imagens/fundo_mobile.webp"
       media="(max-width: 767px)"
       rel="preload"
       type="image/webp"
@@ -48,12 +48,12 @@
     <link
       as="image"
       fetchpriority="high"
-      href="/imagens/frente_reitoria.webp?v=52372de2"
+      href="/imagens/frente_reitoria.webp"
       media="(min-width: 768px)"
       rel="preload"
     />
-    <link href="./styles.css?v=3b2ea065" rel="stylesheet" />
-    <script defer="" src="src/js/script.min.js?v=0199f94a"></script>
+    <link href="./styles.css" rel="stylesheet" />
+    <script defer="" src="src/js/script.min.js"></script>
     <meta
       content="República Santo Grau: Vagas em Itajubá"
       property="og:title"
@@ -66,11 +66,6 @@
       content="https://www.repsantograu.com.br/imagens/share_image.jpg"
       property="og:image"
     />
-    <meta content="yes" name="apple-mobile-web-app-capable" />
-    <meta
-      content="black-translucent"
-      name="apple-mobile-web-app-status-bar-style"
-    />
     <meta content="telephone=no" name="format-detection" />
     <meta content="image/jpeg" property="og:image:type" />
     <meta content="1200" property="og:image:width" />
@@ -82,28 +77,27 @@
     <meta content="Itajubá" name="geo.placename" />
     <meta content="-22.4133;-45.4497" name="geo.position" />
     <meta content="-22.4133, -45.4497" name="ICBM" />
-    <link href="/manifest.json?v=1c38c3bf" rel="manifest" />
-    <link href="/favicon.ico?v=cebd06a6" rel="icon" sizes="any" />
+    <link href="/favicon.ico" rel="icon" sizes="any" />
     <link
-      href="/icons/favicon-32x32.png?v=753e6510"
+      href="/icons/favicon-32x32.png"
       rel="icon"
       sizes="32x32"
       type="image/png"
     />
     <link
-      href="/icons/favicon-48x48.png?v=95570a2d"
+      href="/icons/favicon-48x48.png"
       rel="icon"
       sizes="48x48"
       type="image/png"
     />
     <link
-      href="/icons/favicon-192x192.png?v=7ef6e85b"
+      href="/icons/favicon-192x192.png"
       rel="icon"
       sizes="192x192"
       type="image/png"
     />
     <link
-      href="/icons/apple-touch-icon.png?v=8cf0d018"
+      href="/icons/apple-touch-icon.png"
       rel="apple-touch-icon"
       sizes="180x180"
     />
@@ -248,6 +242,17 @@
             }
           },
           {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.repsantograu.com.br/"
+              }
+            ]
+          },
+          {
             "@type": "FAQPage",
             "mainEntity": [
               {
@@ -307,7 +312,7 @@
               alt="Logotipo oficial da República Santo Grau - Moradia Estudantil Masculina"
               class="h-10 w-10 object-contain transition duration-300"
               height="1350"
-              src="/icons/logo_rep_transparente.webp?v=1622cbb4"
+              src="/icons/logo_rep_transparente.webp"
               width="1080"
             />
             <span
@@ -387,14 +392,30 @@
           <picture>
             <source
               media="(max-width: 767px)"
-              srcset="/imagens/fundo_mobile.webp?v=be3dcf56"
+              type="image/avif"
+              srcset="/imagens/fundo_mobile.avif"
+            />
+            <source
+              media="(max-width: 767px)"
+              type="image/webp"
+              srcset="/imagens/fundo_mobile.webp"
+            />
+            <source
+              media="(min-width: 768px)"
+              type="image/avif"
+              srcset="/imagens/frente_reitoria.avif"
+            />
+            <source
+              media="(min-width: 768px)"
+              type="image/webp"
+              srcset="/imagens/frente_reitoria.webp"
             />
             <img
               alt="Vista frontal do prédio da reitoria no campus Itajubá da UNIFEI"
               class="h-full w-full object-cover object-center opacity-50"
               fetchpriority="high"
               height="308"
-              src="/imagens/frente_reitoria.webp?v=52372de2"
+              src="/imagens/frente_reitoria.webp"
               width="558"
             />
           </picture>
@@ -410,7 +431,7 @@
               alt="Brasão da República Santo Grau - Moradia Estudantil em Itajubá perto da UNIFEI"
               class="h-full w-full object-cover object-center"
               height="1350"
-              src="/icons/logo_rep_transparente.webp?v=1622cbb4"
+              src="/icons/logo_rep_transparente.webp"
               width="1080"
             />
           </div>
@@ -501,7 +522,7 @@
                 decoding="async"
                 height="1350"
                 loading="lazy"
-                src="/icons/logo_rep_transparente.webp?v=1622cbb4"
+                src="/icons/logo_rep_transparente.webp"
                 width="1080"
               />
             </div>
@@ -516,7 +537,7 @@
               class="mb-8 grid grid-cols-1 gap-x-8 gap-y-4 text-sm text-gray-700 md:grid-cols-2 md:text-base"
               id="amenities-container"
             >
-              <div class="flex items-start gap-3">
+<div class="flex items-start gap-3">
                 <div class="mt-1 flex w-6 flex-shrink-0 justify-center">
                   <svg
                     class="text-repGold h-5 w-5"
@@ -530,11 +551,10 @@
                   </svg>
                 </div>
                 <span class="text-gray-700"
-                  >Referência entre as
-                  <strong>repúblicas em Itajubá</strong> desde 2011.</span
+                  >Referência entre as <strong>repúblicas em Itajubá</strong> desde 2011.</span
                 >
               </div>
-              <div class="flex items-start gap-3">
+<div class="flex items-start gap-3">
                 <div class="mt-1 flex w-6 flex-shrink-0 justify-center">
                   <svg
                     class="text-repGold h-5 w-5"
@@ -548,11 +568,10 @@
                   </svg>
                 </div>
                 <span class="text-gray-700"
-                  >Infraestrutura ampla: <strong>7 Quartos</strong> &amp;
-                  <strong>3 Banheiros</strong> completos.</span
+                  >Infraestrutura ampla: <strong>7 Quartos</strong> &amp; <strong>3 Banheiros</strong> completos.</span
                 >
               </div>
-              <div class="flex items-start gap-3">
+<div class="flex items-start gap-3">
                 <div class="mt-1 flex w-6 flex-shrink-0 justify-center">
                   <svg
                     class="text-repGold h-5 w-5"
@@ -566,12 +585,10 @@
                   </svg>
                 </div>
                 <span class="text-gray-700"
-                  >Localização estratégica no
-                  <strong>Bairro Pinheirinho</strong>: A apenas
-                  <strong>2 minutos a pé da UNIFEI</strong>.</span
+                  >Localização estratégica no <strong>Bairro Pinheirinho</strong>: A apenas <strong>2 minutos a pé da UNIFEI</strong>.</span
                 >
               </div>
-              <div class="flex items-start gap-3">
+<div class="flex items-start gap-3">
                 <div class="mt-1 flex w-6 flex-shrink-0 justify-center">
                   <svg
                     class="text-repGold h-5 w-5"
@@ -585,11 +602,10 @@
                   </svg>
                 </div>
                 <span class="text-gray-700"
-                  >Apoio total da <strong>Mãezona Rê</strong> (Seg a Sex):
-                  Limpeza, organização e alimentação.</span
+                  >Apoio total da <strong>Mãezona Rê</strong> (Seg a Sex): Limpeza, organização e alimentação.</span
                 >
               </div>
-              <div class="flex items-start gap-3">
+<div class="flex items-start gap-3">
                 <div class="mt-1 flex w-6 flex-shrink-0 justify-center">
                   <svg
                     class="text-repGold h-5 w-5"
@@ -606,7 +622,7 @@
                   ><strong>Almoço e Jantar</strong> de Domingo a Sexta.</span
                 >
               </div>
-              <div class="flex items-start gap-3">
+<div class="flex items-start gap-3">
                 <div class="mt-1 flex w-6 flex-shrink-0 justify-center">
                   <svg
                     class="text-repGold h-5 w-5"
@@ -620,12 +636,10 @@
                   </svg>
                 </div>
                 <span class="text-gray-700"
-                  >Conexão robusta:
-                  <strong>2 Links de Fibra Óptica de Alta Velocidade</strong
-                  >.</span
+                  >Conexão robusta: <strong>2 Links de Fibra Óptica de Alta Velocidade</strong>.</span
                 >
               </div>
-              <div class="flex items-start gap-3">
+<div class="flex items-start gap-3">
                 <div class="mt-1 flex w-6 flex-shrink-0 justify-center">
                   <svg
                     class="text-repGold h-5 w-5"
@@ -639,11 +653,10 @@
                   </svg>
                 </div>
                 <span class="text-gray-700"
-                  ><strong>Garagem </strong> disponível para carros e
-                  motos.</span
+                  ><strong>Garagem </strong> disponível para carros e motos.</span
                 >
               </div>
-              <div class="flex items-start gap-3">
+<div class="flex items-start gap-3">
                 <div class="mt-1 flex w-6 flex-shrink-0 justify-center">
                   <svg
                     class="text-repGold h-5 w-5"
@@ -657,11 +670,10 @@
                   </svg>
                 </div>
                 <span class="text-gray-700"
-                  >Lazer: TV 4K, streamings liberados, videogame e mesa de
-                  <strong>sinuca</strong>.</span
+                  >Lazer: TV 4K, streamings liberados, videogame e mesa de <strong>sinuca</strong>.</span
                 >
               </div>
-              <div class="flex items-start gap-3">
+<div class="flex items-start gap-3">
                 <div class="mt-1 flex w-6 flex-shrink-0 justify-center">
                   <svg
                     class="text-repGold h-5 w-5"
@@ -675,23 +687,10 @@
                   </svg>
                 </div>
                 <span class="text-gray-700"
-                  ><div class="flex w-full flex-col">
-                    <span class="mb-1 font-semibold"
-                      >Custo Mensal médio (Tudo Incluso):</span
-                    >
-                    <div class="flex flex-wrap gap-2">
-                      <span
-                        class="text-repRed rounded-md border border-gray-200 bg-gray-100 px-2 py-1 text-sm font-bold"
-                        >~R$ 1050 (Duplo)</span
-                      ><span
-                        class="text-repRed rounded-md border border-gray-200 bg-gray-100 px-2 py-1 text-sm font-bold"
-                        >~R$ 1180 (Individual)</span
-                      >
-                    </div>
-                  </div></span
+                  ><div class="flex flex-col w-full"><span class="font-semibold mb-1">Custo Mensal médio (Tudo Incluso):</span><div class="flex flex-wrap gap-2"><span class="bg-gray-100 text-repRed px-2 py-1 rounded-md text-sm font-bold border border-gray-200">~R$ 1050 (Duplo)</span><span class="bg-gray-100 text-repRed px-2 py-1 rounded-md text-sm font-bold border border-gray-200">~R$ 1180 (Individual)</span></div></div></span
                 >
               </div>
-              <div class="flex items-start gap-3">
+<div class="flex items-start gap-3">
                 <div class="mt-1 flex w-6 flex-shrink-0 justify-center">
                   <svg
                     class="text-repGold h-5 w-5"
@@ -705,11 +704,10 @@
                   </svg>
                 </div>
                 <span class="text-gray-700"
-                  ><strong>Transparência:</strong> Todos os custos são de acesso
-                  aberto e registrados via planilha online.</span
+                  ><strong>Transparência:</strong> Todos os custos são de acesso aberto e registrados via planilha online.</span
                 >
               </div>
-            </div>
+</div>
             <div class="flex w-full flex-col items-start gap-6">
               <div class="mt-4 flex w-full max-w-md flex-col gap-4">
                 <h3 class="text-repRed mb-1 font-serif text-lg font-bold">
@@ -889,15 +887,19 @@
             <div
               class="group reveal relative h-64 overflow-hidden rounded-lg shadow-xl md:h-80 md:rounded-none"
             >
-              <img
-                alt="Moradores e ex-alunos reunidos no Encontrão da República Santo Grau"
-                class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-110"
-                decoding="async"
-                height="480"
-                loading="lazy"
-                src="/imagens/encontrao.webp?v=0584efc1"
-                width="364"
-              />
+              <picture>
+                <source type="image/avif" srcset="/imagens/encontrao.avif" />
+                <source type="image/webp" srcset="/imagens/encontrao.webp" />
+                <img
+                  alt="Moradores e ex-alunos reunidos no Encontrão da República Santo Grau"
+                  class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-110"
+                  decoding="async"
+                  height="480"
+                  loading="lazy"
+                  src="/imagens/encontrao.webp"
+                  width="364"
+                />
+              </picture>
               <div
                 class="from-repRed/90 absolute inset-0 flex translate-y-4 flex-col justify-end bg-gradient-to-t to-transparent p-6 transition duration-300 group-hover:translate-y-0"
               >
@@ -916,15 +918,25 @@
             <div
               class="group reveal relative h-64 overflow-hidden rounded-lg shadow-xl delay-100 md:h-80 md:rounded-none"
             >
-              <img
-                alt="Famílias reunidas no churrasco dos pais na república"
-                class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-110"
-                decoding="async"
-                height="338"
-                loading="lazy"
-                src="/imagens/churrasco_pais.webp?v=7fc27721"
-                width="364"
-              />
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="/imagens/churrasco_pais.avif"
+                />
+                <source
+                  type="image/webp"
+                  srcset="/imagens/churrasco_pais.webp"
+                />
+                <img
+                  alt="Famílias reunidas no churrasco dos pais na república"
+                  class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-110"
+                  decoding="async"
+                  height="338"
+                  loading="lazy"
+                  src="/imagens/churrasco_pais.webp"
+                  width="364"
+                />
+              </picture>
               <div
                 class="from-repRed/90 absolute inset-0 flex translate-y-4 flex-col justify-end bg-gradient-to-t to-transparent p-6 transition duration-300 group-hover:translate-y-0"
               >
@@ -943,15 +955,19 @@
             <div
               class="group reveal relative h-64 overflow-hidden rounded-lg shadow-xl delay-200 md:h-80 md:rounded-none"
             >
-              <img
-                alt="Competição culinária MasterBixo promovida pelos moradores da República Santo Grau"
-                class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-110"
-                decoding="async"
-                height="647"
-                loading="lazy"
-                src="/imagens/masterbixo.webp?v=b6ba28ed"
-                width="364"
-              />
+              <picture>
+                <source type="image/avif" srcset="/imagens/masterbixo.avif" />
+                <source type="image/webp" srcset="/imagens/masterbixo.webp" />
+                <img
+                  alt="Competição culinária MasterBixo promovida pelos moradores da República Santo Grau"
+                  class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-110"
+                  decoding="async"
+                  height="647"
+                  loading="lazy"
+                  src="/imagens/masterbixo.webp"
+                  width="364"
+                />
+              </picture>
               <div
                 class="from-repRed/90 absolute inset-0 flex translate-y-4 flex-col justify-end bg-gradient-to-t to-transparent p-6 transition duration-300 group-hover:translate-y-0"
               >
@@ -992,9 +1008,7 @@
             <picture>
               <source
                 media="(max-width: 767px)"
-                srcset="
-                  /imagens/Casa/Fachada/foto_fachada_mobile_thumb.webp?v=8a5bf023
-                "
+                srcset="/imagens/Casa/Fachada/foto_fachada_mobile_thumb.webp"
               />
               <img
                 alt="Fachada da República Estudantil Santo Grau no bairro Pinheirinho em Itajubá"
@@ -1002,7 +1016,7 @@
                 decoding="async"
                 height="535"
                 loading="lazy"
-                src="/imagens/Casa/Fachada/foto_fachada_desktop_thumb.webp?v=f7f06af1"
+                src="/imagens/Casa/Fachada/foto_fachada_desktop_thumb.webp"
                 width="713"
               />
             </picture>
@@ -1017,7 +1031,7 @@
             <picture>
               <source
                 media="(max-width: 767px)"
-                srcset="/imagens/Casa/Sala/sala_1_mobile_thumb.webp?v=7086ff46"
+                srcset="/imagens/Casa/Sala/sala_1_mobile_thumb.webp"
               />
               <img
                 alt="Sala de estar da República Santo Grau com TV 4K e sofás confortáveis para lazer dos estudantes"
@@ -1025,7 +1039,7 @@
                 decoding="async"
                 height="535"
                 loading="lazy"
-                src="/imagens/Casa/Sala/sala_1_desktop_thumb.webp?v=7024046b"
+                src="/imagens/Casa/Sala/sala_1_desktop_thumb.webp"
                 width="713"
               />
             </picture>
@@ -1040,9 +1054,7 @@
             <picture>
               <source
                 media="(max-width: 767px)"
-                srcset="
-                  /imagens/Casa/Cozinha/Cozinha_1_mobile_thumb.webp?v=b2ae5e4b
-                "
+                srcset="/imagens/Casa/Cozinha/Cozinha_1_mobile_thumb.webp"
               />
               <img
                 alt="Cozinha completa e equipada da moradia estudantil com eletrodomésticos e armários organizados"
@@ -1050,7 +1062,7 @@
                 decoding="async"
                 height="535"
                 loading="lazy"
-                src="/imagens/Casa/Cozinha/Cozinha_1_desktop_thumb.webp?v=db959630"
+                src="/imagens/Casa/Cozinha/Cozinha_1_desktop_thumb.webp"
                 width="713"
               />
             </picture>
@@ -1065,7 +1077,7 @@
             <picture>
               <source
                 media="(max-width: 767px)"
-                srcset="/imagens/Casa/Copa/copa_2_mobile_thumb.webp?v=db3552d9"
+                srcset="/imagens/Casa/Copa/copa_2_mobile_thumb.webp"
               />
               <img
                 alt="Copa e área de refeições da república estudantil em Itajubá"
@@ -1073,7 +1085,7 @@
                 decoding="async"
                 height="535"
                 loading="lazy"
-                src="/imagens/Casa/Copa/copa_2_desktop_thumb.webp?v=dc22c6f5"
+                src="/imagens/Casa/Copa/copa_2_desktop_thumb.webp"
                 width="713"
               />
             </picture>
@@ -1178,7 +1190,7 @@
               decoding="async"
               height="431"
               loading="lazy"
-              src="/imagens/mapa.webp?v=4ab367cb"
+              src="/imagens/mapa.webp"
               width="440"
             />
             <div
@@ -1290,7 +1302,7 @@
                     decoding="async"
                     height="510"
                     loading="lazy"
-                    src="/imagens/anos/2011.webp?v=784ac97d"
+                    src="/imagens/anos/2011.webp"
                     width="666"
                   />
                 </div>
@@ -1310,7 +1322,7 @@
                     decoding="async"
                     height="510"
                     loading="lazy"
-                    src="/imagens/anos/2012.webp?v=77713aa8"
+                    src="/imagens/anos/2012.webp"
                     width="684"
                   />
                 </div>
@@ -1330,7 +1342,7 @@
                     decoding="async"
                     height="510"
                     loading="lazy"
-                    src="/imagens/anos/2013.webp?v=c346e437"
+                    src="/imagens/anos/2013.webp"
                     width="767"
                   />
                 </div>
@@ -1350,7 +1362,7 @@
                     decoding="async"
                     height="510"
                     loading="lazy"
-                    src="/imagens/anos/2014.webp?v=04517998"
+                    src="/imagens/anos/2014.webp"
                     width="679"
                   />
                 </div>
@@ -1370,7 +1382,7 @@
                     decoding="async"
                     height="507"
                     loading="lazy"
-                    src="/imagens/anos/2015.webp?v=9a9053c5"
+                    src="/imagens/anos/2015.webp"
                     width="767"
                   />
                 </div>
@@ -1390,7 +1402,7 @@
                     decoding="async"
                     height="429"
                     loading="lazy"
-                    src="/imagens/anos/2016.webp?v=6ed2b9e8"
+                    src="/imagens/anos/2016.webp"
                     width="767"
                   />
                 </div>
@@ -1410,7 +1422,7 @@
                     decoding="async"
                     height="510"
                     loading="lazy"
-                    src="/imagens/anos/2017.webp?v=d6fbf1e3"
+                    src="/imagens/anos/2017.webp"
                     width="683"
                   />
                 </div>
@@ -1430,7 +1442,7 @@
                     decoding="async"
                     height="429"
                     loading="lazy"
-                    src="/imagens/anos/2018.webp?v=ca1b6cbe"
+                    src="/imagens/anos/2018.webp"
                     width="767"
                   />
                 </div>
@@ -1450,7 +1462,7 @@
                     decoding="async"
                     height="510"
                     loading="lazy"
-                    src="/imagens/anos/2019.webp?v=28d5bda4"
+                    src="/imagens/anos/2019.webp"
                     width="623"
                   />
                 </div>
@@ -1470,7 +1482,7 @@
                     decoding="async"
                     height="510"
                     loading="lazy"
-                    src="/imagens/anos/2020.webp?v=9c4332fa"
+                    src="/imagens/anos/2020.webp"
                     width="613"
                   />
                 </div>
@@ -1490,7 +1502,7 @@
                     decoding="async"
                     height="510"
                     loading="lazy"
-                    src="/imagens/anos/2022.webp?v=7bbad1f8"
+                    src="/imagens/anos/2022.webp"
                     width="684"
                   />
                 </div>
@@ -1510,7 +1522,7 @@
                     decoding="async"
                     height="510"
                     loading="lazy"
-                    src="/imagens/anos/2023.webp?v=25eaa096"
+                    src="/imagens/anos/2023.webp"
                     width="687"
                   />
                 </div>
@@ -1530,7 +1542,7 @@
                     decoding="async"
                     height="510"
                     loading="lazy"
-                    src="/imagens/anos/2024.webp?v=b0f883ef"
+                    src="/imagens/anos/2024.webp"
                     width="629"
                   />
                 </div>
@@ -1550,7 +1562,7 @@
                     decoding="async"
                     height="510"
                     loading="lazy"
-                    src="/imagens/anos/2025.webp?v=3f39f1e6"
+                    src="/imagens/anos/2025.webp"
                     width="383"
                   />
                 </div>
@@ -1607,7 +1619,7 @@
               decoding="async"
               height="153"
               loading="lazy"
-              src="/imagens/logos/mrs.webp?v=fa279118"
+              src="/imagens/logos/mrs.webp"
               width="328"
             />
           </div>
@@ -1620,7 +1632,7 @@
               decoding="async"
               height="161"
               loading="lazy"
-              src="/imagens/logos/embraer.webp?v=1ec03f24"
+              src="/imagens/logos/embraer.webp"
               width="960"
             />
           </div>
@@ -1633,7 +1645,7 @@
               decoding="async"
               height="200"
               loading="lazy"
-              src="/imagens/logos/general_water.webp?v=1aa95d34"
+              src="/imagens/logos/general_water.webp"
               width="200"
             />
           </div>
@@ -1646,7 +1658,7 @@
               decoding="async"
               height="225"
               loading="lazy"
-              src="/imagens/logos/caravela.webp?v=f1c790a0"
+              src="/imagens/logos/caravela.webp"
               width="225"
             />
           </div>
@@ -1659,7 +1671,7 @@
               decoding="async"
               height="898"
               loading="lazy"
-              src="/imagens/logos/neoenergia.webp?v=ab819d0c"
+              src="/imagens/logos/neoenergia.webp"
               width="1500"
             />
           </div>
@@ -1672,7 +1684,7 @@
               decoding="async"
               height="204"
               loading="lazy"
-              src="/imagens/logos/radix.webp?v=02b2a908"
+              src="/imagens/logos/radix.webp"
               width="600"
             />
           </div>
@@ -1685,7 +1697,7 @@
               decoding="async"
               height="500"
               loading="lazy"
-              src="/imagens/logos/callbell.webp?v=fef17095"
+              src="/imagens/logos/callbell.webp"
               width="1550"
             />
           </div>
@@ -1698,7 +1710,7 @@
               decoding="async"
               height="600"
               loading="lazy"
-              src="/imagens/logos/andritz.webp?v=39632c80"
+              src="/imagens/logos/andritz.webp"
               width="600"
             />
           </div>
@@ -1711,7 +1723,7 @@
               decoding="async"
               height="600"
               loading="lazy"
-              src="/imagens/logos/aptiv.webp?v=790588d0"
+              src="/imagens/logos/aptiv.webp"
               width="600"
             />
           </div>
@@ -1724,7 +1736,7 @@
               decoding="async"
               height="428"
               loading="lazy"
-              src="/imagens/logos/btgpactual.webp?v=03b7553e"
+              src="/imagens/logos/btgpactual.webp"
               width="640"
             />
           </div>
@@ -1737,7 +1749,7 @@
               decoding="async"
               height="142"
               loading="lazy"
-              src="/imagens/logos/creator.webp?v=aecde766"
+              src="/imagens/logos/creator.webp"
               width="400"
             />
           </div>
@@ -1750,7 +1762,7 @@
               decoding="async"
               height="453"
               loading="lazy"
-              src="/imagens/logos/wonder.webp?v=6722563f"
+              src="/imagens/logos/wonder.webp"
               width="489"
             />
           </div>
@@ -1763,7 +1775,7 @@
               decoding="async"
               height="163"
               loading="lazy"
-              src="/imagens/logos/hitachi.webp?v=5edca9ca"
+              src="/imagens/logos/hitachi.webp"
               width="310"
             />
           </div>
@@ -1776,7 +1788,7 @@
               decoding="async"
               height="720"
               loading="lazy"
-              src="/imagens/logos/porshe.webp?v=88e5a635"
+              src="/imagens/logos/porshe.webp"
               width="1280"
             />
           </div>
@@ -1789,7 +1801,7 @@
               decoding="async"
               height="225"
               loading="lazy"
-              src="/imagens/logos/jirau.webp?v=e79b11ed"
+              src="/imagens/logos/jirau.webp"
               width="225"
             />
           </div>
@@ -1802,7 +1814,7 @@
               decoding="async"
               height="99"
               loading="lazy"
-              src="/imagens/logos/valgroup.webp?v=e8dde6ff"
+              src="/imagens/logos/valgroup.webp"
               width="511"
             />
           </div>
@@ -1815,7 +1827,7 @@
               decoding="async"
               height="135"
               loading="lazy"
-              src="/imagens/logos/basf.webp?v=6e35bfc5"
+              src="/imagens/logos/basf.webp"
               width="374"
             />
           </div>
@@ -1828,7 +1840,7 @@
               decoding="async"
               height="512"
               loading="lazy"
-              src="/imagens/logos/bacio.webp?v=20e63425"
+              src="/imagens/logos/bacio.webp"
               width="512"
             />
           </div>
@@ -1841,7 +1853,7 @@
               decoding="async"
               height="1537"
               loading="lazy"
-              src="/imagens/logos/fupai.webp?v=78d10233"
+              src="/imagens/logos/fupai.webp"
               width="3013"
             />
           </div>
@@ -1854,7 +1866,7 @@
               decoding="async"
               height="225"
               loading="lazy"
-              src="/imagens/logos/hvex.webp?v=5df1eb55"
+              src="/imagens/logos/hvex.webp"
               width="225"
             />
           </div>
@@ -1922,8 +1934,7 @@
                     </span>
                   </summary>
                   <div class="group-open:animate-fadeIn mt-3 text-gray-600">
-                    As vagas são abertas semestralmente. Atualmente as vagas são
-                    para Quarto Compartilhado. O valor inclui todas as contas
+                    As vagas são abertas semestralmente. Atualmente as vagas são para Quarto Compartilhado. O valor inclui todas as contas
                     (internet, luz, água), limpeza e alimentação (almoço e
                     jantar).
                   </div>

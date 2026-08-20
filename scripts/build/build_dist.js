@@ -13,11 +13,11 @@ const pagesDir = path.join(rootDir, 'src', 'pages');
 const publicFiles = [
   '_headers',
   '_redirects',
-  'manifest.json',
   'robots.txt',
   'sitemap.xml',
   'humans.txt',
   'llms.txt',
+  'llms-full.txt',
   'favicon.ico',
   'favicon-32x32.png',
   'favicon-48x48.png',

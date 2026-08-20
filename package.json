@@ -9,10 +9,13 @@
     "dev": "tailwindcss -i ./src/styles/input.css -o ./styles.css --watch",
     "build:css": "tailwindcss -i ./src/styles/input.css -o ./styles.css --minify",
     "build:js": "esbuild src/js/script.js --minify --target=es2022 --outfile=src/js/script.min.js",
+    "test:data": "node scripts/build/validate_data.js",
     "build:data": "node scripts/build/update_vacancy.js",
     "build": "npm run build:data && npm run build:css && npm run build:js",
-    "build:dist": "node scripts/automation/update_metadata.js && npm run build && node scripts/build/build_dist.js && node scripts/build/validate_build.js && node scripts/build/purge_cache.js",
+    "check": "npm run format:check && npm run lint && npm run test:data",
+    "build:dist": "npm run format:check && npm run lint && node scripts/automation/update_metadata.js && npm run build && node scripts/build/build_dist.js && node scripts/build/validate_build.js && node scripts/build/run_lighthouse.js && node scripts/build/purge_cache.js",
     "test:build": "node scripts/build/validate_build.js",
+    "test:lighthouse": "RUN_LHCI=true node scripts/build/run_lighthouse.js",
     "purge:cache": "node scripts/build/purge_cache.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -33,6 +36,8 @@
   "homepage": "https://github.com/victor-silverio/repsantograu#readme",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@lhci/cli": "^0.15.1",
+    "@puppeteer/browsers": "^3.2.1",
     "@tailwindcss/cli": "^4.3.0",
     "esbuild": "^0.28.2",
     "eslint": "^10.4.0",
@@ -43,6 +48,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4.3.0",
-    "terser": "^5.47.1"
+    "terser": "^5.47.1",
+    "zod": "^4.4.3"
   }
 }
