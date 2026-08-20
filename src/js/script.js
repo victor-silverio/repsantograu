@@ -206,10 +206,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevBtn = document.getElementById('lightbox-prev');
   const nextBtn = document.getElementById('lightbox-next');
   const galleryImages = document.querySelectorAll('.gallery-img');
+
   if (lightbox && galleryImages.length > 0) {
     let currentIndex = 0;
+    let previousActiveElement = null;
     const imagesList = Array.from(galleryImages);
+
     const openLightbox = (index) => {
+      previousActiveElement = document.activeElement;
       currentIndex = index;
       const img = imagesList[currentIndex];
       lightboxImg.src = img.getAttribute('data-full') || img.src;
@@ -217,9 +221,11 @@ document.addEventListener('DOMContentLoaded', () => {
       lightbox.classList.remove('hidden');
       setTimeout(() => {
         lightbox.classList.remove('opacity-0');
+        closeBtn?.focus();
       }, 10);
       document.body.style.overflow = 'hidden';
     };
+
     const closeLightbox = () => {
       lightbox.classList.add('opacity-0');
       setTimeout(() => {
@@ -230,6 +236,13 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxImg.classList.add('max-h-[85vh]', 'cursor-zoom-in');
         lightboxImg.classList.remove('max-h-none', 'cursor-zoom-out');
         lightbox.classList.remove('overflow-auto');
+
+        if (
+          previousActiveElement &&
+          typeof previousActiveElement.focus === 'function'
+        ) {
+          previousActiveElement.focus();
+        }
       }, 300);
       document.body.style.overflow = '';
     };
@@ -258,18 +271,33 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     lightboxImg.addEventListener('click', toggleZoom);
+
     const showNext = () => {
       currentIndex = (currentIndex + 1) % imagesList.length;
       openLightbox(currentIndex);
     };
+
     const showPrev = () => {
       currentIndex = (currentIndex - 1 + imagesList.length) % imagesList.length;
       openLightbox(currentIndex);
     };
+
     imagesList.forEach((img, index) => {
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      const altText = img.getAttribute('alt') || `Foto ${index + 1}`;
+      img.setAttribute('aria-label', `Abrir foto em tamanho real: ${altText}`);
+
       img.addEventListener('click', () => openLightbox(index));
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(index);
+        }
+      });
     });
-    closeBtn.addEventListener('click', closeLightbox);
+
+    closeBtn?.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
     });
@@ -281,12 +309,53 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       showPrev();
     });
+
     document.addEventListener('keydown', (e) => {
       if (lightbox.classList.contains('hidden')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'ArrowLeft') showPrev();
+
+      if (e.key === 'Escape') {
+        closeLightbox();
+        return;
+      }
+      if (e.key === 'ArrowRight') {
+        showNext();
+        return;
+      }
+      if (e.key === 'ArrowLeft') {
+        showPrev();
+        return;
+      }
+
+      // Focus trap para navegação por teclado (WCAG 2.1)
+      if (e.key === 'Tab') {
+        const focusable = lightbox.querySelectorAll(
+          'button:not([disabled]), [tabindex="0"]'
+        );
+        const visibleFocusable = Array.from(focusable).filter(
+          (el) =>
+            el.offsetParent !== null ||
+            window.getComputedStyle(el).display !== 'none'
+        );
+
+        if (visibleFocusable.length === 0) return;
+
+        const firstElement = visibleFocusable[0];
+        const lastElement = visibleFocusable[visibleFocusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
     });
+
     let touchStartX = 0;
     let touchEndX = 0;
     lightbox.addEventListener(

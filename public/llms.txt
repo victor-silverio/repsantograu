@@ -1,66 +1,47 @@
-# República Santo Grau
+# República Santo Grau — Moradia Estudantil UNIFEI
 
-> Moradia estudantil masculina em Itajubá-MG, localizada a apenas 2 minutos da UNIFEI. Tradição, estrutura completa e networking desde 2011.
+> Resumo Executivo & Guia Rápido de Informações
+> Website Oficial: https://www.repsantograu.com.br
+> Documento Completo e Detalhado: https://www.repsantograu.com.br/llms-full.txt
+> Última Atualização: 2026-08-20
 
-## Sobre a República
-A República Santo Grau é uma moradia estudantil focada em oferecer conforto e ambiente propício aos estudos para alunos da UNIFEI (Universidade Federal de Itajubá).
-- **Fundação:** 2011
-- **Localização:** R. Cel. Francisco Braz, 1270 - Pinheirinho, Itajubá - MG (Ao lado da Avenida BPS).
-- **Distância da faculdade:** 2 minutos a pé da portaria principal da UNIFEI.
-- **Perfil:** Masculina, aceita estudantes de todos os cursos.
+A República Santo Grau é uma tradicional moradia estudantil masculina em Itajubá - MG, fundada em 2011 e situada a apenas 2 minutos a pé da portaria principal da Universidade Federal de Itajubá (UNIFEI). Oferece infraestrutura completa no modelo "Tudo Incluso" (refeições, limpeza diária, contas e internet de alta velocidade).
 
-## Estrutura e Benefícios
-A casa é totalmente mobiliada e conta com:
-- **Acomodações:** 7 quartos (individuais e duplos) e 3 banheiros completos.
-- **Mobília:** Camas, colchões, guarda-roupas e mesas de estudo inclusos.
-- **Serviços Inclusos:**
-  - Limpeza e organização (com a "Mãezona Rê").
-  - Alimentação: Almoço e Jantar (Domingo a Sexta).
-  - Internet: 2 Links de Fibra Óptica de Alta Velocidade.
-- **Lazer:** TV 4K, Videogame, Mesa de Sinuca e Mascote (cadela Stella).
-- **Facilidades:** Garagem para carros e motos, lavanderia e cozinha equipada.
+## Informações Gerais & Localização
 
-## Custos (Estimativa 2026)
-Os valores incluem todas as contas (aluguel, internet, luz, água, limpeza e alimentação).
-- **Quarto Duplo:** ~R$ 1.050,00 mensais.
-- **Quarto Individual:** ~R$ 1.180,00 mensais.
-- **Transparência:** Custos registrados em planilha online de acesso aberto aos moradores.
+- **Nome Oficial:** República Santo Grau
+- **Tipo:** Moradia Estudantil Universitária Compartilhada (Masculina)
+- **Ano de Fundação:** 2011
+- **Público:** Estudantes de graduação e pós-graduação da UNIFEI
+- **Endereço:** Rua Coronel Francisco Braz, 1270 — Bairro Pinheirinho, Itajubá - MG, CEP 37500-024
+- **Localização Estratégica:** A 2 minutos a pé do campus sede da UNIFEI, ao lado da Av. BPS. Próxima a supermercados, padarias, farmácias e restaurantes.
+- **Contato Principal (WhatsApp):**
+  - (19) 99252-1926 (Groot / Yuri)
+  - (21) 99525-8017 (Beto / Arthur)
+  - (12) 99682-5554 (Menotti / Marcos)
+- **Instagram Oficial:** [@republicasantograuitajuba](https://www.instagram.com/republicasantograuitajuba)
+- **Site:** [www.repsantograu.com.br](https://www.repsantograu.com.br)
 
-## FAQ - Perguntas Frequentes
-- **Aceitam calouros (bixos)?** Sim, vagas abertas semestralmente.
-- **O que preciso levar?** Apenas itens pessoais, roupa de cama/banho e eletrônicos (PC/Notebook). A casa já possui móveis e eletrodomésticos.
-- **Como é o networking?** Moradores e ex-moradores trabalham em grandes empresas como Embraer, MRS, BTG Pactual, Porsche, Google, entre outras.
+## Estrutura da Residência
 
-## Contato
-- **WhatsApp:** (19) 99252-1926 (Yuri/Groot), (21) 99525-8017 (Arthur/Beto), (12) 99682-5554 (Marcos/Menotti).
-- **Instagram:** @republicasantograuitajuba
-- **Site:** https://www.repsantograu.com.br
+- **Acomodações:** 7 quartos amplos (opções individuais e duplos/compartilhados), totalmente mobiliados com camas, colchões, armários individuais e mesas de estudo.
+- **Banheiros:** 3 banheiros completos e higienizados.
+- **Áreas Comuns:** Sala de estar com TV 4K, serviços de streaming, videogames e mesa de sinuca oficial.
+- **Cozinha & Lavanderia:** Cozinha equipada e lavanderia com máquinas de lavar e área de secagem.
+- **Estacionamento:** Garagem fechada e segura para carros e motos.
+- **Conectividade:** 2 links redundantes de Fibra Óptica de altíssima velocidade com Wi-Fi em toda a casa.
 
-## Sobre este Site (Tech Stack)
-Este site é uma plataforma web estática moderna desenvolvida por [Victor Augusto de Aquino Silvério](https://victorsilverio.eng.br) (Engenharia de Controle & Automação - UNIFEI).
+## Serviços Inclusos ("Tudo Incluso")
 
-### Tecnologias
-- **Frontend:** HTML5, Tailwind CSS v4, JavaScript vanilla.
-- **PWA:** Manifest.json (instalável em Android/iOS/Desktop).
-- **Build:** Node.js + Tailwind CLI + HTML Minifier + Terser.
-- **Infraestrutura:** Cloudflare Pages (serverless/edge hosting) + Cloudflare CDN (DDoS Protection & Caching).
-- **Segurança:** CSP rigorosa, HSTS, Permissions-Policy, cache inteligente (1 ano para assets versionados, revalidação para HTML).
-- **SEO:** JSON-LD structured data (LocalBusiness, FAQPage, ImageGallery), Open Graph, Twitter Cards, Sitemap XML dinâmico.
-- **Automação:** Scripts Python para sincronização de ratings do Google Places API e lastmod do sitemap via GitHub Actions.
+1. **Alimentação Completa:** Almoço e jantar caseiros servidos de Domingo a Sexta-feira.
+2. **Limpeza e Governança:** Cuidados diários com a "Mãezona Rê" (de segunda a sexta-feira), mantendo quartos, banheiros e áreas comuns limpos e organizados.
+3. **Contas Básicas Inclusas:** Água, energia elétrica, gás de cozinha e produtos de limpeza e manutenção.
+4. **Internet:** Redundância com dois provedores distintos para total estabilidade em aulas, projetos e pesquisas.
 
-### Features
-- Totalmente responsivo (Mobile First).
-- Animações com IntersectionObserver (lazy reveal effect).
-- Carrossel de timeline com touch/drag support e snap scroll.
-- Galeria lightbox com zoom de alta resolução e navegação por teclado/swipe.
-- Imagens otimizadas em WebP com thumbnails responsivas.
-- Ratings sincronizados automaticamente com Google Places API.
+## Custos Médios Mensais (Estimativa)
 
-## Estrutura de Arquivos
-- `/src/pages/`: Páginas HTML fonte (index.html, fotos.html, 404.html, offline.html).
-- `/src/js/`: Código JavaScript fonte.
-- `/src/styles/`: Arquivos CSS de entrada (Tailwind).
-- `/src/data/`: Dados dinâmicos em JSON (vagas, comodidades).
-- `/public/`: Arquivos estáticos (imagens, ícones, fontes, sitemap, manifest, _headers, _redirects).
-- `/scripts/`: Scripts de build e automação (Node.js e Python).
-- `/dist/`: Artefato compilado e minificado para deploy no Cloudflare Pages.
+- **Quarto Duplo (Compartilhado):** ~R$ 1.050,00 / mês (Tudo incluso)
+- **Quarto Individual:** ~R$ 1.180,00 / mês (Tudo incluso)
+- **Transparência:** Todos os custos e rateios são registrados em planilha de acesso aberto aos moradores.
+
+Para informações detalhadas sobre rotina, tradições, rede de ex-alunos e perguntas frequentes, consulte [llms-full.txt](https://www.repsantograu.com.br/llms-full.txt).

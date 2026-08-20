@@ -57,9 +57,9 @@ repsantograu/
 │   ├── imagens/                           # Imagens da galeria e estrutura otimizadas em WebP/JPG
 │   ├── favicon.ico / favicon-*.png        # Ícones legados de compatibilidade
 │   ├── humans.txt                         # Créditos da equipe e data da última atualização
-│   ├── llms.txt                           # Documentação contextual para crawlers de IA
-│   ├── manifest.json                      # Web App Manifest
-│   ├── robots.txt                         # Regras para motores de busca
+│   ├── llms.txt                           # Resumo executivo para agentes e crawlers de IA
+│   ├── llms-full.txt                      # Dossiê completo da moradia estudantil para LLMs
+│   ├── robots.txt                         # Regras para motores de busca e bots de IA
 │   └── sitemap.xml                        # Sitemap XML dinâmico
 ├── scripts/
 │   ├── automation/
@@ -99,17 +99,18 @@ O comando `npm run build:dist` executa uma cadeia completa e sequencial de build
 
 ```mermaid
 flowchart TD
-    A[1. update_metadata.js] -->|Atualiza sitemap.xml e humans.txt via git log| B[2. npm run build]
+    Q[1. Quality Gate: format:check & lint] --> A[2. update_metadata.js]
+    A -->|Atualiza sitemap.xml e humans.txt via git log| B[3. npm run build]
 
     subgraph buildStep[Etapas do npm run build]
-        B1[build:data - update_vacancy.js]
+        B1[build:data - validate_data.js Zod & update_vacancy.js]
         B2[build:css - tailwindcss CLI]
         B3[build:js - esbuild]
         B1 --> B2 --> B3
     end
 
     B --> buildStep
-    buildStep --> C[3. build_dist.js]
+    buildStep --> C[4. build_dist.js]
 
     subgraph distStep[Processamento do build_dist.js]
         C1[Limpar dist/]
@@ -121,42 +122,46 @@ flowchart TD
     end
 
     C --> distStep
-    distStep --> D[4. validate_build.js]
-    D -->|Validação OK| E[5. purge_cache.js]
+    distStep --> D[5. validate_build.js]
+    D -->|Validação OK| E[6. purge_cache.js]
     E -->|Invalida CDN Cloudflare| F[Deploy Concluído no Edge]
 ```
 
 ### Detalhes das Etapas:
 
-1. **`node scripts/automation/update_metadata.js`**:
+1. **Quality Gate (`format:check` & `lint`)**:
+   - Valida a formatação de código com Prettier.
+   - Executa análise estática com ESLint em todos os scripts e arquivos.
+
+2. **`node scripts/automation/update_metadata.js`**:
    - Lê o commit mais recente de cada arquivo mapeado via `git log -1 --format=%cd --date=short`.
    - Atualiza as tags `<lastmod>` no `public/sitemap.xml`.
    - Atualiza a data `Last update:` no `public/humans.txt`.
 
-2. **`npm run build:data` (`scripts/build/update_vacancy.js`)**:
-   - Lê `src/data/vagas.json` e `src/data/amenities.json`.
+3. **`npm run build:data` (`scripts/build/update_vacancy.js` + `scripts/build/validate_data.js`)**:
+   - Valida formalmente os esquemas com **Zod** (`src/data/vagas.json` e `src/data/amenities.json`).
    - Injeta o badge visual de vagas (com suporte a singular/plural e cores por nível de ocupação).
    - Injeta a lista de comodidades no `#amenities-container`.
    - Atualiza o Schema JSON-LD (`LocalBusiness`) e os textos do FAQ em `src/pages/index.html`.
 
-3. **`npm run build:css`**:
+4. **`npm run build:css`**:
    - Compila `src/styles/input.css` usando `@tailwindcss/cli` em modo `--minify`, gerando `styles.css`.
 
-4. **`npm run build:js`**:
+5. **`npm run build:js`**:
    - Minifica `src/js/script.js` com `esbuild` para ES2022, gerando `src/js/script.min.js`.
 
-5. **`node scripts/build/build_dist.js`**:
+6. **`node scripts/build/build_dist.js`**:
    - Limpa e recria a pasta `dist/`.
    - Copia todos os arquivos estáticos e subpastas de `public/`, páginas de `src/pages/` e `styles.css`.
    - Cria cópias das páginas em subdiretórios slug (`dist/fotos/index.html`, `dist/404/index.html`, `dist/offline/index.html`) para suporte nativo a trailing slash sem loops de redirecionamento no Cloudflare Pages.
    - Aplica **Cache-Busting SHA-256** anexando `?v=<hash>` em links e scripts nos arquivos HTML dentro de `dist/`. Fontes `.woff2` e URLs externas são preservadas.
    - Minifica recursivamente arquivos HTML, JS e JSON em `dist/`.
 
-6. **`node scripts/build/validate_build.js`**:
+7. **`node scripts/build/validate_build.js`**:
    - Executa testes de integridade verificando a presença de todos os arquivos obrigatórios em `dist/`.
    - Garante que nenhum arquivo residual (`.log`, `.map`, `.tmp` ou `sw.js`) esteja presente na pasta de produção.
 
-7. **`node scripts/build/purge_cache.js`**:
+8. **`node scripts/build/purge_cache.js`**:
    - Se as variáveis `CLOUDFLARE_ZONE_ID` e `CLOUDFLARE_API_TOKEN` estiverem presentes no ambiente, envia uma requisição `POST` para purgar todo o cache da CDN Cloudflare.
 
 ---
@@ -226,18 +231,20 @@ Edite o arquivo [`src/data/amenities.json`](file:///home/vaugusto/Desktop/repsan
 
 ## 7. Comandos do Desenvolvedor (NPM Scripts)
 
-| Comando                          | Descrição                                                                                                      |
-| :------------------------------- | :------------------------------------------------------------------------------------------------------------- |
-| `npm run dev`                    | Inicia o watcher do Tailwind CSS para desenvolvimento local                                                    |
-| `npm run preview` ou `npm start` | Inicia servidor HTTP local (`http-server`) servindo o `/dist` em `http://localhost:3000`                       |
-| `npm run build`                  | Compila dados (`vagas.json`), CSS (Tailwind) e JS (`esbuild`)                                                  |
-| `npm run build:dist`             | Executa o pipeline de distribuição completo (metadados, build, empacotamento dist, validação e purga de cache) |
-| `npm run test:build`             | Executa a validação de integridade de arquivos do `/dist`                                                      |
-| `npm run purge:cache`            | Executa a purga manual do cache no Cloudflare                                                                  |
-| `npm run format`                 | Formata todo o código com Prettier                                                                             |
-| `npm run format:check`           | Verifica se os arquivos estão formatados                                                                       |
-| `npm run lint`                   | Executa análise estática com ESLint                                                                            |
-| `npm run lint:fix`               | Corrige problemas automáticos com ESLint                                                                       |
+| Comando                          | Descrição                                                                                                     |
+| :------------------------------- | :------------------------------------------------------------------------------------------------------------ |
+| `npm run dev`                    | Inicia o watcher do Tailwind CSS para desenvolvimento local                                                   |
+| `npm run preview` ou `npm start` | Inicia servidor HTTP local (`http-server`) servindo o `/dist` em `http://localhost:3000`                      |
+| `npm run build`                  | Valida dados com Zod, compila dados (`vagas.json`), CSS (Tailwind) e JS (`esbuild`)                           |
+| `npm run build:dist`             | Executa o pipeline de distribuição com Quality Gate (format, lint, metadados, build, dist, validação e purga) |
+| `npm run check`                  | Executa a tríade de validação (Prettier, ESLint e validação Zod de JSONs)                                     |
+| `npm run test:data`              | Executa a validação de esquemas Zod em `src/data/`                                                            |
+| `npm run test:build`             | Executa a validação de integridade de arquivos do `/dist`                                                     |
+| `npm run purge:cache`            | Executa a purga manual do cache no Cloudflare                                                                 |
+| `npm run format`                 | Formata todo o código com Prettier                                                                            |
+| `npm run format:check`           | Verifica se os arquivos estão formatados                                                                      |
+| `npm run lint`                   | Executa análise estática com ESLint                                                                           |
+| `npm run lint:fix`               | Corrige problemas automáticos com ESLint                                                                      |
 
 ---
 

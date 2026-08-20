@@ -81,15 +81,27 @@ function updateJsonLd(indexHtml, available, year) {
   return indexHtml;
 }
 
+const { vagasSchema, amenitiesSchema } = require('./validate_data.js');
+
 try {
-  // Read data
-  const vagasData = JSON.parse(fs.readFileSync(vagasPath, 'utf8'));
-  let amenitiesData = [];
-  try {
-    amenitiesData = JSON.parse(fs.readFileSync(amenitiesPath, 'utf8'));
-  } catch (e) {
-    console.warn('Warning: Could not read amenities.json', e.message);
+  // Read and validate data
+  const rawVagas = JSON.parse(fs.readFileSync(vagasPath, 'utf8'));
+  const vagasValidation = vagasSchema.safeParse(rawVagas);
+  if (!vagasValidation.success) {
+    console.error('❌ ERRO DE VALIDAÇÃO EM vagas.json:');
+    console.error(JSON.stringify(vagasValidation.error.format(), null, 2));
+    process.exit(1);
   }
+  const vagasData = vagasValidation.data;
+
+  const rawAmenities = JSON.parse(fs.readFileSync(amenitiesPath, 'utf8'));
+  const amenitiesValidation = amenitiesSchema.safeParse(rawAmenities);
+  if (!amenitiesValidation.success) {
+    console.error('❌ ERRO DE VALIDAÇÃO EM amenities.json:');
+    console.error(JSON.stringify(amenitiesValidation.error.format(), null, 2));
+    process.exit(1);
+  }
+  const amenitiesData = amenitiesValidation.data;
 
   const { year, total_slots, occupied_slots, room_type } = vagasData;
   const available = total_slots - occupied_slots;

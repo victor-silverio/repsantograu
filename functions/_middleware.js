@@ -18,10 +18,11 @@ export async function onRequest(context) {
   const response = await context.next();
   const contentType = response.headers.get('Content-Type') || '';
 
-  // 3. Early Hints para recursos críticos quando a resposta for HTML
+  // 3. Early Hints (HTTP 103) para recursos críticos quando a resposta for HTML
   if (contentType.includes('text/html')) {
     const headers = new Headers(response.headers);
 
+    // Fontes críticas locais
     headers.append(
       'Link',
       '</fonts/montserrat-v31-latin-regular.woff2>; rel=preload; as=font; type=font/woff2; crossorigin'
@@ -33,6 +34,13 @@ export async function onRequest(context) {
     headers.append(
       'Link',
       '</fonts/playfair-display-v40-latin-700.woff2>; rel=preload; as=font; type=font/woff2; crossorigin'
+    );
+
+    // Folha de estilos crítica e imagem LCP
+    headers.append('Link', '</styles.css>; rel=preload; as=style');
+    headers.append(
+      'Link',
+      '</imagens/frente_reitoria.webp>; rel=preload; as=image'
     );
 
     return new Response(response.body, {
