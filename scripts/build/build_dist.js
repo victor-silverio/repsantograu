@@ -133,12 +133,11 @@ async function minifyRecursive(dir) {
             const minified = await minifyHtml(content, {
               collapseWhitespace: true,
               removeComments: true,
-              removeAttributeQuotes: true,
               minifyCSS: true,
               minifyJS: true,
             });
             await fs.writeFile(filePath, minified);
-            console.log(`Minified HTML: ${file}`);
+            console.log(`Minified HTML: ${path.relative(distDir, filePath)}`);
           } catch (err) {
             console.error(`Error minifying HTML ${file}:`, err);
           }
@@ -207,24 +206,6 @@ async function build() {
     ];
     await Promise.all(copyTasks);
 
-    // 2b. Copy sub-pages as index.html inside their slug directories
-    // This makes /fotos/, /offline/, /404/ work natively on Cloudflare Pages
-    const slugPages = [
-      { file: 'fotos.html', slug: 'fotos' },
-      { file: 'offline.html', slug: 'offline' },
-      { file: '404.html', slug: '404' },
-    ];
-    await Promise.all(
-      slugPages.map(async ({ file, slug }) => {
-        const slugDir = path.join(distDir, slug);
-        await fs.mkdir(slugDir, { recursive: true });
-        await fs.copyFile(
-          path.join(distDir, file),
-          path.join(slugDir, 'index.html')
-        );
-      })
-    );
-
     // 3. Security.txt logic
     const securitySrc = path.join(distDir, '.well-known', 'security.txt');
     const securityDest = path.join(distDir, 'security.txt');
@@ -246,10 +227,30 @@ async function build() {
     console.log('Applying cache busting to HTML files...');
     await cacheBustHtmlFiles();
 
-    // 6. Minify recursively
+    // 6. Minify recursively (only root-level copies at this point — no slug dirs yet)
     console.log('Starting minification...');
     await minifyRecursive(distDir);
     console.log('Minification complete.');
+
+    // 7. Copy already-minified sub-pages into slug directories
+    // Done AFTER minification so each file is only processed once.
+    // This makes /fotos/, /offline/, /404/ work natively on Cloudflare Pages.
+    const slugPages = [
+      { file: 'fotos.html', slug: 'fotos' },
+      { file: 'offline.html', slug: 'offline' },
+      { file: '404.html', slug: '404' },
+    ];
+    await Promise.all(
+      slugPages.map(async ({ file, slug }) => {
+        const slugDir = path.join(distDir, slug);
+        await fs.mkdir(slugDir, { recursive: true });
+        await fs.copyFile(
+          path.join(distDir, file),
+          path.join(slugDir, 'index.html')
+        );
+      })
+    );
+    console.log('Slug directories created (fotos/, offline/, 404/).');
 
     console.log('Build complete! Output in /dist');
   } catch (err) {

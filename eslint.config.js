@@ -5,9 +5,9 @@ const globals = require('globals');
 module.exports = [
   {
     ignores: [
-      'src/script.min.js',
+      'src/js/script.min.js',
       'sw.js',
-      'src/input.css',
+      'src/styles/input.css',
       'styles.css',
       'dist/**/*',
       'venv/**/*',

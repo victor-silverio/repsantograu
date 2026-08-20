@@ -21,6 +21,11 @@ const REQUIRED_FILES = [
   'llms-full.txt',
   '_headers',
   '_redirects',
+  'favicon.ico',
+  'favicon-32x32.png',
+  'favicon-48x48.png',
+  '.well-known/security.txt',
+  'security.txt',
   'fonts/montserrat-v31-latin-regular.woff2',
   'fonts/montserrat-v31-latin-700.woff2',
   'fonts/playfair-display-v40-latin-700.woff2',
@@ -34,7 +39,7 @@ async function getFilesRecursive(dir) {
       return (await fs.stat(res)).isDirectory() ? getFilesRecursive(res) : res;
     })
   );
-  return files.reduce((a, f) => a.concat(f), []);
+  return files.flat();
 }
 
 async function validateBuild() {
@@ -46,13 +51,31 @@ async function validateBuild() {
     process.exit(1);
   }
 
-  // 1. Validar existência de arquivos obrigatórios
+  // 1. Validar existência e tamanho mínimo de arquivos obrigatórios
   for (const file of REQUIRED_FILES) {
     const fullPath = path.join(distDir, file);
     if (!fsSync.existsSync(fullPath)) {
       console.error(`❌ ERRO: Arquivo obrigatório ausente: dist/${file}`);
       hasError = true;
+    } else {
+      // Sanity check: critical text files must not be empty/tiny
+      const stat = fsSync.statSync(fullPath);
+      if (
+        (file.endsWith('.html') || file === 'styles.css') &&
+        stat.size < 500
+      ) {
+        console.error(
+          `❌ ERRO: Arquivo suspeito (muito pequeno: ${stat.size}B): dist/${file}`
+        );
+        hasError = true;
+      }
     }
+  }
+
+  if (!hasError) {
+    console.log(
+      `✅ Todos os ${REQUIRED_FILES.length} arquivos obrigatórios presentes.`
+    );
   }
 
   // 2. Validar que não há arquivos indevidos no dist

@@ -1,8 +1,8 @@
 'use strict';
 
 const { spawnSync, execSync } = require('child_process');
-const { existsSync, readdirSync } = require('fs');
 const fs = require('fs');
+const { existsSync, readdirSync } = fs;
 const path = require('path');
 
 const rootDir = path.join(__dirname, '..', '..');
