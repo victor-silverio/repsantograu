@@ -1,22 +1,35 @@
-src/input.css
-styles.css
-src/js/script.min.js
-sw.js
+# --- Build output & dependencies ---
 dist/
-dist
-venv/
 node_modules/
+venv/
 logs/
 .lighthouseci/
+
+# --- Generated / minified assets (never hand-edited) ---
+src/js/script.min.js
+src/styles/input.css
+styles.css
+sw.js
 src/config/lh_counter.json
+
+# --- Static public assets (binary or hand-formatted) ---
 public/imagens/
 public/fonts/
 public/icons/
-*.png
-*.jpg
-*.jpeg
-*.webp
-*.avif
-*.ico
-*.woff2
-*.woff
+public/robots.txt
+public/sitemap.xml
+public/humans.txt
+public/llms.txt
+public/llms-full.txt
+public/_headers
+public/_redirects
+public/.well-known/
+
+# --- Repo metadata (not part of the site) ---
+*.md
+LICENSE
+*.yml
+*.yaml
+*.py
+*.txt
+package-lock.json
